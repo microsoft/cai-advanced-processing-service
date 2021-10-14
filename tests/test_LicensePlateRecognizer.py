@@ -1,8 +1,4 @@
-import json
-import logging
-import time
 import sys
-import requests
 sys.path.append('./')
 from LicensePlateRecognizer import test_licenseplaterecognizer
 
