@@ -269,6 +269,7 @@ ambiguous = {
 	'nordwestmecklenburg':'wis',
 	'northeim':'gan',
 	'northeim':'ein',
+	'rotenburg wümme':'brv',
 	'rotenburg wuemme':'brv',
 	'rendsburg eckernförde':'eck',
 	'rendsburg-eckernförde':'eck',
@@ -855,6 +856,7 @@ areas = {
 	'rathenow':'rn',
 	'rosenheim':'ro',
 	'roding':'rod',
+	'rotenburg wümme':'row',
 	'rotenburg wuemme':'row',
 	'rotenburg':'row',
 	'rotenburg an der fulda':'rof',
@@ -1050,17 +1052,24 @@ areas = {
 }
 
 """Stopwords removed in processing"""
-exclude = [
-    'ist',
-    'und',
-    'dann',
-    'äh',
-    'ähm',
-    'genau',
-    'richtig',
-    'punkt',
-    'leerzeichen'
-]
+exclude = {
+	"de": [
+		'ist',
+		'und',
+		'dann',
+		'äh',
+		'ähm',
+		'genau',
+		'richtig',
+		'punkt',
+		'leerzeichen'
+	],
+	"en": [
+		'is',
+		'and',
+		'fullstop'
+	]
+}
 
 """List of German Area Codes that can also be landtag"""
 landtag = [
@@ -1087,9 +1096,18 @@ landtag = [
 
 """Special meanings intepreted in reduce stage"""
 specials = {
-	".":" ",
-	"-":" ",
-	"*":" mal ",
-	"werden":"verden",
-	"färben":"verden"
+	"de": {
+		".":" ",
+		"-":" ",
+		#"*":" mal ",
+		"werden":"verden",
+		"färben":"verden"
+	},
+	"en": {
+		".":" ",
+		"-":" ",
+		"*":" mal ",
+		"werden":"verden",
+		"färben":"verden"
+	}
 }
