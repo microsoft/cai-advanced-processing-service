@@ -1,0 +1,43 @@
+{
+    "attributes": {
+        "Id": {
+            "required": true,
+            "preprocess": true,
+            "exact_match": true
+        },
+        "Firstname": {
+            "required": false,
+            "preprocess": true,
+            "exact_match": false,
+            "max_distance": 2
+        },
+        "Lastname": {
+            "required": false,
+            "preprocess": true,
+            "exact_match": false,
+            "max_distance_levenshtein": 1,
+            "max_distance_damerau": 1,
+            "max_distance_jaro": 0.9
+        },
+        "Birthdate": {
+            "required": false,
+            "preprocess": false,
+            "exact_match": true
+        },
+        "PIN": {
+            "required": false,
+            "preprocess": true,
+            "exact_match": true
+        },
+        "ContractNumber": {
+            "required": false,
+            "preprocess": true,
+            "exact_match": true,
+            "structure": "[A-Z]{1,2}[0-9]{3}"
+        }
+
+    },
+    "config": {
+        "min_attributes": 3
+    }
+}

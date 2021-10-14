@@ -1,0 +1,16 @@
+.git*
+.vscode
+local.settings.json
+test
+.venv
+venv
+dashboard/
+tests/
+assets/img/
+assets/postman_collection/
+assets/luis/
+config.ini
+config.sample.ini
+deploy.ps1
+README.md
+GET_YOUR_KEYS.md
