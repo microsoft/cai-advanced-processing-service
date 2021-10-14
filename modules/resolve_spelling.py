@@ -21,8 +21,8 @@ class CleanText(object):
         
         # Import dictionaires
         self.dict_char = characters.alphabet.get(locale)
-        self.dict_spec = characters.specials
-        self.list_excl = characters.exclude
+        self.dict_spec = characters.specials.get(locale)
+        self.list_excl = characters.exclude.get(locale)
 
         # Collect characters from assets
         self.numbers_dict = characters.numbers_dict.get(locale)
@@ -39,13 +39,15 @@ class CleanText(object):
     
     def reduce_string(self, text):
         # Reduce special characters
-        logger.warning(text)
         text = ' '.join([str(self.dict_spec.get(i, i)) for i in text.translate(self.table).split() if i not in self.list_excl])
+        #text = text.replace("*", " * ") # TODO
+        logger.warning(f'[REDUCE STRING] - {text}')
         return text
 
     def resolve_numbers_as_words(self, text):
         # Resolve numbers as words to numbers
         text = ' '.join([str(self.numbers_dict.get(i, i)) for i in text.translate(self.table).split() if i not in self.list_excl])
+        logger.warning(f'[NUMERS AS WORDS] - {text}')
         return text
 
     def remove_punctuation(self, text):
@@ -74,7 +76,7 @@ class CleanText(object):
         # Replace general "wie"-comparisons
         while True:
             match = re.search(r'(\s|^)([a-z]{1,3}) (wie|für|von|wir|for|like) \w+', phrase)
-            logger.info(f'wie - {phrase} -> {match}')
+            logger.info(f'[COMPARISON] - {phrase} -> {match}')
             if match:
                 start = match.span(0)[0]
                 stop = match.span(0)[1]
@@ -87,7 +89,7 @@ class CleanText(object):
         for repeat in self.numbers_repeat.keys():
             while True:
                 match = re.search(r'(' + repeat  + r' [a-z]\b)', phrase)
-                logger.info(f'letter multiplication - {phrase} ->{match}')
+                logger.info(f'[LETTER MULTIPLICATION] - {phrase} ->{match}')
                 if match:
                     start = match.span(0)[0]
                     stop = match.span(0)[1]
@@ -96,26 +98,28 @@ class CleanText(object):
                 else:
                     break
 
-        # Replace number multiplication
+        # Replace number multiplication based on word
         for repeat in self.numbers_repeat.keys():
             while True:
-                match = re.search(r'(' + repeat + r'( die)? [0-9]\b)', phrase)
-                logger.debug(f'number multiplication{phrase} -> {match}')
+                phrase = phrase.replace(" die ", " ") # TODO REMOVE/FIX THIS
+                match = re.search(r'(' + repeat + r'( die)? [0-9]{1,2}\b)', phrase)
+                logger.info(f'[NUMBER MULTI WORD] - {phrase} -> {match}')
                 if match:
                     start = match.span(0)[0]
                     stop = match.span(0)[1]
-                    letter = self.numbers_repeat[repeat] * phrase[start:stop][-1]
+                    letter = self.numbers_repeat[repeat] * phrase[start + len(repeat):stop].strip()
                     phrase = phrase[:start] + letter + phrase[stop:]
                 else:
                     break
 
-        # Replace number multiplication
+        # Replace number multiplication based on number
         while True:
-            match = re.search(r'([1-9]( |)(mal|times|\*)( die)? [0-9]\b)', phrase)
+            match = re.search(r'([1-9]( |)(mal|times|\*)( die)?( |)[0-9]\b)', phrase)
+            logger.info(f'[NUMBER MULTI NR] - {phrase} -> {match}')
             if match:
                 start = match.span(0)[0]
                 stop = match.span(0)[1]
-                number = int(phrase[start:stop][0:1]) * phrase[start:stop][-2:].strip()
+                number = int(phrase[start:stop][0:1]) * phrase[start:stop][-1:].strip()
                 phrase = phrase[:start] + number + phrase[stop:]
             else:
                 break
