@@ -1,7 +1,7 @@
 
 > LUIS application information
-> !# @app.name = license-plate-recognizer-de
-> !# @app.desc = LUIS App for License Plate recognition in German
+> !# @app.name = voice-bot-mtc-lpr
+> !# @app.desc = LUIS App for iBDC VoiceBot Project. Prod.
 > !# @app.versionId = 0.5
 > !# @app.culture = de-de
 > !# @app.luis_schema_version = 7.0.0
@@ -57,6 +57,7 @@
 - das kennzeichen von meinem auto ist {@platenumber=rakl 8.136}
 - das kennzeichen von meinem auto ist {@platenumber=rakl 8.136}.
 - das kennzeichen von meinem autos {@platenumber=heinrich dora m 195}.
+- das wäre das {@platenumber=hhhl doppel 23}
 - das wäre {@platenumber=hh al 856}.
 - dat is {@platenumber=balingen siegfried friedrich drei mal die 3}
 - die {@platenumber=b ln 555}
@@ -90,6 +91,8 @@
 - {@platenumber=haha ed 77970} genau.
 - {@platenumber=haha ih l 3024}.
 - {@platenumber=haha ml 435}.
+- {@platenumber=hamburg ah 7 1 8 e}
+- {@platenumber=hamburg ah 7 1 8 h}
 - {@platenumber=hamburg anton martha 2 86}
 - {@platenumber=hamburg berta cerca 2 4 3}
 - {@platenumber=hamburg e a 18 85}
@@ -126,12 +129,14 @@
 - {@platenumber=hh-ah718 e}
 - {@platenumber=hh-m323}
 - {@platenumber=hh-om888}
+- {@platenumber=hhhl doppel 23}
 - {@platenumber=hhjh 4.800}.
 - {@platenumber=hhmg 134 zwo}.
 - hi das kennzeichen vom auto ist {@platenumber=m, wie martin t, wie teufel 1.950}.
 - hi mein kennzeichen ist {@platenumber=heinrich heinrich dora dora 125}.
 - hi mein kennzeichen ist {@platenumber=ra kl 8.136}
 - {@platenumber=hm 61 zwo}
+- hro tw 202
 - ich fahr nachher nach frankfurt und mein kennzeichen ist die {@platenumber=s tx 6543}
 - ich frage jetzt ab kennzeichen {@platenumber=b l n 7 7 22}
 - ich hätte gerne einen termin in stuttgart und mein nummernschild ist {@platenumber=frankfurt anna stefan 44}
