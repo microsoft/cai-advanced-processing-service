@@ -82,7 +82,7 @@ class LicensePlateRecognizer(object):
                     start  = match.span(0)[0]
                     stop   = match.span(0)[1]
                     phrase = phrase[start:]
-                    logger.warning(f'{phrase} -> {match}')
+                    logger.info(f'[DETECT AREA] {phrase} -> {match}')
                     break
             
             # Detect ambiguous license plate area
@@ -124,7 +124,7 @@ class LicensePlateRecognizer(object):
             
             # Extract electric and histroical vehicle LPs
             entity_extra = ''
-            if entity_reduced[-1] in ['e','h','c']:
+            if entity_reduced[-1] in ['e', 'h', 'c']:
                 entity_extra = entity_reduced[-1]
 
             # Check for incomplete LP
@@ -327,6 +327,7 @@ class LicensePlateRecognizer(object):
             # Check for missing connection
             if reduced[1] != '-':
                 reduced = reduced[0] + '-' + reduced[1:]
+                print(reduced)
             
             third = ''
             if reduced[0] == '0':
