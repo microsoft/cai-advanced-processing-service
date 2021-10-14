@@ -4,7 +4,7 @@ import logging
 from azure.cosmosdb.table import TableService, Entity
 
 # Example inputs
-connection_data = {'table_name': 'CustomerData', 'connection_string': "DefaultEndpointsProtocol=https;AccountName=jagotestingfunctions;AccountKey=/ED2eAurl0DIZIedulyj9JYCTbvpQqSm5KSfmi8g/NVDEGNLO36YG7jRKZK4Juxwcst2GpNzQ4UmPZg+fsiPxw==;EndpointSuffix=core.windows.net"}#, 'connection_string': "DefaultEndpointsProtocol=https;AccountName=nonstopstore;AccountKey=3EDZulLhsAARroSnPKLl9FO+YeJPQLbrX8A2P9RIR1otCZa7iropkwYSQYKpr7CLNZ1kxl2B4OYTrDBCNc6k5g==;EndpointSuffix=core.windows.net"}
+connection_data = {'table_name': 'CustomerData', 'connection_string': ""}
 table_filters = {'PartitionKey': 'CustomerData'}
 # table_filters = None # If no filters should be applied
 

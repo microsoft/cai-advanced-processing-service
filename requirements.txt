@@ -10,4 +10,4 @@ numpy
 azure-ai-formrecognizer==3.1.0b3
 datetime
 spacy
-./assets/spacy/en_core_web_sm-3.0.0.tar.gz
+#./assets/spacy/en_core_web_sm-3.0.0.tar.gz
