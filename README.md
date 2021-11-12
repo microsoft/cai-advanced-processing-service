@@ -1,7 +1,7 @@
 ![Data Science Toolkit](assets/img/data-science-toolkit-banner.JPG)
 
-# looky, the smart authentication assistent
-looky is a collection of modules, wrapped in multiple APIs that help you to enrich your conversational AI applications in these three fields:
+# Conversational AI (CAI) Advanced Processing Service - a smart authentication assistent
+CAI Advanced Processing Service is a collection of modules, wrapped in multiple APIs that help you to enrich your conversational AI applications in these three fields:
 - Validation
 - Identification
 - Authentication
