@@ -490,7 +490,7 @@ First, you have to install/set up following components:
 1. Wait until the deployment is finished
 1. (optional, only has to be done for initial deployment OR when settings are updated) Execute following command:<br>
 `az webapp config appsettings set -g [insert name of resource group] -n [insert your function name] --settings @appsettings.json`
-1. Use [Postman](https://www.postman.com/downloads/) for testing the endpoints with the [collections](assets/postman-collection/looky.postman_collection.json)
+1. Use [Postman](https://www.postman.com/downloads/) for testing the endpoints with the [collections](assets/postman-collection/cai-advanced-processing-service.postman_collection.json)
 
 ## Contributing
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
