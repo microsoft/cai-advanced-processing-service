@@ -1,0 +1,503 @@
+{
+	"info": {
+		"_postman_id": "d8a6e2f4-1f6b-4748-b060-71b8bb2d53d7",
+		"name": "cai-advanced-processing-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Local - SpellingResolver",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\": \"Martha Anton humbug drei 4\",\r\n    \"convertnumbers\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7071/api/SpellingResolver",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7071",
+					"path": [
+						"api",
+						"SpellingResolver"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Local - TableRequestor",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"table\": {\r\n        \"name\": \"ndsjustizdemozeugentermine\"\r\n    },\r\n    \"params\": {\r\n        \"Nachname\": \"Mustermann\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7071/api/TableRequestor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7071",
+					"path": [
+						"api",
+						"TableRequestor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Local - LicensePlateRecognizer",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\":\"mab 123\",\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7071/api/LicensePlateRecognizer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7071",
+					"path": [
+						"api",
+						"LicensePlateRecognizer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Local - Authentication",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"attributes\":\r\n        {\r\n            \"Firstname\": \"Jan\",\r\n            \"Lastname\": \"Goergen\",\r\n            \"Birthdate\": \"15.03.1978\",\r\n            \"Id\": \"80555500\"\r\n        },\r\n    \"method\": 4,\r\n    \"verbose\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7071/api/Authenticator",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7071",
+					"path": [
+						"api",
+						"Authenticator"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Local - FormRecognizer",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"model_id\": \"4b173cbf-a153-4c8b-b980-fc9e7399602d\",\r\n    \"doc_url\": \"https://nonstopstore.blob.core.windows.net/forms/form3.pdf?sv=2019-12-12&st=2021-03-07T10%3A19%3A08Z&se=2021-04-08T09%3A19%3A00Z&sr=b&sp=r&sig=hYgtrgzNegieovT47H0bEhpcPS34FgKqJHFtG7VuyHk%3D\",\r\n    \"copy_to_blob\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7071/api/FormRecognizer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7071",
+					"path": [
+						"api",
+						"FormRecognizer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Local - BatchTesting",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n       \"id\":\"filename1\",\r\n        \"ref\": \"Mein Kennzeichen is essen dora berta 3 Mal  3 und 2 Mal die 7.\",\r\n        \"rec\": \"Mein Kennzeichen is essen dora berta 3333 Mal  3 und 2 Mal die 7.\",\r\n        \"lp_ref\":\"E-DB33377\",\r\n        \"lp_rec\":\"E-DB33377\"\r\n    },\r\n    {\r\n        \"id\":\"filename2\",\r\n        \"ref\": \"mein kennzeichen ist münchen dora dora  2 4\",\r\n        \"rec\": \"mein kennzeichen ist münchen dora dora  2 5\"\r\n    },\r\n    {\r\n        \"id\":\"filename3\",\r\n        \"ref\": \"hallo ich kann sie nicht verstehen\",\r\n        \"rec\": \"hi ich kann nicht verstehen\"\r\n    },\r\n    {\r\n        \"id\":\"filename4\",\r\n        \"ref\": \"hallo kann sie nicht verstehen\",\r\n        \"rec\": \"hi ich kann nicht verstehen tschüss tschüss\",\r\n        \"lp_ref\":\"M-DD24\",\r\n        \"lp_rec\":\"M-DD25\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7071/api/BatchTesting",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7071",
+					"path": [
+						"api",
+						"BatchTesting"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deployed - TableRequestor",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "x-functions-key",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "{{tablerequestor_APIKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"storageaccountname\": \"teststorage\",\r\n \"table\": {\r\n \"name\": \"ndsjustizdemozeugentermine\"\r\n },\r\n \"params\": {\r\n \"PartitionKey\": \"UserData\"\r\n }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{FunctionURI}}/api/tablerequestor",
+					"protocol": "https",
+					"host": [
+						"{{FunctionURI}}"
+					],
+					"path": [
+						"api",
+						"tablerequestor"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deployed - FormRecognizer",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{formrecognizer_APIKey}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "code",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"model_id\": \"4b173cbf-a153-4c8b-b980-fc9e7399602d\",\r\n    \"doc_url\": \"https://nonstopstore.blob.core.windows.net/forms/form3.pdf?sv=2019-12-12&st=2021-03-07T10%3A19%3A08Z&se=2021-04-08T09%3A19%3A00Z&sr=b&sp=r&sig=hYgtrgzNegieovT47H0bEhpcPS34FgKqJHFtG7VuyHk%3D\",\r\n    \"copy_to_blob\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{FunctionURI}}/api/formrecognizer",
+					"protocol": "https",
+					"host": [
+						"{{FunctionURI}}"
+					],
+					"path": [
+						"api",
+						"formrecognizer"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deployed - SpellingResolver",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{spellingresolver_APIKey}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "code",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\": \"Martha Anton humbug drei 4\",\r\n    \"convertnumbers\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{FunctionURI}}/api/SpellingResolver",
+					"protocol": "https",
+					"host": [
+						"{{FunctionURI}}"
+					],
+					"path": [
+						"api",
+						"SpellingResolver"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deployed - LicensePlateRecognizer",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "x-functions-key",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "{{licenseplaterecognizer_APIKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\":\"mab 123\",\r\n    \"locale\": \"de\",\r\n    \"region\": \"de\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{FunctionURI}}/api/LicensePlateRecognizer",
+					"protocol": "https",
+					"host": [
+						"{{FunctionURI}}"
+					],
+					"path": [
+						"api",
+						"LicensePlateRecognizer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deployed - Authentication",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "{{authenticator_APIKey}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "code",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"attributes\":\r\n        {\r\n            \"Firstname\": \"Jan\",\r\n            \"Lastname\": \"Goergen\",\r\n            \"Birthdate\": \"15.03.1978\",\r\n            \"Id\": \"80555500\"\r\n        },\r\n    \"method\": 4,\r\n    \"verbose\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{FunctionURI}}/api/Authenticator",
+					"protocol": "https",
+					"host": [
+						"{{FunctionURI}}"
+					],
+					"path": [
+						"api",
+						"Authenticator"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deployed - BatchTesting",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{batchtesting_APIKey}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "x-functions-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n       \"id\":\"filename1\",\r\n        \"ref\": \"Mein Kennzeichen is essen dora berta 3 Mal  3 und 2 Mal die 7.\",\r\n        \"rec\": \"Mein Kennzeichen is essen dora berta 3 Mal  3 und 2 Mal die 7.\",\r\n        \"lp_ref\":\"E-DB33377\",\r\n        \"lp_rec\":\"E-DB33377\"\r\n    },\r\n    {\r\n        \"id\":\"filename2\",\r\n        \"ref\": \"mein kennzeichen ist münchen dora dora  2 4\",\r\n        \"rec\": \"mein kennzeichen ist münchen dora dora  2 5\"\r\n    },\r\n    {\r\n        \"id\":\"filename3\",\r\n        \"ref\": \"hallo ich kann sie nicht verstehen\",\r\n        \"rec\": \"hi ich kann nicht verstehen\"\r\n    },\r\n    {\r\n        \"id\":\"filename4\",\r\n        \"ref\": \"hallo kann sie nicht verstehen\",\r\n        \"rec\": \"hi ich kann nicht verstehen tschüss tschüss\",\r\n        \"lp_ref\":\"M-DD24\",\r\n        \"lp_rec\":\"M-DD25\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{FunctionURI}}/api/BatchTesting",
+					"protocol": "https",
+					"host": [
+						"{{FunctionURI}}"
+					],
+					"path": [
+						"api",
+						"BatchTesting"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
