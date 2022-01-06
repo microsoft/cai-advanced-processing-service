@@ -132,3 +132,4 @@ local.settings.json
 # Others
 .vscode/
 config.ini
+notebooks/
