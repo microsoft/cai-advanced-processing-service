@@ -14,3 +14,4 @@ config.sample.ini
 deploy.ps1
 README.md
 GET_YOUR_KEYS.md
+notebooks/

@@ -55,16 +55,18 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         v = Vin(query)
         
         # if VIN is valid, go ahead
-        if v.is_valid:
+        if v.wmi and v.vds and v.vis and v.vsn is not None:
             ## Pack json response
             res = json.dumps(
                 {
                     "query": query,
+                    "vinQuery": query,
                     "validvin": True,
                     "expectedwmi": expectedwmi,
                     "vindetails": {
                         "region": v.region,
                         "country": v.country,
+                        "validvin": v.is_valid,
                         "year": v.year,
                         "make": v.make,
                         "manufacturer": v.manufacturer,
