@@ -197,6 +197,7 @@ YEARS_CODES_PRE_2040 = {
 # https://en.wikibooks.org/wiki/Vehicle_Identification_Numbers_(VIN_codes)/World_Manufacturer_Identifier_(WMI)
 # http://www.civicx.com/threads/2016-civic-vin-translator-decoder-guide.889/
 # https://www.nicb.org/theft_and_fraud_awareness/vin-manuals
+
 WMI_MAP = {
         'MBR': 'Mercedes-Benz India',
         'MEC': 'Daimler India Commercial Vehicles',
