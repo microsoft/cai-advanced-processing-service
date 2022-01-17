@@ -11,7 +11,7 @@ try:
     from __app__.modules import resolve_spelling as resolve
     from __app__.modules import pattern_matcher as patterns
     from __app__.modules import similarity_score as simscore
-    import __app__.helper
+    import __app__.helper as helper
 except Exception as e:
     logging.info('[INFO] Helper: Using local imports.')
     from assets import characters
