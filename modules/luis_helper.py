@@ -1,4 +1,4 @@
-''' LICENSE PLATE RECOGNIZER MODULE '''
+'''MODULES USED ACROSS THE SOLUTION'''
 import requests
 import logging
 import json
