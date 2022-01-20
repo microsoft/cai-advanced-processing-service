@@ -3,6 +3,7 @@ import json
 
 import azure.functions as func
 
+
 # Define global logger
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -15,10 +16,12 @@ for handler in logger.handlers:
 # Import custom modules
 try:
     from  __app__.modules.libvin import Vin
+    from  __app__.modules import luis_helper
     logger.info("[INFO] Helper: Using app imports.")
 except Exception as e:
     logger.info("[INFO] Helper: Using local imports.")
     from  modules.libvin import Vin
+    from  modules import luis_helper
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
@@ -48,50 +51,70 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         lang = lang[:2]
         logger.info(f'[INFO] Set params -> expectedwmi: {expectedwmi}, language: {lang}.')
 
-    
+    # Load luis credentials 
+    luis_creds = luis_helper.get_luis_creds(lang, "VINResolver")
+
     # If query is not empty, go ahead
     if query:
-        # Get VIN entity results
-        v = Vin(query)
-        
-        # if VIN is valid, go ahead
-        if v.wmi and v.vds and v.vis and v.vsn is not None:
-            ## Pack json response
-            res = json.dumps(
-                {
-                    "query": query,
-                    "vinQuery": query,
-                    "validvin": True,
-                    "expectedwmi": expectedwmi,
-                    "vindetails": {
-                        "region": v.region,
-                        "country": v.country,
-                        "validvin": v.is_valid,
-                        "year": v.year,
-                        "make": v.make,
-                        "manufacturer": v.manufacturer,
-                        "is_pre_2010": v.is_pre_2010,
-                        "wmi": v.wmi,
-                        "vds": v.vds,
-                        "vis": v.vis,
-                        "vsn": v.vsn,
-                        "less_than_500_built_per_year": v.less_than_500_built_per_year
-                    }
-                })
-            
-            
-        else:
-            ## Pack json response
-            res = json.dumps(
-                {
-                "query": query,
-                "validvin": False,
-                "vindetails": {}
-                })
+        # Get LUIS entity results
+        r = luis_helper.score_luis(query, luis_creds)
+        try:
+            r_ent = r['prediction']['entities']['vin'][0]
+        except KeyError:
+            logger.error('[WARNING] - No entity could be extracted')
+            r_ent = None
+        except Exception as e:
+            logger.error(f'[ERROR] - {e}')
+            r_ent = None
 
-        return func.HttpResponse(
-            res, mimetype='application/json'
-        )    
+        if r_ent:
+            # Get VIN entity results
+            v = Vin(r_ent)
+            
+            # if VIN is valid, go ahead
+            if v.wmi and v.vds and v.vis and v.vsn is not None:
+                ## Pack json response
+                res = json.dumps(
+                    {
+                        "query": query,
+                        "vinQuery": r_ent,
+                        "validvin": True,
+                        "expectedwmi": expectedwmi,
+                        "vindetails": {
+                            "region": v.region,
+                            "country": v.country,
+                            "validvin_US_CH": v.is_valid_US_CH,
+                            "validvin_rest": v.is_valid_rest,
+                            "year": v.year,
+                            "make": v.make,
+                            "manufacturer": v.manufacturer,
+                            "is_pre_2010": v.is_pre_2010,
+                            "wmi": v.wmi,
+                            "vds": v.vds,
+                            "vis": v.vis,
+                            "vsn": v.vsn,
+                            "less_than_500_built_per_year": v.less_than_500_built_per_year
+                        }
+                    })
+                
+                
+            else:
+                ## Pack json response
+                res = json.dumps(
+                    {
+                    "query": query,
+                    "validvin": False,
+                    "vindetails": {}
+                    })
+
+            return func.HttpResponse(
+                res, mimetype='application/json'
+            )   
+        else:
+            return func.HttpResponse(
+             "[ERROR] Received a blank request. Please pass a value using the defined format. Example: \{'query':'AB C 1234'\}",
+             status_code = 400
+            ) 
     else:
         return func.HttpResponse(
              "[ERROR] Received a blank request. Please pass a value using the defined format. Example: \{'query':'AB C 1234'\}",
