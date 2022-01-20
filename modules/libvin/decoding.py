@@ -44,35 +44,7 @@ class Vin(object):
         return self.vin[6].isdigit()
 
     @property
-    def is_valid_rest(self):
-        """
-        Returns True if a VIN is valid, otherwise returns False.
-        """
-        if len(self.vin) != 17:
-            """
-            For model years 1981 to present, the VIN is composed of 17 
-            alphanumeric values
-            """
-            return False
-
-        if any(x in 'IOQ' for x in self.vin):
-            """ 
-            The letters I,O, Q are prohibited from any VIN position 
-            """
-            return False
-
-        if self.vin[9] in 'UZ0':
-            """
-            The tenth position of the VIN represents the Model Year and 
-            does not permit the use of the characters U and Z, as well 
-            as the numeric zero (0)
-            """
-            return False
-
-        return True
-
-    @property
-    def is_valid_US_CH(self):
+    def is_valid(self):
         """
         Returns True if a VIN is valid, otherwise returns False.
         """
@@ -97,19 +69,20 @@ class Vin(object):
             """
             return False
         
-        products = [VIN_WEIGHT[i] * VIN_TRANSLATION[j] for i, j in enumerate(self.vin)]
-        check_digit = sum(products) % 11
-        if check_digit == 10:
-            check_digit = 'X'
+        if self.region == 'north_america' or self.country == 'China':
+            products = [VIN_WEIGHT[i] * VIN_TRANSLATION[j] for i, j in enumerate(self.vin)]
+            check_digit = sum(products) % 11
+            if check_digit == 10:
+                check_digit = 'X'
 
-        if self.vin[8] != str(check_digit):
-            """
-            The ninth position of the VIN is a calculated value based on 
-            the other 16 alphanumeric values, it's called the 
-            "Check Digit". The result of the check digit can ONLY be a 
-            numeric 0-9 or letter "X".
-            """
-            return False
+            if self.vin[8] != str(check_digit):
+                """
+                The ninth position of the VIN is a calculated value based on 
+                the other 16 alphanumeric values, it's called the 
+                "Check Digit". The result of the check digit can ONLY be a 
+                numeric 0-9 or letter "X".
+                """
+                return False
 
         return True
 
