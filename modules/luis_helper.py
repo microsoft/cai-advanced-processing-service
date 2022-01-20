@@ -43,14 +43,22 @@ def score_luis(text, luis_creds):
         logger.error(f"[ERROR] LUIS encountered an issue -> {e}.")
     return r
 
-def get_luis_creds(region, resovler):
+def get_luis_creds(region, resovler=None):
     try:
         """Retrieve LUIS credentials from env variables or local config and return as dict"""
         luis_creds = dict()
-        luis_creds['luis_id'] = os.environ.get(f'LUIS_ID_{region}_{resovler}')
-        luis_creds['luis_key'] = os.environ.get(f'LUIS_KEY_{region}')
-        luis_creds['luis_prediction_endpoint'] = os.environ.get(f'LUIS_PREDICTION_ENDPOINT_{region}')
-        luis_creds['luis_slot'] = os.environ.get(f'LUIS_SLOT_{region}')
+        print(os.environ.get(f'VINResolver:LUIS_ID_{region}'))
+
+        if resovler:
+            luis_creds['luis_id'] = os.environ.get(f'LUIS_ID_{region}_{resovler}')
+            luis_creds['luis_key'] = os.environ.get(f'LUIS_KEY_{region}_{resovler}')
+            luis_creds['luis_prediction_endpoint'] = os.environ.get(f'LUIS_PREDICTION_ENDPOINT_{region}_{resovler}')
+            luis_creds['luis_slot'] = os.environ.get(f'LUIS_SLOT_{region}_{resovler}')
+        else:
+            luis_creds['luis_id'] = os.environ.get(f'LUIS_ID_{region}')
+            luis_creds['luis_key'] = os.environ.get(f'LUIS_KEY_{region}')
+            luis_creds['luis_prediction_endpoint'] = os.environ.get(f'LUIS_PREDICTION_ENDPOINT_{region}')
+            luis_creds['luis_slot'] = os.environ.get(f'LUIS_SLOT_{region}')
         # Local debugging
         if luis_creds['luis_key'] is None:
             logger.info(f'[INFO] Entering local debugging')
@@ -63,6 +71,8 @@ def get_luis_creds(region, resovler):
             luis_creds['luis_key'] = config[f'luis_{region}']['key']
             luis_creds['luis_prediction_endpoint'] = config[f'luis_{region}']['prediction_endpoint']
             luis_creds['luis_slot'] = config[f'luis_{region}']['slot']
+
+
     except KeyError:
         logger.error(f'[ERROR] - No valid luis information found for this region -> {region}')
         luis_creds = None
