@@ -44,7 +44,35 @@ class Vin(object):
         return self.vin[6].isdigit()
 
     @property
-    def is_valid(self):
+    def is_valid_rest(self):
+        """
+        Returns True if a VIN is valid, otherwise returns False.
+        """
+        if len(self.vin) != 17:
+            """
+            For model years 1981 to present, the VIN is composed of 17 
+            alphanumeric values
+            """
+            return False
+
+        if any(x in 'IOQ' for x in self.vin):
+            """ 
+            The letters I,O, Q are prohibited from any VIN position 
+            """
+            return False
+
+        if self.vin[9] in 'UZ0':
+            """
+            The tenth position of the VIN represents the Model Year and 
+            does not permit the use of the characters U and Z, as well 
+            as the numeric zero (0)
+            """
+            return False
+
+        return True
+
+    @property
+    def is_valid_US_CH(self):
         """
         Returns True if a VIN is valid, otherwise returns False.
         """
