@@ -24,7 +24,6 @@ class Validator(object):
         # Set module for validation
         if module == "iban":
             self.matcher = self.ValidateIBAN()
-            self.luis_creds = False
         elif module == "address":
             self.matcher = self.ValidateAddress()
         elif module == "street_in_city":
@@ -49,7 +48,7 @@ class Validator(object):
             reduced_iban = reduced_iban.replace(' ','')
             
             if self.manifest[self.region]['length'] != len(reduced_iban) or not reduced_iban.startswith(self.manifest[self.region]):
-                logging.info(f"IBAN is not a valid IBAN for {self.region}")
+                logging.info(f"[INFO] - IBAN is not a valid IBAN for {self.region}")
                 res = json.dumps(dict(error = False, error_message = f"Submitted IBAN is not a valid IBAN for {self.region} with length of {str(self.manifest[self.region]['length'])}", is_valid = False))
                 return func.HttpResponse(res, mimetype='application/json', status_code = 200)
             
@@ -76,23 +75,14 @@ class Validator(object):
             r_pred = None
 
             if (not self.values["zip"] is None and not self.values["city"] is None):
-                logging.info(f"[INFO] Using ZIP and City from request")
+                logging.info(f"[INFO] - Using zip code and city from request")
                 zip_code = self.values["zip"].replace(" ", "").zfill(5)
                 city_name = process_input.match_zip_to_city(zip_code, self.values["city"], 0.1)
-
-            if(not city_name and not self.values["input"] is None):
-                logging.info(f"[INFO] No zip/city data: using user input")
-
-                r = request_luis.score_luis(self.values["input"], self.luis_creds)
-                r_pred = r.get('prediction')
-
-                zip_code, city_name, l_zip_code, l_city_name = preprocess_data.get_zip_city(self.values["input"], r_pred)
 
             if zip_code and city_name:
                 if zip_code[0] == '0':
                     zip_code = zip_code[1:]
-
-                logging.info("[INFO] Found match for ZIP and City: {} {}".format(zip_code, city_name))   
+                logging.info('INFO] - Found match for zip/city')
                 status_code = 200
 
                 # Check street
@@ -107,23 +97,6 @@ class Validator(object):
                 _streets_in_zip_area = [task.RowKey for task in tasks]
                 if (not self.values["street"] is None):
                     result = validate_data.get_matching_streets(self.values["street"], _streets_in_zip_area)
-
-                if not result and self.values["input"]:
-                    logging.info("[INFO] No street data from user_street '{}' in zip_code '{}': using userInput '{}' and LUIS".format(self.values["street"], zip_code, self.values["input"]))
-                    # call luis if we haven't already
-                    if not r_pred:
-                        r = request_luis.score_luis(self.values["input"], self.luis_creds)
-                        r_pred = r.get('prediction')
-                    try:
-                        street_name, street_number, l_street, l_number = preprocess_data.get_street(self.values["input"], r_pred) 
-                        if street_name[-3:] == "str":
-                            street_name = street_name[:-3] + "straße" 
-                        logging.info("[INFO] LUIS answer... street_name: {},  street_number: {} ".format(street_name, street_number))
-
-                        result = validate_data.get_matching_streets(street_name, _streets_in_zip_area)
-                        user_number = street_number
-                    except:
-                        logging.warning("[WARNING] LUIS error. ")
 
                 if not result:
                     # no matches for street found
@@ -166,22 +139,6 @@ class Validator(object):
 
                 result = validate_data.get_matching_streets(self.values["street"], _streets_in_zip_area)
 
-                if not result and self.values["input"]:
-                    logging.info("[INFO] No street data from user_street '{}' in user_zip '{}': using userInput '{}' and LUIS".format(self.values["street"], user_zip, self.values["input"]))
-                    # call luis
-                    r = request_luis.score_luis(self.values["input"], self.luis_creds)
-                    r_pred = r.get('prediction')
-                    try:
-                        street_name, street_number, l_street, l_number = preprocess_data.get_street(self.values["input"], r_pred) 
-                        if street_name[-3:] == "str":
-                            street_name = street_name[:-3] + "straße" 
-                        logging.info("[INFO] LUIS answer... street_name: {},  street_number: {} ".format(street_name, street_number))
-
-                        result = validate_data.get_matching_streets(street_name, _streets_in_zip_area)
-                        user_number = street_number
-                    except:
-                        logging.warning("[WARNING] LUIS error. ")
-
                 if not result:
                     # No matches for street found
                     res = json.dumps(dict(userInput = self.values["input"], error = False, is_valid = False, has_options = False))
@@ -205,23 +162,15 @@ class Validator(object):
             city_name = None
 
             if (not self.values["zip"] is None and not self.values["city"] is None):
-                logging.info(f"[INFO] Using ZIP and City from Request")
+                logging.info(f"[INFO] - Using ZIP and City from Request")
                 zip_code = self.values["zip"].zfill(5)
                 city_name = process_input.match_zip_to_city(zip_code, self.values["city"], 0.1)
 
-            if (not city_name and not self.values["input"] is None):
-                logging.info(f"[INFO] No street data: using userInput")
-
-                r = request_luis.score_luis(self.values["input"], self.luis_creds)
-                r_pred = r.get('prediction')
-
-                zip_code, city_name, l_zip_code, l_city_name = preprocess_data.get_zip_city(self.values["input"], r_pred)
-
             if zip_code and city_name:
-                logging.info("[INFO] Found match for ZIP and City: {} {}".format(zip_code, city_name))
+                logging.info("[INFO] - Found match for zip and city")
                 res = json.dumps(dict(error = False, is_valid = True, zip = zip_code, city = city_name))
             else: 
-                logging.info(f"[INFO] No match found for ZIP and City")
+                logging.info(f"[INFO] - No match found for zip and city")
                 res = json.dumps(dict(error = False,is_valid = False, has_options = False)) 
 
             return res

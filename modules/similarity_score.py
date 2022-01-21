@@ -89,14 +89,15 @@ def check_item_phonetic(token_input, token_truth):
     else:
         return True
 
-def apply_check_1(customer_data, cleaned, manifest=None):
+'''APPLIED CHECKS'''
+def apply_check_exact(customer_data, cleaned, manifest=None):
     '''Apply check for exact match'''
     return {key:(value.lower() == cleaned[key]) for key, value in customer_data.items()}
 
-def apply_check_2(customer_data, cleaned, manifest):
+def apply_check_levensthein(customer_data, cleaned, manifest):
     '''Apply check for Levenshtein distance'''
     return {key:check_item_dist(cleaned[key], value.lower(), manifest[key].get('max_distance_levenshtein')) if not manifest[key]['exact_match'] else (value.lower() == cleaned[key]) for key, value in customer_data.items()}
 
-def apply_check_3(customer_data, cleaned, manifest):
+def apply_check_phonetic(customer_data, cleaned, manifest):
     '''Apply check for phonetic matching'''
     return {key:check_item_phonetic(cleaned[key], value.lower(), manifest[key].get('max_distance_jaro'), manifest[key].get('max_distance_damerau')) if not manifest[key]['exact_match'] else (value.lower() == cleaned[key]) for key, value in customer_data.items()}

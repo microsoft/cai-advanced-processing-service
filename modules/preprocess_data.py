@@ -1,5 +1,3 @@
-import aiohttp
-import asyncio
 import datetime
 import re
 from typing import List, Dict, Tuple, Union, Any
@@ -15,9 +13,7 @@ def get_entities(r_pred: JSONType) -> JSONType:
         entities = None
     except KeyError:
         entities = None
-
     return entities
-
 
 def get_street(query: str, r_pred: JSONType) -> Tuple[Union[str, None], Union[str, None], Union[str, None], Union[str, None]]:
     """Orchestrate street name and number formatting and validation"""
@@ -43,13 +39,13 @@ def get_street(query: str, r_pred: JSONType) -> Tuple[Union[str, None], Union[st
 
     # luis could not get entities
     if l_street is None or l_number is None:
-        s_name, s_number = inputprocessing.split_numbers_pos(query)
+        s_name, s_number = process_input.split_numbers_pos(query)
     else:
         s_name = l_street
         s_number = l_number
 
-    s_name = inputprocessing.pp_normalize_street_name(s_name)
-    l_street = inputprocessing.pp_normalize_street_name(l_street)
+    s_name = process_input.pp_normalize_street_name(s_name)
+    l_street = process_input.pp_normalize_street_name(l_street)
 
     return s_name, s_number, l_street, l_number
 
@@ -84,18 +80,18 @@ def get_zip_city(query: str, r_pred: JSONType) -> Tuple[Union[str, None], Union[
             l_zip = None
             l_city = None
 
-        s_city, s_zip = inputprocessing.split_numbers_naive(query)
+        s_city, s_zip = process_input.split_numbers_naive(query)
 
         # luis has the zip code. In this case take the zip code that luis generated
         if l_zip is not None:
             s_zip = l_zip
 
         # map city based on zip code
-        s_city = inputprocessing.match_zip_to_city(s_zip, s_city, 0.1)
+        s_city = process_input.match_zip_to_city(s_zip, s_city, 0.1)
     
     else:
-        s_city, s_zip = inputprocessing.split_numbers_naive(query)
-        s_city = inputprocessing.match_zip_to_city(s_zip, s_city, 0.7)
+        s_city, s_zip = process_input.split_numbers_naive(query)
+        s_city = process_input.match_zip_to_city(s_zip, s_city, 0.7)
 
 
     return s_zip, s_city, l_zip, l_city
@@ -183,15 +179,15 @@ def parse_date_past(date_past_entity: JSONType) -> str:
                 
                 elif 'day' in e:
                     day: Union[str, None] = e['day'][0]
-                    day = inputprocessing.prepend_chars(day, 2, '0')
+                    day = process_input.prepend_chars(day, 2, '0')
                     if day is not None:
-                        day = inputprocessing.reduce_ordinals(day, strip=True)
+                        day = process_input.reduce_ordinals(day, strip=True)
 
                 elif 'month' in e:
                     month = e['month'][0]
-                    month = inputprocessing.prepend_chars(month, 2, '0')
+                    month = process_input.prepend_chars(month, 2, '0')
                     if month is not None:
-                        month = inputprocessing.reduce_months(month, strip=True)
+                        month = process_input.reduce_months(month, strip=True)
 
                 
                         
@@ -219,7 +215,7 @@ def parse_date_past(date_past_entity: JSONType) -> str:
 def get_iban(query: str, r_pred: str) -> str:
 
     # remove characters and whitespaces
-    pp_iban = inputprocessing.pp_remove_chars(query)
+    pp_iban = process_input.pp_remove_chars(query)
     pp_iban = re.sub(r'(\d)\s+(\d)', r'\1\2', pp_iban)
 
     # return last 5 digits

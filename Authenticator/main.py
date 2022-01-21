@@ -5,10 +5,8 @@ import logging
 import azure.functions as func
 
 # Import custom modules
-from assets import characters
-from modules import request_luis, request_table
+from modules import request_table
 from modules import resolve_spelling as resolve
-from modules import pattern_matcher as patterns
 from modules import similarity_score as simscore
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
@@ -63,7 +61,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     # Check if required attributes are there
     if not set([key for key, value in manifest.get('attributes').items() if manifest.get('attributes')[key]['required']]) <= set(attributes.keys()):
-        return func.HttpResponse("Not all required arguments have been passed.")
+        return func.HttpResponse("Not all required arguments have been passed.", status_code=400)
 
     # Preprocess user id first, as we need it for the lookup
     cleaned = {}
@@ -94,9 +92,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         
     # Define checks
     checks = {
-        1: simscore.apply_check_1,
-        2: simscore.apply_check_2,
-        3: simscore.apply_check_3
+        1: simscore.apply_check_exact,
+        2: simscore.apply_check_levensthein,
+        3: simscore.apply_check_phonetic
     }
 
     # If method is between 1 and 3, it will exclusively be applied

@@ -47,12 +47,11 @@
             "iban": {
                 "DE": {
                     "length": 22
-                },
-            
-            "address": [],
+                }
+            }
+        },
+        "address": [],
                 "street_in_city": [],
                 "zip": []
-        },
-        
-    }
+        }
 }

@@ -2,20 +2,13 @@ import string
 import re
 from edit_distance import SequenceMatcher
 from typing import List, Dict, Tuple, Union, DefaultDict
-from Levenshtein import distance as levenshtein_distance
+from modules import similarity_score as simscore
 
-try:
-    from __app__.assets import character as ch
-    from __app__.assets import exclude as exc
-    from __app__.assets import specials as sp
-    from __app__.assets import digits as dg
-    from __app__.assets import cities as ct
-except Exception as e:
-    from assets import character as ch
-    from assets import exclude as exc
-    from assets import specials as sp
-    from assets import digits as dg
-    from assets import cities as ct 
+from assets import character as ch
+from assets import exclude as exc
+from assets import specials as sp
+from assets import digits as dg
+from assets import cities as ct 
 
 # Table to efficiently remove punctuations
 table: Dict = str.maketrans({key: None for key in string.punctuation if key != '-'})
@@ -93,7 +86,7 @@ def get_closest_sequence_match(input_term: str, option_list: List[str], matching
     for option in option_list:
         sm = SequenceMatcher(option.lower().replace(' ', ''), input_term.lower().replace(' ', ''))
         ratios.append(sm.ratio())
-        ld = levenshtein_distance(option.lower().replace(' ', ''), input_term.lower().replace(' ', ''))
+        ld = simscore.levenshtein(option.lower().replace(' ', ''), input_term.lower().replace(' ', ''))
         lev_dist.append(ld)
 
     best_match_ratio = max(ratios)
