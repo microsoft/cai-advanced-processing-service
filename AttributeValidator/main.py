@@ -4,11 +4,7 @@ import logging
 import azure.functions as func
 
 # Import custom modules
-try:
-    import __app__.helper as helper
-except Exception as e:
-    logging.info('[INFO] Helper: Using local imports.')
-    from . import helper
+from . import helper
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     # Receive request and collect parameters
@@ -17,13 +13,27 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         module = req_body.get('module')
         values = req_body.get('values')
         region = req_body.get('region')
+        manifest = req_body.get('manifest')
+        # If no manifest has been passed, we take manifest.json by default
+        if not manifest:
+            manifest = 'manifest'
     except ValueError:
         pass
     finally:
         logging.info(f'[INFO] Set params -> module: {module} in {region}.')
 
+    # Read manifest
+    try:
+        with open(f'{manifest}.json', 'r') as mf:
+            _manifest = json.load(mf)['AttributeValidator'][module]
+    except FileNotFoundError:
+        return func.HttpResponse("Manifest could not be found, please pass a valid manifest name.", status_code=400)
+    except KeyError:
+        return func.HttpResponse("API-specific manifest could not be loaded, please verify manifest and availability of requested module", status_code=400)
+
     # Create instance of class with module and (optional) region, as needed
-    validation = helper.Validator(module, region)
+    validation = helper.Validator(module, values, _manifest, region)
+    
     # Run validation
     res = validation.run()
     

@@ -5,28 +5,18 @@ import logging
 import azure.functions as func
 
 # Import custom modules
-try:
-    from __app__.assets import characters
-    from __app__.modules import request_table as request
-    from __app__.modules import resolve_spelling as resolve
-    from __app__.modules import pattern_matcher as patterns
-    from __app__.modules import similarity_score as simscore
-    import __app__.helper as helper
-except Exception as e:
-    logging.info('[INFO] Helper: Using local imports.')
-    from assets import characters
-    from modules import request_table as request
-    from modules import resolve_spelling as resolve
-    from modules import pattern_matcher as patterns
-    from modules import similarity_score as simscore
-    from . import helper
+from assets import characters
+from modules import request_luis, request_table
+from modules import resolve_spelling as resolve
+from modules import pattern_matcher as patterns
+from modules import similarity_score as simscore
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     # Load connection string
-    auth_attributes = helper.get_connection_data(['USER_STORAGE_CONNECTION_STRING', 'AUTHENTICATION_TABLE'])
+    auth_attributes = request_table.get_table_creds(['connection_string', 'authentication_table'])
 
     # Assemble connectiond ata
-    connection_data = {'table_name': auth_attributes['AUTHENTICATION_TABLE'], 'connection_string': auth_attributes['USER_STORAGE_CONNECTION_STRING'].replace('"', "")}
+    connection_data = {'table_name': auth_attributes['AUTHENTICATION_TABLE'], 'connection_string': auth_attributes['connection_string'].replace('"', "")}
     
     # Receive request and collect parameters
     try:
@@ -57,9 +47,11 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     # Read manifest
     try:
         with open(f'{manifest}.json', 'r') as mf:
-            manifest = json.load(mf)
+            manifest = json.load(mf)['Authenticator']
     except FileNotFoundError:
-        return func.HttpResponse("Manifest could not be loaded, you have to pass a valid manifest name.", status_code=400)
+        return func.HttpResponse("Manifest file could not be found, you have to pass a valid manifest name.", status_code=400)
+    except KeyError:
+        return func.HttpResponse("API-specific manifest could not be loaded, please verify manifest", status_code=400)
 
     # Quit, if too few attributes have been passed
     if len(attributes) < manifest.get('config')['min_attributes']:
@@ -81,7 +73,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     # Gather data from database
     try:
-        customer_data = request.get_data_from_table(connection_data = connection_data, table_filters = {'PartitionKey': connection_data['table_name'], 'RowKey': cleaned['Id']})
+        customer_data = request_table.get_data_from_table(connection_data = connection_data, table_filters = {'PartitionKey': connection_data['table_name'], 'RowKey': cleaned['Id']})
         logging.info(f'Received response with data from backend, loaded {len(customer_data)} data set(s).')
     except Exception as e:
         logging.error(f'Could not load user dict -> {e}.')

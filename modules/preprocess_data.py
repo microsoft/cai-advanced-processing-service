@@ -4,55 +4,9 @@ import datetime
 import re
 from typing import List, Dict, Tuple, Union, Any
 
-try:
-    from __app__.shared import Logging as log
-    from __app__.shared import InputProcessing as inputprocessing
-except Exception as e:
-    from shared import Logging as log
-    from shared import InputProcessing as inputprocessing
-
+from modules import process_input
 
 JSONType = Union[str, int, float, bool, None, Dict[str, Any], List[Any]]
-
-
-##############################
-# Input Processing
-##############################
-
-async def score_luis(c_id: str, log_param: bool, text: str, appid: str, key: str, location: str='westeurope', timeout: int = 3) -> Union[JSONType, None]:
-    """Get results from LUIS"""
-    luis_api_url = f'https://{location}.api.cognitive.microsoft.com/luis/prediction/v3.0/apps/{appid}/slots/production/predict'
-    headers = {
-        'Ocp-Apim-Subscription-Key': key,
-    }
-    params = {
-        'query': text,
-        'timezoneOffset': '0',
-        'verbose': str(log_param).lower(),
-        'spellCheck': 'false',
-        'staging': 'false',
-        'log' : 'true'
-    }
-    timeout = aiohttp.ClientTimeout(total=timeout)
-    async with aiohttp.ClientSession(timeout=timeout) as session:
-        async with session.get(luis_api_url,
-                               headers=headers,
-                               params=params) as r:
-            if r.status != 200:
-                log.logger.error(
-                    f'[ERROR][PP]({c_id}) Could get luis endpoint. Http Status: {r.status}')
-                return None
-
-            try:
-                r = await r.json()
-                log.logger.info(f"[INFO][PP]({c_id}) LUIS call successful")
-
-            except Exception as e:
-                log.logger.info(
-                    f"[ERROR][PP]({c_id}) LUIS encountered an issue. {e}")
-                r = None
-            return r
-
 
 def get_entities(r_pred: JSONType) -> JSONType:
     try:

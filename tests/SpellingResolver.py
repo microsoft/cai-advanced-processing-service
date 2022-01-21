@@ -1,7 +1,5 @@
 import json
 import logging
-import time
-import sys
 import requests
 
 def test_spelling_resolver(r):
