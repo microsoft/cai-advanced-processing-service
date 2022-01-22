@@ -3,7 +3,7 @@ import sys
 import logging
 import configparser
 
-def get_connection_data():
+def get_formrecognizer_connection_data():
     '''Retrieve connection data from environment variables or local config'''
     # Model ID from when you trained your model.
     endpoint = f"https://{os.environ.get('FORM_RECOGNIZER_NAME')}.cognitiveservices.azure.com"
@@ -27,4 +27,4 @@ def get_connection_data():
         connection_data = {}
         connection_data['table_name'] = config['formrec']['FR_TABLE_NAME']
         connection_data['connection_string'] = config['formrec']['FR_STORAGE_CONNECTION_STRING'].replace('"', '')
-    return connection_data, return_keys, key
+    return connection_data, return_keys, endpoint, key

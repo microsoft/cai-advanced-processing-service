@@ -12,7 +12,7 @@ for handler in logger.handlers:
     if isinstance(handler, logging.Streamhandler):
         handler.setFormatter(formatter)
 
-# Import custom modules
+# Import custom modules and helpers
 from modules import license_plate_recognizer as lpr
 from modules import request_luis
 

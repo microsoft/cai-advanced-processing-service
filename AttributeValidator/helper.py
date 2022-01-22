@@ -5,7 +5,7 @@ import string
 import azure.functions as func
 from azure.cosmosdb.table.tableservice import TableService
 
-# Import custom modules
+# Import custom modules and helpers
 from modules import preprocess_data, process_input, request_luis, validate_data, request_table
 
 # Define logger

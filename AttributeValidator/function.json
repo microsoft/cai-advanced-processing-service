@@ -2,15 +2,6 @@
     "scriptFile": "main.py",
     "bindings": [
         {
-            "name": "messageJSON",
-            "type": "table",
-            "tableName": "messages",
-            "partitionKey": "message",
-            "rowKey": "{id}",
-            "connection": "AzureWebJobsStorage",
-            "direction": "in"
-        },
-        {
             "authLevel": "function",
             "type": "httpTrigger",
             "direction": "in",

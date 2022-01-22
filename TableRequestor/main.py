@@ -1,10 +1,6 @@
 ''' TABLE REQUESTOR API '''
 import logging
-import os
 import json
-import sys
-import configparser
-from datetime import datetime
 import azure.functions as func
 
 # Import custom modules

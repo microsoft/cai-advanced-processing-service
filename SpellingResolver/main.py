@@ -4,11 +4,7 @@ import json
 import azure.functions as func
 
 # Import custom modules
-try:
-    from __app__.modules import resolve_spelling as resolve
-except Exception as e:
-    logging.info("[INFO] Helper: Using local imports.")
-    from modules import resolve_spelling as resolve
+from modules import resolve_spelling as resolve
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info("Python HTTP trigger function processed a request.")

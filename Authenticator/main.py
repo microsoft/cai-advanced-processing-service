@@ -1,10 +1,9 @@
 ''' AUTHENTICATION API '''
-import re
 import json
 import logging
 import azure.functions as func
 
-# Import custom modules
+# Import custom modules and helpers
 from modules import request_table
 from modules import resolve_spelling as resolve
 from modules import similarity_score as simscore
@@ -31,7 +30,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         # If no manifest has been passed, we take manifest.json by default
         if not manifest:
             manifest = 'manifest'
-        # Set verbose flag if wanted, but disable it in general for any stage that goes beyond DEV
+        # Set verbose flag if wanteßd, but disable it in general for any stage that goes beyond DEV
         verbose = req_body.get('verbose')
         # verbose = False # If verbose parameter wants to be declined in general
     except ValueError:
@@ -110,8 +109,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     
     # Return verbose information
     if verbose:
-        logging.warning(f'Customer data: {customer_data}.')
-        logging.warning(f'Cleaned request: {cleaned}.')
+        logging.info(f'[INFO - VERBOSE] - Customer data: {customer_data}.')
+        logging.info(f'[INFO - VERBOSE] - Cleaned request: {cleaned}.')
         response_json = dict(result = dict(authenticated = all(match.values())), verbose = dict(attributes = match, method = method))
     else:
         response_json = dict(result = dict(authenticated = all(match.values())))

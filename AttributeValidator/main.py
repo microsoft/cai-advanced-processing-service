@@ -3,7 +3,7 @@ import json
 import logging
 import azure.functions as func
 
-# Import custom modules
+# Import custom modules and helpers
 from . import helper
 
 def main(req: func.HttpRequest, messageJSON) -> func.HttpResponse:
