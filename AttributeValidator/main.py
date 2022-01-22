@@ -6,8 +6,7 @@ import azure.functions as func
 # Import custom modules and helpers
 from . import helper
 
-def main(req: func.HttpRequest, messageJSON) -> func.HttpResponse:
-    message = json.loads(messageJSON)
+def main(req: func.HttpRequest) -> func.HttpResponse:
     # Receive request and collect parameters
     try:
         req_body = req.get_json()
