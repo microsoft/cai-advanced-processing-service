@@ -18,7 +18,7 @@ class Validator(object):
         self.values = values
         self.region = region.upper()
         self.manifest = manifest
-        self.table_data = request_table.get_table_creds(['connection_string'])
+        self.table_data = request_table.get_table_creds(['connection_string', ''])
 
         # Set module for validation
         if module == "iban":
