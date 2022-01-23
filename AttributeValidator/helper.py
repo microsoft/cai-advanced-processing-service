@@ -6,7 +6,7 @@ import azure.functions as func
 from azure.cosmosdb.table.tableservice import TableService
 
 # Import custom modules and helpers
-from modules import preprocess_data, process_input, request_luis, validate_data, request_table
+from modules import preprocess_data, process_input, validate_data, request_table
 
 # Define logger
 logger = logging.getLogger(__name__)
@@ -18,39 +18,50 @@ class Validator(object):
         self.values = values
         self.region = region.upper()
         self.manifest = manifest
-        self.luis_creds = request_luis.get_luis_creds(region)
-        self.table_connection = request_table.get_table_creds(['connection_string', 'authentication_table'])
+        #self.table_connection = request_table.get_table_creds(['connection_string', 'table'])
 
         # Set module for validation
         if module == "iban":
-            self.matcher = self.ValidateIBAN()
+            self.matcher = self.ValidateIBAN(self.values, self.region, self.manifest)
         elif module == "address":
-            self.matcher = self.ValidateAddress()
+            self.matcher = self.ValidateAddress(self.values, self.region, self.manifest)
         elif module == "street_in_city":
-            self.matcher = self.ValidateStreet()
+            self.matcher = self.ValidateStreet(self.values, self.region, self.manifest)
         elif module == "zip":
-            self.matcher = self.ValidateZIP()
+            self.matcher = self.ValidateZIP(self.values, self.region, self.manifest)
         else:
-            self.matcher = None
+            self.matcher = False
         
         # Validate if we have all we need
-        self.ready_to_run = self.check_parameters(self.values, self.manifest)
+        self.ready_to_run = self.check_parameters()
 
     def check_parameters(self):
+        _required_parameters = [k for k, v in self.manifest['value_is_mandatory'].items() if v]
+        # Check if request attributes in manifest
+        logging.warning(f"{self.values.keys()} <= {set(self.manifest['value_is_mandatory'].keys()}")
+        if not set(self.values.keys()) <= set(self.manifest['value_is_mandatory'].keys()):
+            return func.HttpResponse("One or multiple arguments passed via request are not part of the manifest.", status_code=400)
+        # Check if required attributes are there
+        if not set(_required_parameters) <= set(self.values.keys()):
+            return func.HttpResponse("Not all required arguments have been passed.", status_code=400)
         return True
     
     class ValidateIBAN(object):
-        def __init__(self):
-            pass
+        def __init__(self, values, region, manifest):
+            # Import from main class
+            self.values = values
+            self.region = region
+            self.manifest = manifest
 
         def run(self):
-            reduced_iban = process_input.reduce_query(self.values["iban"])      
+            reduced_iban = process_input.reduce_query(self.values["iban"].upper())      
             reduced_iban = reduced_iban.replace(' ','')
+            logging.warning(self.manifest["locales"][self.region])
             
-            if self.manifest[self.region]['length'] != len(reduced_iban) or not reduced_iban.startswith(self.manifest[self.region]):
+            if self.manifest['locales'][self.region]['length'] != len(reduced_iban) or not reduced_iban.startswith(self.region):
                 logging.info(f"[INFO] - IBAN is not a valid IBAN for {self.region}")
-                res = json.dumps(dict(error = False, error_message = f"Submitted IBAN is not a valid IBAN for {self.region} with length of {str(self.manifest[self.region]['length'])}", is_valid = False))
-                return func.HttpResponse(res, mimetype='application/json', status_code = 200)
+                res = json.dumps(dict(error = False, error_message = f"Submitted IBAN is not a valid IBAN for {self.region} with length of {str(self.manifest['locales'][self.region]['length'])}", is_valid = False))
+                return res
             
             # Translation map
             LETTERS = {ord(d): str(i) for i, d in enumerate(string.digits + string.ascii_uppercase)}
@@ -60,15 +71,19 @@ class Validator(object):
 
             # Check validity of IBAN validation number
             if (int(validation_number) % 97) == 1:
-                res = json.dumps(dict(error = False, is_valid = True, iban = reduced_iban))                    
+                res = json.dumps(dict(error = False, is_valid = True, iban = reduced_iban), default = str)                    
             else:
                 # ToDo: Implement validation logic using user input
-                res = json.dumps(dict(error = False, is_valid = False)) 
+                res = json.dumps(dict(error = False, is_valid = False), default = str) 
+            logging.warning(res)
             return res
 
     class ValidateAddress(object):
-        def __init__(self):
-            return None
+        def __init__(self, values, region, manifest):
+            # Import from main class
+            self.values = values
+            self.region = region
+            self.manifest = manifest
 
         def run(self):
             city_name = None
@@ -116,8 +131,11 @@ class Validator(object):
             return res
 
     class ValidateStreet(object):
-        def __init__(self):
-            return None
+        def __init__(self, values, region, manifest):
+            # Import from main class
+            self.values = values
+            self.region = region
+            self.manifest = manifest
 
         def run(self):
             status_code = 400
@@ -155,8 +173,11 @@ class Validator(object):
             return res
 
     class ValidateZIP(object):
-        def __init__(self):
-            return None
+        def __init__(self, values, region, manifest):
+            # Import from main class
+            self.values = values
+            self.region = region
+            self.manifest = manifest
 
         def run(self):
             city_name = None

@@ -45,13 +45,39 @@
     "AttributeValidator": {
         "modules": {
             "iban": {
+                "locales": {
+                    "DE": {
+                        "length": 22
+                    },
+                    "DK": {
+                        "length": 21
+                    }
+                },
+                "value_is_mandatory": {
+                    "iban": true
+                }
+            },
+            "address": {
                 "DE": {
-                    "length": 22
+                }
+            },
+            "street_in_city": {
+                "DE": {
+                }
+            },
+            "zip": {
+                "locales": {
+                    "DE": {
+                    },
+                    "DK": {
+                    }
+                },
+                "value_is_mandatory": {
+                    "zip": true,
+                    "city": true,
+                    "sons": false
                 }
             }
-        },
-        "address": [],
-                "street_in_city": [],
-                "zip": []
         }
+    }
 }
