@@ -39,7 +39,9 @@
 
         },
         "config": {
-            "min_attributes": 3
+            "min_attributes": 3,
+            "use_db": true,
+            "local_data_path": ""
         }
     },
     "AttributeValidator": {
@@ -81,6 +83,10 @@
                     "city": true
                 }
             }
+        },
+        "config": {
+            "use_db": true,
+            "local_data_path": ""
         }
     }
 }

@@ -134,11 +134,11 @@ def get_dob(query: str, r_pred: JSONType) -> Tuple[str, Union[str, None]]:
     if l_dob is None:
         l_dob = 'XXXX-XX-XX'
 
-    s_dob, l_dob = checkCenturyAnomaly(s_dob, l_dob)
+    s_dob, l_dob = check_century_anomaly(s_dob, l_dob)
 
     return l_dob, s_dob
 
-def checkCenturyAnomaly(s_dob: str, l_dob: str):
+def check_century_anomaly(s_dob: str, l_dob: str):
     try:
         dateSplitted = s_dob.split(' ')
     

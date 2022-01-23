@@ -1,8 +1,6 @@
 ''' GERMAN MODULE FOR LICENSE PLATE RECOGNIZER '''
 import logging
 import re
-import azure.functions as func
-import sys
 
 # Define logger
 logger = logging.getLogger(__name__)

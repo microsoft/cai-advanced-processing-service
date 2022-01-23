@@ -18,17 +18,17 @@ class Validator(object):
         self.values = values
         self.region = region.upper()
         self.manifest = manifest
-        #self.table_connection = request_table.get_table_creds(['connection_string', 'table'])
+        self.table_data = request_table.get_table_creds(['connection_string'])
 
         # Set module for validation
         if module == "iban":
             self.matcher = self.ValidateIBAN(self.values, self.region, self.manifest)
         elif module == "address":
-            self.matcher = self.ValidateAddress(self.values, self.region, self.manifest)
+            self.matcher = self.ValidateAddress(self.values, self.region, self.manifest, self.table_data)
         elif module == "street_in_city":
-            self.matcher = self.ValidateStreet(self.values, self.region, self.manifest)
+            self.matcher = self.ValidateStreet(self.values, self.region, self.manifest, self.table_data)
         elif module == "zip":
-            self.matcher = self.ValidateZIP(self.values, self.region, self.manifest)
+            self.matcher = self.ValidateZIP(self.values, self.region, self.manifest, self.table_data)
         else:
             self.matcher = False
         
@@ -36,6 +36,7 @@ class Validator(object):
         self.ready_to_run, self.message = self.check_parameters()
 
     def check_parameters(self):
+        '''Verification if all required parameters are passed'''
         _required_parameters = {k for k, v in self.manifest['value_is_mandatory'].items() if v}
         # Check if request attributes in manifest
         if not set(self.values.keys()) <= set(self.manifest['value_is_mandatory'].keys()):
@@ -46,11 +47,12 @@ class Validator(object):
         return True, "success"
     
     class ValidateIBAN(object):
-        def __init__(self, values, region, manifest):
+        def __init__(self, values, region, manifest, table_data):
             # Import from main class
             self.values = values
             self.region = region
             self.manifest = manifest
+            self.table_data = table_data
 
         def run(self):
             reduced_iban = process_input.reduce_query(self.values["iban"].upper())      
@@ -78,11 +80,12 @@ class Validator(object):
             return res
 
     class ValidateAddress(object):
-        def __init__(self, values, region, manifest):
+        def __init__(self, values, region, manifest, table_data):
             # Import from main class
             self.values = values
             self.region = region
             self.manifest = manifest
+            self.table_data = table_data
 
         def run(self):
             city_name = None
@@ -101,8 +104,8 @@ class Validator(object):
 
                 # Check street
                 result = None
-                try: 
-                    table_service = TableService(connection_string=sa_connection_string)
+                try:
+                    request_table.get_data_from_table(table_service['connection_data'])
                     tasks = table_service.query_entities('StreetsInZipLocation', filter="PartitionKey eq '" + str(zip_code) + "'", select='RowKey')
                 except:
                     res = json.dumps(dict(userInput = self.values["input"], error = True, error_message = "Error accessing database / ZIP not found", city_is_valid = True, zip = zip_code.zfill(5), city = city_name, street_is_valid = False, street_has_options = False))
@@ -130,11 +133,12 @@ class Validator(object):
             return res
 
     class ValidateStreet(object):
-        def __init__(self, values, region, manifest):
+        def __init__(self, values, region, manifest, table_data):
             # Import from main class
             self.values = values
             self.region = region
             self.manifest = manifest
+            self.table_data = table_data
 
         def run(self):
             status_code = 400
@@ -172,25 +176,27 @@ class Validator(object):
             return res
 
     class ValidateZIP(object):
-        def __init__(self, values, region, manifest):
+        def __init__(self, values, region, manifest, table_data):
             # Import from main class
             self.values = values
             self.region = region
             self.manifest = manifest
+            self.table_data = table_data
 
         def run(self):
-            city_name = None
-
-            if (not self.values["zip"] is None and not self.values["city"] is None):
+            # Preprocess data
+            if all([self.values["zip"], self.values["city"]]):
                 logging.info(f"[INFO] - Using ZIP and City from Request")
                 zip_code = self.values["zip"].zfill(5)
                 city_name = process_input.match_zip_to_city(zip_code, self.values["city"], 0.1)
+            else:
+                city_name = None
 
+            # Return values depending on match            
             if zip_code and city_name:
                 logging.info("[INFO] - Found match for zip and city")
                 res = json.dumps(dict(error = False, is_valid = True, zip = zip_code, city = city_name))
             else: 
                 logging.info(f"[INFO] - No match found for zip and city")
-                res = json.dumps(dict(error = False,is_valid = False, has_options = False)) 
-
+                res = json.dumps(dict(error = False, is_valid = False, has_options = False)) 
             return res

@@ -59,7 +59,7 @@ def match_zip_to_city(zip_code: str, city_phrase: str, matching_threshold: float
     if zip_code in dict_zip_codes:
         city_list = dict_zip_codes[zip_code]
 
-        # return the city that matches the city phrase closest
+        # Return the city that matches the city phrase closest
         best_match = get_closest_sequence_match(city_phrase, city_list, matching_threshold)
         return best_match
 
@@ -176,6 +176,7 @@ def reduce_query(phrase: Union[str, None]) -> str:
             phrase_r.append(word)
     phrase = ' '.join(phrase_r)
 
+    
     # Replace general "wie"-comparisons
     while True:
         match = re.search(r'(\s|^)([a-z]{1,3}) (wie|für|von|wir) \w+', phrase)
@@ -230,7 +231,7 @@ def reduce_query(phrase: Union[str, None]) -> str:
             phrase = phrase[:start] + char + phrase[stop:]
         else:
             break
-
+    
     # Remove noise from reduced
     phrase = phrase.replace("  ", " ")
 
