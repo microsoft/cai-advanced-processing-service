@@ -33,18 +33,17 @@ class Validator(object):
             self.matcher = False
         
         # Validate if we have all we need
-        self.ready_to_run = self.check_parameters()
+        self.ready_to_run, self.message = self.check_parameters()
 
     def check_parameters(self):
-        _required_parameters = [k for k, v in self.manifest['value_is_mandatory'].items() if v]
+        _required_parameters = {k for k, v in self.manifest['value_is_mandatory'].items() if v}
         # Check if request attributes in manifest
-        logging.warning(f"{self.values.keys()} <= {set(self.manifest['value_is_mandatory'].keys()}")
         if not set(self.values.keys()) <= set(self.manifest['value_is_mandatory'].keys()):
-            return func.HttpResponse("One or multiple arguments passed via request are not part of the manifest.", status_code=400)
+            return False, "received excess parameters"
         # Check if required attributes are there
-        if not set(_required_parameters) <= set(self.values.keys()):
-            return func.HttpResponse("Not all required arguments have been passed.", status_code=400)
-        return True
+        if not _required_parameters.issubset(set(self.values.keys())):
+            return False, "required parameters are missing"
+        return True, "success"
     
     class ValidateIBAN(object):
         def __init__(self, values, region, manifest):

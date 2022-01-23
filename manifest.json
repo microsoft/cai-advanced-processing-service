@@ -63,6 +63,10 @@
             },
             "street_in_city": {
                 "DE": {
+                },
+                "value_is_mandatory": {
+                    "zip": true,
+                    "city": true
                 }
             },
             "zip": {
@@ -74,8 +78,7 @@
                 },
                 "value_is_mandatory": {
                     "zip": true,
-                    "city": true,
-                    "sons": false
+                    "city": true
                 }
             }
         }

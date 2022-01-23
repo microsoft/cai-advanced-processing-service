@@ -14,16 +14,17 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         region = req_body.get('region')
         manifest = req_body.get('manifest')
         values = req_body.get('values')
-        logging.warning(values)
         # If no manifest has been passed, we take manifest.json by default
         if not manifest:
+            logging.info('[INFO] - No manifest name passed in the request, fallback to "manifest.json"')
             manifest = 'manifest'
-    except ValueError:
-        pass
-    finally:
+        if not module:
+            return func.HttpResponse("[ERROR] - Received bad request body: missing module declaration.", status_code=400)
         logging.info(f'[INFO] Set params -> module: {module} in {region}.')
-
-    # Read manifest
+    except ValueError:
+        return func.HttpResponse("[ERROR] - Received bad request body: format of request body not valid.", status_code=400)
+    
+    # Read manifest and extract module information
     try:
         with open(f'{manifest}.json', 'r') as mf:
             _manifest_file = json.load(mf)['AttributeValidator']['modules']
@@ -39,14 +40,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     # Run validation if a respective matcher could be found
     if validation.matcher and validation.ready_to_run:
         res = validation.matcher.run()
+        return func.HttpResponse(res, mimetype="application/json")
     elif not validation.matcher:
         return func.HttpResponse(f"This module is known by the manifest, yet not in the processing logic. Please validate code version or select between {', '.join(_manifest_file.keys())}.", status_code=400)
     elif validation.matcher and not validation.ready_to_run:
-        return func.HttpResponse(f"The values you passed do not match to the module you requested.", status_code=400)
-
-    # Return set as json
-    #res = json.dumps(res, default=str)
-    return func.HttpResponse(
-            res, 
-            mimetype="application/json"
-        )
+        return func.HttpResponse(f"The values you passed do not match to the module you requested: {validation.message}.", status_code=400)
