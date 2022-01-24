@@ -1,0 +1,52 @@
+
+> LUIS application information
+> !# @app.name = vin-resolver-en
+> !# @app.desc = LUIS App for VIN Resolver
+> !# @app.versionId = 0.1
+> !# @app.culture = en-us
+> !# @app.luis_schema_version = 7.0.0
+> !# @app.tokenizerVersion = 1.0.0
+
+
+> # Intent definitions
+
+# None
+- help me
+- i need help
+- why do you ask for my license number?
+- why do you ask for my license plate?
+- why do you ask for my registration number?
+- why do you ask for my registration?
+- why do you ask?
+- why do you need my license number?
+- why do you need my license plate?
+- why do you need my registration number?
+- why do you need my registration?
+- why do you want to know?
+- why?
+
+
+# VINResolver
+- {@vin=ahazzz1jz3w388789}
+- {@vin=wdd1690071j236589}
+- {@vin=wvwzzz1jz3w384752}
+- {@vin=wvwzzz1jz3w386752}
+- {@vin=wvwzzz1jz3w388789}
+
+
+> # Entity definitions
+
+@ ml vin
+
+
+> # PREBUILT Entity definitions
+
+
+> # Phrase list definitions
+
+
+> # List entities
+
+> # RegEx entities
+
+
