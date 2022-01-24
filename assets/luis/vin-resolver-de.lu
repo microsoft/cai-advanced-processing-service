@@ -1,0 +1,174 @@
+
+> LUIS application information
+> !# @app.name = vin-resolver-de
+> !# @app.desc = LUIS App for VIN Resolver
+> !# @app.versionId = 0.1
+> !# @app.culture = de-de
+> !# @app.luis_schema_version = 7.0.0
+> !# @app.tokenizerVersion = 1.0.0
+
+
+> # Intent definitions
+
+# None
+- , wann ich den wieder wieder kriege gestern sollte ich ihn
+- <unknown> wo ich gesagt hab um himmels willen <unknown> aber ja, also ich fahr den extrem wenig und aber der ist <unknown> scheckheft gepflegt und das wollte ich auch weiter also <unknown> die
+- 3 5 6 5
+- äähm genau.
+- achso thelen, theodor heinrich emil ludwig emil nordpol?
+- ah alles klar, ne ich sollt mich halt nochmal melden weil
+- äh in kollaustraße.
+- äh wie war das nochmal
+- ähm<variation> gute gute frage, also ähm<variation> ich kann sonst schonmal das kennzeichen geben.
+- alles jut<variable> ne ich würd nur sagen
+- also das scheint sich zu häufigen <unknown>
+- also der termin war am elften dritten
+- also ich hab da kasko select und die sagen normalerweise ja fahr zu carglass oder fahr zu was weiß ich und mach das irgendwie da
+- also zwei stunden würde ich dann warten wenn ich ihn dann
+- alternativ ginge auch der tag auf.
+- bei ihm ähm.
+- boah keine ahnung
+- da bin ich überfragt
+- da hab ich mich dann auch mal hier bei mir ein kranker beschwert.
+- da muss ich nochmal schauen
+- da war ich 200 meter im funkschatten, aber ich hab deine sms bekommen.
+- danke tschüss
+- danke.
+- dann mach ich siebenuhrdreißig oder so
+- das ist nett.
+- der seit wann is das.
+- die ist wirklich gut
+- die winterreifen liegen noch bei ihn und jetzt kommt das nächste problem der wird am dienstagmorgen für uns alle ich benötigt, weil wir danach mit nach süddeutschland worden.
+- diese woche am frauühen nachmittag wäre gut, wenn diese woche nicht mehr frei ist, dann bitte die woche darauf. aber vormittag.
+- diese woche am frauühen nachmittag wäre gut, wenn diese woche nicht mehr frei ist, dann bitte die woche drauf. aber vor.
+- dir auch schon einige jahre alt ist.
+- einen kleinen smart.
+- er musste die terminierung bisschen anders machen
+- fenster machen wir nicht und so der also das war nicht nett, deswegen wollte ich einmal mit beidke<variation> darüber reden.
+- genau bis 15 uhr wieder
+- genau so und da ist äh mir leider am samstag jemand hinten drauf gefahren.
+- gut schönen tag
+- hab ich dann aus berlin auch <unknown> zwei zahlungserinnerungen gekriegt
+- hatte ja hat er mir eh<variable>schonmal ausgedruckt das war die eh<variable> in an das war der goodyear 205 55 ja r 16
+- hey, ich hatte gestern doch ähm der standort stuttgart gefragt.
+- hi wäre es möglich ein termin am standort stuttgart zu kommen.
+- hundertzwölf
+- ich bin jetzt südlich der elbe gewesen, mit au<variable> zumindest was das navigationssystem anzeigt
+- ich gehe immer in die niederlassung hannover wäre gut wenn ich dort einen termin bekommen kann
+- ich hab eine kleine frage und zwar äh als, das auto von meinem chef hier abgeholt und wieder hergebracht worden ist vor einem service termin
+- ich hab jetzt <unknown> fünf und vierzig tausend einhundert fünf und vierzig
+- ich hab kein auto
+- ich hab mein kennzeichen jetzt nicht
+- ich hätte gerne einen termin in bahrenfeld
+- ich hätte gerne einen termin in bremen
+- ich hätte gerne einen termin in bremen nord
+- ich hätte gerne einen termin in bückeburg
+- ich hätte gerne einen termin in city süd
+- ich hätte gerne einen termin in döhren
+- ich hätte gerne einen termin in hannover
+- ich hätte gerne einen termin in hildesheim
+- ich hätte gerne einen termin in lehrte
+- ich hätte gerne einen termin in niendorf
+- ich hätte gerne einen termin in wandsbek
+- ich warte seit letzte woche auf einen rückruf zum wiederholten male.
+- ich würde gerne am dreizehnten elften morgens vorbeikommen am besten um zehn uhr alternativ ginge auch der tag darauf
+- ich würde gerne in die filiale nach bremen
+- ich würde gerne meine winterräder montieren lassen und hätte hierzu gerne einen termin.
+- ist in ordnung.
+- ist klar acht uhr fünfzehn natürlich
+- j o e also j wie joachim also j o otto genau emil dann berta, otto, emil, cesar, katastrophe - joeboeck ne so und jetzt @online.de nicht t online, sondern einfach nur online.de
+- ja aber immer so
+- ja genau gut scheibe <variabel> ist mein name erika scheibe <variabel> ja und ich wollte mich gerne anmelden und zwar zu einem service d wie dora
+- ja ich denk immer weil das vielleicht auf und so ganz schnell irgendwie daran gearbeitet wurde, dass da nich ach je
+- ja ich meine hier ich hab so nen bisschen bei diesen bei diesen softwareupdate da ne da hab ich nen bisschne muffe, naja aber
+- ja meine name ist <unknown> äh<variable> bin ich mit der elektrik verbunden.
+- ja, genau, jetzt beim letzten mal aufspielen hier war ich zehnmal in der werkstatt, da ging allerhand nicht mehr
+- ja, gerne vormittags und dann so bald wie möglich irgendwann februar ja genau.
+- ja, guten tag mein name ist <unknown>
+- jo genau ja ja, der zug genau genau.
+- joa, 35 44 56.
+- kann ich nächste woche nachmittags vorbeikommen aber nicht vor fünfzehn uhr morgens habe ich meistens keine zeit
+- kein problem.
+- kenn mein kennzeichen nicht auswendig
+- können sie da mal reingucken in meine unterlagen bei ihnen?
+- matthias<variation> rühle<variation> fuhrpark werk acht und sechzig guten tag
+- mh<variable> das hört sich metallisch an
+- mhm mhm.
+- mit koch<variation> mit c war das ne?
+- morgen <unknown> hier nochmal.
+- morgen frau <unknown> klima
+- muss sich der kollege der das fahrzeug da abgibt, bei einer bestimmten ansprechpartnerin äh<variation> vorstellen oder?
+- na gut, okay kurz noch eine frage jetzt irgendwie müssen sie nicht beantworten meinen sie , dass man das ganze was was jetzt hier entsteht das ist äh<variable>
+- na ja, heute wann bringen, was <unknown> serviceberater.
+- na, wie wird anderes ich hab zwo 99 für die wartung 110 fällen räderwechsel.
+- ne das das
+- ne ne dann lass uns lieber am am
+- ne, genau der steht in moment in der garage einfach
+- ne, ich äh<variation> durchwahl ist besser.
+- nein nein nein nein 5 8 kilo
+- nein, auto muss zum werkstatt.
+- nein, nein nein das fahrzeug hab ich schon zu hause aber ich hab noch so ein zwei fragen zu der rechnung.
+- notfalls schaden beheben auch, dass die versicherung weitgehend dich bei den aktivitäten wie sich das gehört.
+- oder interessiert sie das nich<variation>
+- oh äh<variation>.
+- prima genau passt nicht ganz, aber ja, also ich hab ja zwischen 8 und 9 meinen sie ne<variable>.
+- puh keine ahnung
+- sieben drei acht sieben
+- so ist es
+- software steuergerät audio 20 aktualisieren.
+- und da hab ich gedacht na<variable>
+- und hat das ähmäh<variable> zu kollaustraße gebracht zu mercedes.
+- und wenn sie sich nicht meldet, dann habe ich folgenden wunsch, wenn sie ihr das bitte mitteilen.
+- und zwar wegen dem termin großen termin den ich am 12.3. haben sollte
+- und zwar, erstmal ne ganz allgemeine frage ähm<variation>.
+- wäre es möglich morgen einen termin in bückeburg zu bekommen
+- was geht dich was an
+- was ich hier sonst noch für zahlen habe
+- was willst du denn jetzt von mir
+- weiß ich nicht auswendig
+- wie gerne eine filiale nach bremen?
+- wie komm ich denn irgendwie ein kollege pritzel ran.
+- wieso interessiert dich das
+- wo finde ich den standort lübeck genau?
+- zum standort lübeck will ich bitte
+
+
+# VINRecognition
+- das ist die {@vin=wdd1690071j236589}
+- das ist die {@vin=wvwzzz1jz3w384752}
+- das ist die {@vin=wvwzzz1jz3w386752}
+- das ist die {@vin=wvwzzz1jz3w388789}
+- das ist {@vin=wdd1690071j236589}
+- das ist {@vin=wvwzzz1jz3w384752}
+- das ist {@vin=wvwzzz1jz3w386752}
+- das ist {@vin=wvwzzz1jz3w388789}
+- die lautet {@vin=wdd1690071j236589}
+- die lautet {@vin=wvwzzz1jz3w384752}
+- die lautet {@vin=wvwzzz1jz3w386752}
+- die lautet {@vin=wvwzzz1jz3w388789}
+- ja, das ist {@vin=wdd1690071j236589}
+- ja, das ist {@vin=wvwzzz1jz3w384752}
+- ja, das ist {@vin=wvwzzz1jz3w386752}
+- ja, das ist {@vin=wvwzzz1jz3w388789}
+- {@vin=wdd1690071j236589}
+- {@vin=wvwzzz1jz3w384752}
+- {@vin=wvwzzz1jz3w386752}
+- {@vin=wvwzzz1jz3w388789}
+
+
+> # Entity definitions
+
+@ ml vin
+
+
+> # PREBUILT Entity definitions
+
+
+> # Phrase list definitions
+
+
+> # List entities
+
+> # RegEx entities
+
+

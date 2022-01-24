@@ -51,11 +51,6 @@ We recommend using Python >= 3.7. On top of the Python base installation, some f
 
 Other than that, we leverage [spaCy](https://spacy.io) and [Azure Table Storage](https://azure.microsoft.com/de-de/services/storage/tables/) as additional frameworks and components.
 
-## Deployments
-There are generally two ways how to deploy the solution:
-
-```az login```
-
 ## Module Definition
 The single modules that are used across multiple APIs are all stored in the subfolder `modules` and will be described below. They may also use another module itself when being accessed by an API.
 
