@@ -70,6 +70,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     if query:
         # Get LUIS entity results
         r = luis_helper.score_luis(query, luis_creds)
+        logger.info(f'[INFO] luis query: {query}')
+        logger.info(f'[INFO] luis response: {r}')
         try:
             r_ent = r['prediction']['entities']['$instance']['vin'][0]
         except KeyError:
@@ -131,7 +133,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             )   
         else:
             return func.HttpResponse(
-             "[ERROR] Received a blank request. Please pass a value using the defined format. Example: \{'query':'AB C 1234'\}",
+             "[ERROR] No entity could be extracted}",
              status_code = 400
             ) 
     else:
