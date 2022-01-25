@@ -133,12 +133,11 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             )   
         else:
             return func.HttpResponse(
-             "[ERROR] No entity could be extracted}",
+             "[ERROR] No entity could be extracted",
              status_code = 400
             ) 
     else:
         return func.HttpResponse(
-             "[ERROR] Received a blank request. Please pass a value using the defined format. Example: \{'query':'AB C 1234'\}",
-             status_code = 400
-        )
-
+            "[ERROR] Received a blank request. Please pass a value using the defined format. Example: {'query':'das ist 2A4GM684X6R632476', 'expectedwmi': ['WDC'],'locale': 'de'}",
+            status_code = 400
+            )
