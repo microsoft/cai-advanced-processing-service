@@ -100,7 +100,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                         {
                             "query": query,
                             "vinQuery": entity,
-                            "validvin": True,
+                            "validvin": v.is_valid,
                             "expectedwmi": v.wmi.upper() in expectedwmi,
                             "vindetails": {
                                 "region": v.region,
