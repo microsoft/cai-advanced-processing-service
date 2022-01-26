@@ -66,8 +66,14 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     # Load luis credentials 
     luis_creds = luis_helper.get_luis_creds(lang, "VINResolver")
 
+    if luis_creds is None:
+        return func.HttpResponse(
+             "[ERROR] Locale not supported",
+             status_code = 400
+        )
+
     # If query is not empty, go ahead
-    if query:
+    elif query:
         # Get LUIS entity results
         r = luis_helper.score_luis(query, luis_creds)
         logger.info(f'[INFO] luis query: {query}')
@@ -134,7 +140,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         else:
             return func.HttpResponse(
              "[ERROR] No entity could be extracted",
-             status_code = 400
+             status_code = 200
             ) 
     else:
         return func.HttpResponse(
