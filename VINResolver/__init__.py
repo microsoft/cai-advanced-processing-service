@@ -66,8 +66,14 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     # Load luis credentials 
     luis_creds = luis_helper.get_luis_creds(lang, "VINResolver")
 
+    if luis_creds is None:
+        return func.HttpResponse(
+             "[ERROR] Locale not supported",
+             status_code = 400
+        )
+
     # If query is not empty, go ahead
-    if query:
+    elif query:
         # Get LUIS entity results
         r = luis_helper.score_luis(query, luis_creds)
         logger.info(f'[INFO] luis query: {query}')
@@ -100,7 +106,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                         {
                             "query": query,
                             "vinQuery": entity,
-                            "validvin": True,
+                            "validvin": v.is_valid,
                             "expectedwmi": v.wmi.upper() in expectedwmi,
                             "vindetails": {
                                 "region": v.region,
@@ -132,10 +138,17 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                 res, mimetype='application/json'
             )   
         else:
-            return func.HttpResponse(
-             "[ERROR] No entity could be extracted",
-             status_code = 400
-            ) 
+            if r['error']:
+                return func.HttpResponse(
+                f"[ERROR LUIS] {r['error']['message']}",
+                status_code = r['error']['code']
+                )
+            else:
+                return func.HttpResponse(
+                "[ERROR LUIS] unknow",
+                status_code = 200
+                ) 
+
     else:
         return func.HttpResponse(
             "[ERROR] Received a blank request. Please pass a value using the defined format. Example: {'query':'das ist 2A4GM684X6R632476', 'expectedwmi': ['WDC'],'locale': 'de'}",
