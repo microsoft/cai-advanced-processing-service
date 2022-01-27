@@ -310,6 +310,92 @@ API key may be passed via header
 
 <br>
 
+### **VIN Resolver API**
+**URL** : `/VINResolver/`
+
+**Method** : `GET` / `POST`
+
+**Auth required** : Only deployed version, if authentication is activated (strongly recommended) 
+
+**Permissions required** : LUIS app information and keys, see [Get Your Keys](GET_YOUR_KEYS.md) for instructions
+
+**Data constraints** 
+```json
+{
+    "query": "[0-500 chars]",
+    "expectedwmi": ["WMI","2WM"],
+    "locale": "[2-character language code, e.g. de, en, es (cut off after two characters)]"
+}
+```
+
+Note that `locale` stands for language. Optional values - if not passed, `de` is set respectively by default.
+
+**Header constraints**
+API key may be passed via header
+
+#### **Success Responses**
+
+**Condition** : Data provided, correct app information set and LUIS information is valid.
+
+**Code** : `200 OK`
+
+**Content example** : Response will reflect back the input sentence, the extracted entity from LUIS, the information on whether the `WMI` is matched with the `expectedwmi` list, wether the VIN is valid based on validation rules and details on the `VIN`.
+
+```json
+# Successfull exvaluation
+{
+    "query": "das ist 2WMCGH3B2CES5C8T2",
+    "vinQuery": "2wmcgh3b2ces5c8t2",
+    "validvin": false,
+    "expectedwmi": true,
+    "vindetails": {
+        "region": "north_america",
+        "country": "Canada",
+        "validvin": false,
+        "year": 1982,
+        "make": "Western Star",
+        "manufacturer": "Western Star",
+        "is_pre_2010": true,
+        "wmi": "2WM",
+        "vds": "CGH3B2",
+        "vis": "CES5C8T2",
+        "vsn": "S5C8T2",
+        "less_than_500_built_per_year": false
+    }
+}
+```
+
+```json
+# If no entity could be extracted 
+{
+    "info": "No entity could be extracted."
+}
+```
+
+#### **Error Responses**
+
+**Condition** : If provided data is invalid, e.g. locale not supported.
+
+**Code** : `400 BAD REQUEST`
+
+**Content example** :
+
+```
+[ERROR] Locale not supported
+```
+
+**Condition** : If no query string (utterance from conversation, which may include a license plate) has been passed.
+
+**Code** : `400 BAD REQUEST`
+
+**Content example** :
+
+```
+[ERROR] Received a blank request. Please pass a value using the defined format. Example: {'query':'das ist 2A4GM684X6R632476', 'expectedwmi': ['WDC'],'locale': 'de'}
+```
+
+<br>
+
 ### Table Requestor API
 **URL** : `/TableRequestor/`
 
@@ -325,10 +411,12 @@ The request structure in the `params` section depends on the structure of your d
 ```json
 {
     "table": {
-        "name": "[0-100 chars]",
+        "name": "[0-100 chars]"
+    },
     "params": {
         "PartitionKey": "[name of partition-key]",
         "Lastname": "[example, depends on the column names in your table storage]"
+    }
 }
 ```
 
@@ -392,15 +480,21 @@ API key may be passed via header
 **Permissions required** : Table storage connection string, see [Get Your Keys](GET_YOUR_KEYS.md) for instructions
 
 **Data constraints** 
-The request structure in the `params` section depends on the structure of your data in the table storage. The entire, unfiltered data set can be requested by only passing the `PartitionKey` in the request's `params` section.
+The request structure in the `attributes` section depends on the structure of your data in the table storage and the manifest definition for the authentication. The `method` field controls whether we use levenstein and/or phonethic matching. The `verbose` setting allows for a more detailed debugging output but should be set to `false` in productive implementation.
 
 ```json
 {
-    "table": {
-        "name": "[0-100 chars]",
-    "params": {
-        "PartitionKey": "[name of partition-key]",
-        "Lastname": "[example, depends on the column names in your table storage]"
+    "attributes":
+        {
+            "Firstname": "Satya",
+            "Lastname": "Nadella",
+            "Birthdate": "1900-02-03",
+            "Id": "1234"
+        },
+    "method": 4,
+    "verbose": true,
+    "region": "de",
+    "locale": "de"
 }
 ```
 
@@ -417,12 +511,16 @@ API key may be passed via header
 
 ```json
 {
-    "table": {
-        "name": "CustomerData"
+    "result": {
+        "authenticated": false
     },
-    "params": {
-        "PartitionKey": "CustomerData",
-        "LastName": "Nadella"
+    "verbose": {
+        "attributes": {
+            "Birthdate": false,
+            "Firstname": true,
+            "Lastname": true
+        },
+        "method": 4
     }
 }
 ```

@@ -47,7 +47,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"table\": {\r\n        \"name\": \"ndsjustizdemozeugentermine\"\r\n    },\r\n    \"params\": {\r\n        \"Nachname\": \"Mustermann\"\r\n    }\r\n}",
+					"raw": "{\r\n    \"table\": {\r\n        \"name\": \"CustomerData\"\r\n    },\r\n    \"params\": {\r\n        \"PartitionKey\": \"CustomerData\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -111,7 +111,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"attributes\":\r\n        {\r\n            \"Firstname\": \"Jan\",\r\n            \"Lastname\": \"Goergen\",\r\n            \"Birthdate\": \"15.03.1978\",\r\n            \"Id\": \"80555500\"\r\n        },\r\n    \"method\": 4,\r\n    \"verbose\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}\r\n",
+					"raw": "{\r\n    \"attributes\":\r\n        {\r\n            \"Firstname\": \"Jan\",\r\n            \"Lastname\": \"Görgen\",\r\n            \"Birthdate\": \"1978-03-15\",\r\n            \"Id\": \"5555\"\r\n        },\r\n    \"method\": 4,\r\n    \"verbose\": true,\r\n    \"region\": \"de\",\r\n    \"locale\": \"de\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -143,7 +143,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"model_id\": \"4b173cbf-a153-4c8b-b980-fc9e7399602d\",\r\n    \"doc_url\": \"https://nonstopstore.blob.core.windows.net/forms/form3.pdf?sv=2019-12-12&st=2021-03-07T10%3A19%3A08Z&se=2021-04-08T09%3A19%3A00Z&sr=b&sp=r&sig=hYgtrgzNegieovT47H0bEhpcPS34FgKqJHFtG7VuyHk%3D\",\r\n    \"copy_to_blob\": true\r\n}",
+					"raw": "{\r\n    \"model_id\": \"4b173cbf-a153-4c8b-b980-xxxxxxxxx\",\r\n    \"doc_url\": \"https://xxx.blob.core.windows.net/forms/form3.pdf?sv=2019-12-12&st=2021-03-07T10%3A19%3A08Z&se=2021-04-08xxA19%3A00Z&sr=b&sp=r&sig=hYgtrgzNegieovxxxKqJHFtG7VuyHk%3D\",\r\n    \"copy_to_blob\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -175,7 +175,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    {\r\n       \"id\":\"filename1\",\r\n        \"ref\": \"Mein Kennzeichen is essen dora berta 3 Mal  3 und 2 Mal die 7.\",\r\n        \"rec\": \"Mein Kennzeichen is essen dora berta 3333 Mal  3 und 2 Mal die 7.\",\r\n        \"lp_ref\":\"E-DB33377\",\r\n        \"lp_rec\":\"E-DB33377\"\r\n    },\r\n    {\r\n        \"id\":\"filename2\",\r\n        \"ref\": \"mein kennzeichen ist münchen dora dora  2 4\",\r\n        \"rec\": \"mein kennzeichen ist münchen dora dora  2 5\"\r\n    },\r\n    {\r\n        \"id\":\"filename3\",\r\n        \"ref\": \"hallo ich kann sie nicht verstehen\",\r\n        \"rec\": \"hi ich kann nicht verstehen\"\r\n    },\r\n    {\r\n        \"id\":\"filename4\",\r\n        \"ref\": \"hallo kann sie nicht verstehen\",\r\n        \"rec\": \"hi ich kann nicht verstehen tschüss tschüss\",\r\n        \"lp_ref\":\"M-DD24\",\r\n        \"lp_rec\":\"M-DD25\"\r\n    }\r\n]",
+					"raw": "[\r\n    {\r\n       \"id\":\"filename1\",\r\n        \"ref\": \"Mein Kennzeichen is essen dora berta 3 Mal  3 und 2 Mal die 7.\",\r\n        \"rec\": \"Mein Kennzeichen is essen dora berta 3 Mal  3 und 2 Mal die 7.\",\r\n        \"lp_ref\":\"E-DB33377\",\r\n        \"lp_rec\":\"E-DB33377\"\r\n    },\r\n    {\r\n        \"id\":\"filename2\",\r\n        \"ref\": \"mein kennzeichen ist münchen dora dora  2 4\",\r\n        \"rec\": \"mein kennzeichen ist münchen dora dora  2 5\"\r\n    },\r\n    {\r\n        \"id\":\"filename3\",\r\n        \"ref\": \"hallo ich kann sie nicht verstehen\",\r\n        \"rec\": \"hi ich kann nicht verstehen\"\r\n    },\r\n    {\r\n        \"id\":\"filename4\",\r\n        \"ref\": \"hallo kann sie nicht verstehen\",\r\n        \"rec\": \"hi ich kann nicht verstehen tschüss tschüss\",\r\n        \"lp_ref\":\"M-DD24\",\r\n        \"lp_rec\":\"M-DD25\"\r\n    }\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -192,6 +192,38 @@
 					"path": [
 						"api",
 						"BatchTesting"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Local - VINResolver",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\": \"das ist 2WMCGH3B2CES5C8T2\",\r\n    \"expectedwmi\": [\"WMI\",\"2WM\"],\r\n    \"locale\": \"de\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7071/api/VINResolver",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7071",
+					"path": [
+						"api",
+						"VINResolver"
 					]
 				}
 			},
@@ -224,7 +256,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n \"storageaccountname\": \"teststorage\",\r\n \"table\": {\r\n \"name\": \"ndsjustizdemozeugentermine\"\r\n },\r\n \"params\": {\r\n \"PartitionKey\": \"UserData\"\r\n }\r\n}",
+					"raw": "{\r\n    \"table\": {\r\n        \"name\": \"CustomerData\"\r\n    },\r\n    \"params\": {\r\n        \"PartitionKey\": \"CustomerData\"\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -259,18 +291,18 @@
 					"type": "apikey",
 					"apikey": [
 						{
-							"key": "value",
-							"value": "{{formrecognizer_APIKey}}",
-							"type": "string"
-						},
-						{
 							"key": "in",
-							"value": "query",
+							"value": "header",
 							"type": "string"
 						},
 						{
 							"key": "key",
-							"value": "code",
+							"value": "x-functions-key",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "{{formrecognizer_APIKey}}",
 							"type": "string"
 						}
 					]
@@ -279,7 +311,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"model_id\": \"4b173cbf-a153-4c8b-b980-fc9e7399602d\",\r\n    \"doc_url\": \"https://nonstopstore.blob.core.windows.net/forms/form3.pdf?sv=2019-12-12&st=2021-03-07T10%3A19%3A08Z&se=2021-04-08T09%3A19%3A00Z&sr=b&sp=r&sig=hYgtrgzNegieovT47H0bEhpcPS34FgKqJHFtG7VuyHk%3D\",\r\n    \"copy_to_blob\": true\r\n}",
+					"raw": "{\r\n    \"model_id\": \"4b173cbf-a153-4c8b-b980-xxxxxxxxx\",\r\n    \"doc_url\": \"https://xxx.blob.core.windows.net/forms/form3.pdf?sv=2019-12-12&st=2021-03-07T10%3A19%3A08Z&se=2021-04-08xxA19%3A00Z&sr=b&sp=r&sig=hYgtrgzNegieovxxxKqJHFtG7VuyHk%3D\",\r\n    \"copy_to_blob\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -314,18 +346,18 @@
 					"type": "apikey",
 					"apikey": [
 						{
-							"key": "value",
-							"value": "{{spellingresolver_APIKey}}",
-							"type": "string"
-						},
-						{
 							"key": "in",
-							"value": "query",
+							"value": "header",
 							"type": "string"
 						},
 						{
 							"key": "key",
-							"value": "code",
+							"value": "x-functions-key",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "{{spellingresolver_APIKey}}",
 							"type": "string"
 						}
 					]
@@ -334,7 +366,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"text\": \"Martha Anton humbug drei 4\",\r\n    \"convertnumbers\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}",
+					"raw": "{\r\n    \"query\": \"Martha Anton humbug drei 4\",\r\n    \"convertnumbers\": true,\r\n    \"region\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -382,7 +414,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"query\":\"mab 123\",\r\n    \"locale\": \"de\",\r\n    \"region\": \"de\"\r\n}",
+					"raw": "{\r\n    \"query\":\"mein kennzeichen lautet mab 123\",\r\n    \"locale\": \"de\",\r\n    \"region\": \"de\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -410,18 +442,18 @@
 					"type": "apikey",
 					"apikey": [
 						{
+							"key": "key",
+							"value": "x-functions-key",
+							"type": "string"
+						},
+						{
 							"key": "in",
-							"value": "query",
+							"value": "header",
 							"type": "string"
 						},
 						{
 							"key": "value",
 							"value": "{{authenticator_APIKey}}",
-							"type": "string"
-						},
-						{
-							"key": "key",
-							"value": "code",
 							"type": "string"
 						}
 					]
@@ -430,7 +462,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"attributes\":\r\n        {\r\n            \"Firstname\": \"Jan\",\r\n            \"Lastname\": \"Goergen\",\r\n            \"Birthdate\": \"15.03.1978\",\r\n            \"Id\": \"80555500\"\r\n        },\r\n    \"method\": 4,\r\n    \"verbose\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}\r\n",
+					"raw": "{\r\n    \"attributes\":\r\n        {\r\n            \"Firstname\": \"Jan\",\r\n            \"Lastname\": \"Görgen\",\r\n            \"Birthdate\": \"1978-03-15\",\r\n            \"Id\": \"5555\"\r\n        },\r\n    \"method\": 4,\r\n    \"verbose\": true,\r\n    \"region\": \"de\",\r\n    \"locale\": \"de\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -494,6 +526,54 @@
 					"path": [
 						"api",
 						"BatchTesting"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deployed - VINResolver",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{vinresolver_APIKey}}",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "x-functions-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\": \"das ist 2WMCGH3B2CES5C8T2\",\r\n    \"expectedwmi\": [\"WMI\",\"2WM\"],\r\n    \"locale\": \"de\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{FunctionURI}}/api/VINResolver",
+					"protocol": "https",
+					"host": [
+						"{{FunctionURI}}"
+					],
+					"path": [
+						"api",
+						"VINResolver"
 					]
 				}
 			},
