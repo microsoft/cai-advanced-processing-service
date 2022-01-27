@@ -138,10 +138,16 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                 res, mimetype='application/json'
             )   
         else:
-            return func.HttpResponse(
-             "[ERROR] No entity could be extracted",
-             status_code = 200
-            ) 
+            if r['error']:
+                return func.HttpResponse(
+                f"[ERROR LUIS] {r['error']['message']}",
+                status_code = r['error']['code']
+                )
+            else:
+                return func.HttpResponse(
+                "[ERROR LUIS] unknow",
+                status_code = 200
+                ) 
     else:
         return func.HttpResponse(
             "[ERROR] Received a blank request. Please pass a value using the defined format. Example: {'query':'das ist 2A4GM684X6R632476', 'expectedwmi': ['WDC'],'locale': 'de'}",
