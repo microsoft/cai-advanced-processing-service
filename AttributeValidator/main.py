@@ -5,15 +5,16 @@ import azure.functions as func
 
 # Import custom modules and helpers
 from . import helper
+from assets.constants import ATTRIBUTE_VALIDATOR, CONFIG, MANIFEST, MODULE, MODULES, REGION, VALUES
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     # Receive request and collect parameters
     try:
-        req_body = req.get_json()
-        module = req_body.get('module')
-        region = req_body.get('region')
-        manifest = req_body.get('manifest')
-        values = req_body.get('values')
+        req_body    = req.get_json()
+        module      = req_body.get(MODULE)
+        region      = req_body.get(REGION)
+        manifest    = req_body.get(MANIFEST)
+        values      = req_body.get(VALUES)
         # If no manifest has been passed, we take manifest.json by default
         if not manifest:
             logging.info('[INFO] - No manifest name passed in the request, fallback to "manifest.json"')
@@ -26,8 +27,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     
     # Read manifest and extract module information
     try:
-        with open(f'{manifest}.json', 'r') as mf:
-            _manifest_file = json.load(mf)['AttributeValidator']['modules']
+        with open(f'{MANIFEST}.json', 'r') as mf:
+            _manifest_file = json.load(mf)[ATTRIBUTE_VALIDATOR][MODULES]
+            config = json.load(mf)[ATTRIBUTE_VALIDATOR][CONFIG]
             manifest = _manifest_file[module]
     except FileNotFoundError:
         return func.HttpResponse("Manifest could not be found, please pass a valid manifest name.", status_code=400)
@@ -35,7 +37,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(f"This module is not known by the manifest, please select between {', '.join(_manifest_file.keys())}.", status_code=400)
 
     # Create instance of class with module and (optional) region, as needed
-    validation = helper.Validator(module, values, manifest, region)
+    validation = helper.Validator(module, config, values, manifest, region)
     
     # Run validation if a respective matcher could be found
     if validation.matcher and validation.ready_to_run:

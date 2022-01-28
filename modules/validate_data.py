@@ -1,3 +1,4 @@
+from assets.constants import LEV_DISTANCE_INIT
 from modules.similarity_score import levenshtein
 import logging
 
@@ -13,7 +14,6 @@ def get_matching_streets(user_street: str, streets_in_zip_area):
         street_length = len(user_street)
 
         # Set Levenshtein distance: For every 6 characters in street name increase distance by 1
-        LEV_DISTANCE_INIT = 2
         LEV_DISTANCE = LEV_DISTANCE_INIT + len(user_street) // 6
         logging.info(f"[INFO] Using maximum Levenshtein distance of {LEV_DISTANCE}")
 

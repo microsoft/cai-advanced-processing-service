@@ -6,33 +6,38 @@ import azure.functions as func
 from azure.cosmosdb.table.tableservice import TableService
 
 # Import custom modules and helpers
+from assets.constants import ADDRESS, ATTRIBUTE_VALIDATOR_ENV, CITY, IBAN, LOCALES, STREET_IN_CITY, ZIP
 from modules import preprocess_data, process_input, validate_data, request_table
 
 # Define logger
 logger = logging.getLogger(__name__)
 
 class Validator(object):
-    def __init__(self, module, values, manifest, region="de"):
+    def __init__(self, module, config, manifest, values, region="de"):
         # Set values, region and manifest. Also, we gather connection data.
         # In case they cannot be retrieved (e.g. if not needed/available), they will be set to None
+        self.config = config
+        self.manifest = manifest
         self.values = values
         self.region = region.upper()
-        self.manifest = manifest
-        self.table_data = request_table.get_table_creds(['connection_string', ''])
+        if config.use_db:
+            self.table_data = request_table.get_table_creds(ATTRIBUTE_VALIDATOR_ENV)
+        else:
+            self.local_data_path = config.local_data_path
 
         # Set module for validation
-        if module == "iban":
+        if module == IBAN:
             self.matcher = self.ValidateIBAN(self.values, self.region, self.manifest)
-        elif module == "address":
+        elif module == ADDRESS:
             self.matcher = self.ValidateAddress(self.values, self.region, self.manifest, self.table_data)
-        elif module == "street_in_city":
+        elif module == STREET_IN_CITY:
             self.matcher = self.ValidateStreet(self.values, self.region, self.manifest, self.table_data)
-        elif module == "zip":
+        elif module == ZIP:
             self.matcher = self.ValidateZIP(self.values, self.region, self.manifest, self.table_data)
         else:
             self.matcher = False
         
-        # Validate if we have all we need
+        # Validate if we have all needed parameters in the specified module
         self.ready_to_run, self.message = self.check_parameters()
 
     def check_parameters(self):
@@ -47,21 +52,21 @@ class Validator(object):
         return True, "success"
     
     class ValidateIBAN(object):
-        def __init__(self, values, region, manifest, table_data):
+        def __init__(self, config, manifest, values, region):
             # Import from main class
+            self.config = config
+            self.manifest = manifest
             self.values = values
             self.region = region
-            self.manifest = manifest
-            self.table_data = table_data
 
         def run(self):
-            reduced_iban = process_input.reduce_query(self.values["iban"].upper())      
+            reduced_iban = process_input.reduce_query(self.values[IBAN].upper())      
             reduced_iban = reduced_iban.replace(' ','')
-            logging.warning(self.manifest["locales"][self.region])
+            logging.warning(self.manifest[LOCALES][self.region])
             
-            if self.manifest['locales'][self.region]['length'] != len(reduced_iban) or not reduced_iban.startswith(self.region):
+            if self.manifest[LOCALES][self.region]['length'] != len(reduced_iban) or not reduced_iban.startswith(self.region):
                 logging.info(f"[INFO] - IBAN is not a valid IBAN for {self.region}")
-                res = json.dumps(dict(error = False, error_message = f"Submitted IBAN is not a valid IBAN for {self.region} with length of {str(self.manifest['locales'][self.region]['length'])}", is_valid = False))
+                res = json.dumps(dict(error = False, error_message = f"Submitted IBAN is not a valid IBAN for {self.region} with length of {str(self.manifest[LOCALES][self.region]['length'])}", is_valid = False))
                 return res
             
             # Translation map
@@ -80,21 +85,22 @@ class Validator(object):
             return res
 
     class ValidateAddress(object):
-        def __init__(self, values, region, manifest, table_data):
+        def __init__(self, config, manifest, values, region, table_data):
             # Import from main class
+            self.config = config
+            self.manifest = manifest
             self.values = values
             self.region = region
-            self.manifest = manifest
             self.table_data = table_data
 
         def run(self):
             city_name = None
             r_pred = None
 
-            if (not self.values["zip"] is None and not self.values["city"] is None):
+            if (not self.values[ZIP] is None and not self.values[CITY] is None):
                 logging.info(f"[INFO] - Using zip code and city from request")
-                zip_code = self.values["zip"].replace(" ", "").zfill(5)
-                city_name = process_input.match_zip_to_city(zip_code, self.values["city"], 0.1)
+                zip_code = self.values[ZIP].replace(" ", "").zfill(5)
+                city_name = process_input.match_zip_to_city(zip_code, self.values[CITY], 0.1)
 
             if zip_code and city_name:
                 if zip_code[0] == '0':
@@ -105,8 +111,7 @@ class Validator(object):
                 # Check street
                 result = None
                 try:
-                    request_table.get_data_from_table(table_service['connection_data'])
-                    tasks = table_service.query_entities('StreetsInZipLocation', filter="PartitionKey eq '" + str(zip_code) + "'", select='RowKey')
+                    tasks = request_table.get_data_from_table(self.table_data, ATTRIBUTE_VALIDATOR_ENV, {"PartitionKey": str(zip_code)}) # StreetsInZipLocation
                 except:
                     res = json.dumps(dict(userInput = self.values["input"], error = True, error_message = "Error accessing database / ZIP not found", city_is_valid = True, zip = zip_code.zfill(5), city = city_name, street_is_valid = False, street_has_options = False))
                     return func.HttpResponse(res, mimetype='application/json', status_code=status_code)
@@ -133,25 +138,25 @@ class Validator(object):
             return res
 
     class ValidateStreet(object):
-        def __init__(self, values, region, manifest, table_data):
+        def __init__(self, config, manifest, values, region, table_data):
             # Import from main class
+            self.config = config
+            self.manifest = manifest
             self.values = values
             self.region = region
-            self.manifest = manifest
             self.table_data = table_data
 
         def run(self):
             status_code = 400
             res = json.dumps(dict(error = True, error_message = "Input error", is_valid = False, has_options = False))
 
-            if (not self.values["street"] is None and not self.values["zip"] is None):
+            if (not self.values["street"] is None and not self.values[ZIP] is None):
 
-                if self.values["zip"][0] == '0':
-                    user_zip = self.values["zip"][1:]
+                if self.values[ZIP][0] == '0':
+                    user_zip = self.values[ZIP][1:]
 
                 try: 
-                    table_service = TableService(connection_string=sa_connection_string)
-                    tasks = table_service.query_entities('StreetsInZipLocation', filter=f"PartitionKey eq '{str(user_zip)}'", select='RowKey')
+                    tasks = request_table.get_data_from_table(self.table_data, ATTRIBUTE_VALIDATOR_ENV, {"PartitionKey": str(user_zip)}) # StreetsInZipLocation
                 except:
                     res = json.dumps(dict(userInput = self.values["input"], error = True, error_message = "Error accessing database / ZIP not found", is_valid = False, has_options = False))
                     return func.HttpResponse(res, mimetype='application/json', status_code=status_code)
@@ -176,7 +181,7 @@ class Validator(object):
             return res
 
     class ValidateZIP(object):
-        def __init__(self, values, region, manifest, table_data):
+        def __init__(self, config, manifest, values, region, table_data):
             # Import from main class
             self.values = values
             self.region = region
@@ -185,10 +190,10 @@ class Validator(object):
 
         def run(self):
             # Preprocess data
-            if all([self.values["zip"], self.values["city"]]):
+            if all([self.values[ZIP], self.values[CITY]]):
                 logging.info(f"[INFO] - Using ZIP and City from Request")
-                zip_code = self.values["zip"].zfill(5)
-                city_name = process_input.match_zip_to_city(zip_code, self.values["city"], 0.1)
+                zip_code = self.values[ZIP].zfill(5)
+                city_name = process_input.match_zip_to_city(zip_code, self.values[CITY], 0.1)
             else:
                 city_name = None
 
