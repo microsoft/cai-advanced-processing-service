@@ -14,16 +14,9 @@ for handler in logger.handlers:
         handler.setFormatter(formatter)
 
 # Import custom modules
-try:
-    from  __app__.modules.libvin import Vin
-    from  __app__.modules import luis_helper
-    from  __app__.modules import resolve_spelling as resolve
-    logger.info("[INFO] Helper: Using app imports.")
-except Exception as e:
-    logger.info("[INFO] Helper: Using local imports.")
-    from  modules.libvin import Vin
-    from  modules import luis_helper
-    from  modules import resolve_spelling as resolve
+from modules.libvin import Vin
+from modules import luis_helper
+from modules import resolve_spelling as resolve
 
 def clean(phrase, lang='de'):
     """Cleaning steps for extracted phrase, with area detection in between"""
