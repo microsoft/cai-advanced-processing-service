@@ -4,7 +4,7 @@ import json
 import azure.functions as func
 
 # Import custom modules
-from modules import request_table
+from modules import data_connector
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info("Python HTTP trigger function processed a request.")
@@ -20,14 +20,14 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         params = False
 
     # Load connection string
-    auth_attributes = request_table.get_table_creds(['USER_STORAGE_CONNECTION_STRING'])
+    auth_attributes = data_connector.get_table_creds(['USER_STORAGE_CONNECTION_STRING'])
 
     # Process request
     if all([table_name, params]):
         connection_data = {'table_name': table_name, 'connection_string': auth_attributes['USER_STORAGE_CONNECTION_STRING'].replace('"', "")}
         # Request data from storage
         try:
-            customer_data = request_table.get_data_from_table(connection_data, params)
+            customer_data = data_connector.get_data_from_table(connection_data, params)
         except Exception as e:
             logging.error(f'Failed to establish connection to table storage -> {e}')
             return func.HttpResponse(

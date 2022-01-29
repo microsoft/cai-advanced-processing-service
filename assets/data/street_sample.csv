@@ -1,4 +1,4 @@
-PLZ,ORTSNAME,STRASSE,ORTSTEIL
+PartitionKey,CITY,RowKey,DISTRICT
 10115,Berlin,Ackerstr.,Mitte
 10115,Berlin,Am Nordbahnhof,Mitte
 10115,Berlin,Am Pankepark,Mitte

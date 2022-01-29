@@ -4,13 +4,13 @@ import logging
 import azure.functions as func
 
 # Import custom modules and helpers
-from modules import request_table
+from modules import data_connector
 from modules import resolve_spelling as resolve
 from modules import similarity_score as simscore
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     # Load connection string
-    auth_attributes = request_table.get_table_creds(['connection_string', 'authentication_table'])
+    auth_attributes = data_connector.get_table_creds(['connection_string', 'authentication_table'])
 
     # Assemble connectiond ata
     connection_data = {'table_name': auth_attributes['AUTHENTICATION_TABLE'], 'connection_string': auth_attributes['connection_string'].replace('"', "")}
@@ -70,7 +70,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     # Gather data from database
     try:
-        customer_data = request_table.get_data_from_table(connection_data = connection_data, table_filters = {'PartitionKey': connection_data['table_name'], 'RowKey': cleaned['Id']})
+        customer_data = data_connector.get_data_from_table(connection_data = connection_data, table_filters = {'PartitionKey': connection_data['table_name'], 'RowKey': cleaned['Id']})
         logging.info(f'Received response with data from backend, loaded {len(customer_data)} data set(s).')
     except Exception as e:
         logging.error(f'Could not load user dict -> {e}.')
