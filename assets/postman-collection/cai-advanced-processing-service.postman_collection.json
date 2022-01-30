@@ -366,7 +366,7 @@
 			"name": "Deployed",
 			"item": [
 				{
-					"name": "Deployed - AttributeValidator - Addres",
+					"name": "Deployed - AttributeValidator - Address",
 					"request": {
 						"auth": {
 							"type": "apikey",
