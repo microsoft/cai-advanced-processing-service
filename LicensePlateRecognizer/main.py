@@ -35,7 +35,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         if not lang and not region:
             lang = 'de'
             region = lang
-        elif not lang and region:
+        elif not lang and region: 
             lang = region
         elif lang and not region:
             region = lang

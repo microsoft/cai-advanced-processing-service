@@ -82,9 +82,9 @@ def check_item_dist(token_input, token_truth, d):
     else:
         return True
 
-def check_item_phonetic(token_input, token_truth):
+def check_item_phonetic(token_input, token_truth, jaro_d, damerau_d):
     '''Phonetic matching'''
-    if not phonetic_match(token_input, token_truth):
+    if not phonetic_match(token_input, token_truth, jaro_d, damerau_d):
         return False
     else:
         return True

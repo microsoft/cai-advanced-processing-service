@@ -1,0 +1,601 @@
+,WMI,Manufacturer,Daimler
+0,MBR,Mercedes-Benz India,True
+1,MEC,Daimler India Commercial Vehicles,True
+2,NLE,Mercedes-Benz Türk Truck,True
+3,NMB,Mercedes-Benz Türk Buses,True
+4,VSA,Mercedes-Benz Spain,True
+5,WDA,Daimler,True
+6,WDB,Mercedes-Benz,True
+7,WDC,DaimlerChrysler,True
+8,WDD,Mercedes-Benz,True
+9,WDF,Mercedes-Benz (commercial vehicles),True
+10,WEB,Evobus GmbH (Mercedes-Bus),True
+11,WMX,Mercedes-AMG,True
+12,4JG,Mercedes-Benz USA,True
+13,9BM,Mercedes-Benz Brazil,True
+14,AAV,Volkswagen South Africa,False
+15,AC5,Hyundai South Africa,False
+16,ADD,Hyundai South Africa,False
+17,AFA,Ford South Africa,False
+18,AHT,Toyota South Africa,False
+19,JA3,Mitsubishi,False
+20,JA4,Mitsubishi,False
+21,JA,Isuzu,False
+22,JD,Daihatsu,False
+23,JF,Fuji Heavy Industries (Subaru),False
+24,JHA,Hino,False
+25,JHB,Hino,False
+26,JHC,Hino,False
+27,JHD,Hino,False
+28,JHE,Hino,False
+29,JHF,Honda,False
+30,JHG,Honda,False
+31,JHL,Honda,False
+32,JHM,Honda,False
+33,JHN,Honda,False
+34,JHZ,Honda,False
+35,JH1,Honda,False
+36,JH2,Honda,False
+37,JH3,Honda,False
+38,JH4,Honda,False
+39,JH5,Honda,False
+40,JK,Kawasaki (motorcycles),False
+41,JL5,Mitsubishi Fuso,False
+42,JM1,Mazda,False
+43,JMB,Mitsubishi Motors,False
+44,JMY,Mitsubishi Motors,False
+45,JMZ,Mazda,False
+46,JN,Nissan,False
+47,JS,Suzuki,False
+48,JT,Toyota,False
+49,JY,Yamaha (motorcycles),False
+50,KL,Daewoo General Motors South Korea,False
+51,KM,Hyundai,False
+52,KMY,Daelim (motorcycles),False
+53,KM1,Hyosung (motorcycles),False
+54,KN,Kia,False
+55,KNM,Renault Samsung,False
+56,KPA,SsangYong,False
+57,KPT,SsangYong,False
+58,LAE,Jinan Qingqi Motorcycle,False
+59,LAL,Sundiro Honda Motorcycle,False
+60,LAN,Changzhou Yamasaki Motorcycle,False
+61,LBB,Zhejiang Qianjiang Motorcycle (Keeway/Generic),False
+62,LBE,Beijing Hyundai,False
+63,LBM,Zongshen Piaggio,False
+64,LBP,Chongqing Jainshe Yamaha (motorcycles),False
+65,LB2,Geely Motorcycles,False
+66,LCE,Hangzhou Chunfeng Motorcycles (CFMOTO),False
+67,LDC,"Dong Feng Peugeot Citroen (DPCA), China",False
+68,LDD,Dandong Huanghai Automobile,False
+69,LDF,Dezhou Fulu Vehicle (motorcycles),False
+70,LDN,SouEast Motor,False
+71,LDY,"Zhongtong Coach, China",False
+72,LET,"Jiangling-Isuzu Motors, China",False
+73,LE4,"Beijing Benz, China",False
+74,LFB,"FAW, China (busses)",False
+75,LFG,Taizhou Chuanl Motorcycle Manufacturing,False
+76,LFP,"FAW, China (passenger vehicles)",False
+77,LFT,"FAW, China (trailers)",False
+78,LFV,"FAW-Volkswagen, China",False
+79,LFW,"FAW JieFang, China",False
+80,LFY,Changshu Light Motorcycle Factory,False
+81,LGB,"Dong Feng (DFM), China",False
+82,LGH,"Qoros (formerly Dong Feng (DFM)), China",False
+83,LGX,"BYD Auto, China",False
+84,LHB,Beijing Automotive Industry Holding,False
+85,LH1,"FAW-Haima, China",False
+86,LJC,"JAC, China",False
+87,LJ1,"JAC, China",False
+88,LKL,"Suzhou King Long, China",False
+89,LL6,Hunan Changfeng Manufacture Joint-Stock,False
+90,LL8,Linhai (ATV),False
+91,LMC,Suzuki Hong Kong (motorcycles),False
+92,LPR,Yamaha Hong Kong (motorcycles),False
+93,LPS,Polestar (Volvo) (Sweden),False
+94,LRW,"Tesla, Inc. (Gigafactory Shanghai)",False
+95,LSG,"Shanghai General Motors, China",False
+96,LSJ,"MG Motor UK Limited - SAIC Motor, Shanghai, China",False
+97,LSV,"Shanghai Volkswagen, China",False
+98,LSY,Brilliance Zhonghua,False
+99,LTP,National Electric Vehicle Sweden AB (NEVS),False
+100,LTV,Toyota Tian Jin,False
+101,LUC,"Guangqi Honda, China",False
+102,LVS,Ford Chang An,False
+103,LVV,"Chery, China",False
+104,LVZ,Dong Feng Sokon Motor Company (DFSK),False
+105,LV3,National Electric Vehicle Sweden AB (NEVS),False
+106,LZM,MAN China,False
+107,LZE,"Isuzu Guangzhou, China",False
+108,LZG,"Shaanxi Automobile Group, China",False
+109,LZP,Zhongshan Guochi Motorcycle (Baotian),False
+110,LZY,"Yutong Zhengzhou, China",False
+111,LZZ,Chongqing Shuangzing Mech & Elec (Howo),False
+112,L4B,Xingyue Group (motorcycles),False
+113,L5C,KangDi (ATV),False
+114,L5K,Zhejiang Yongkang Easy Vehicle,False
+115,L5N,"Zhejiang Taotao, China (ATV & motorcycles)",False
+116,L5Y,Merato Motorcycle Taizhou Zhongneng,False
+117,L85,Zhejiang Yongkang Huabao Electric Appliance,False
+118,L8X,Zhejiang Summit Huawin Motorcycle,False
+119,MAB,Mahindra & Mahindra,False
+120,MAC,Mahindra & Mahindra,False
+121,MAJ,Ford India,False
+122,MAK,Honda Siel Cars India,False
+123,MAL,Hyundai India,False
+124,MAT,Tata Motors,False
+125,MA1,Mahindra & Mahindra,False
+126,MA3,Suzuki India (Maruti),False
+127,MA6,GM India,False
+128,MA7,Mitsubishi India (formerly Honda),False
+129,MB8,Suzuki India Motorcycles,False
+130,MBH,Suzuki India (Maruti),False
+131,MBJ,Toyota India,False
+132,MB1,Ashok Leyland,False
+133,MCA,Fiat India,False
+134,MCB,GM India,False
+135,MC2,Volvo Eicher commercial vehicles limited.,False
+136,MDH,Nissan India,False
+137,MD2,Bajaj Auto,False
+138,MD9,Shuttle Cars India,False
+139,MEE,Renault India,False
+140,MEX,Volkswagen India,False
+141,MHF,Toyota Indonesia,False
+142,MHR,Honda Indonesia,False
+143,MLC,Suzuki Thailand,False
+144,NAA,Iran Khodro (Peugeot Iran),False
+145,NAP,Pars Khodro,False
+146,MLH,Honda Thailand,False
+147,MMA,Mitsubishi Thailand,False
+148,MMB,Mitsubishi Thailand,False
+149,MMC,Mitsubishi Thailand,False
+150,MMM,Chevrolet Thailand,False
+151,MMS,Suzuki Thailand,False
+152,MMT,Mitsubishi Thailand,False
+153,MMU,Holden Thailand,False
+154,MM8,Mazda Thailand,False
+155,MNB,Ford Thailand,False
+156,MNT,Nissan Thailand,False
+157,MPA,Isuzu Thailand,False
+158,MP1,Isuzu Thailand,False
+159,MRH,Honda Thailand,False
+160,MR0,Toyota Thailand,False
+161,MS0,SSS MOTORS Myanmar,False
+162,MS3,"Suzuki Myanmar Motor Co.,Ltd.",False
+163,NLA,Honda Türkiye,False
+164,NLH,Hyundai Assan,False
+165,NLN,Karsan,False
+166,NLR,OTOKAR,False
+167,NLT,TEMSA,False
+168,NMC,BMC,False
+169,NM0,Ford Turkey,False
+170,NM4,Tofas Türk,False
+171,NMT,Toyota Türkiye,False
+172,NNA,Isuzu Turkey,False
+173,PE1,Ford Philippines,False
+174,PE3,Mazda Philippines,False
+175,PL1,"Proton, Malaysia",False
+176,PNA,"NAZA, Malaysia (Peugeot)",False
+177,R2P,Evoke Electric Motorcycles HK,False
+178,RA1,"Steyr Trucks International FZE, UAE",False
+179,RFB,"Kymco, Taiwan",False
+180,RFG,"Sanyang SYM, Taiwan",False
+181,RFL,"Adly, Taiwan",False
+182,RFT,"CPI, Taiwan",False
+183,RF3,"Aeon Motor, Taiwan",False
+184,SAB,Optare,False
+185,SAD,"Jaguar (F-Pace, I-Pace)",False
+186,SAL,Land Rover,False
+187,SAJ,Jaguar,False
+188,SAR,Rover,False
+189,SAX,Austin-Rover,False
+190,SA9,OX Global,False
+191,SB1,Toyota UK,False
+192,SBM,McLaren,False
+193,SCA,Rolls Royce,False
+194,SCB,Bentley,False
+195,SCC,Lotus Cars,False
+196,SCE,DeLorean Motor Cars N. Ireland (UK),False
+197,SCF,Aston,False
+198,SCK,iFor Williams,False
+199,SDB,Peugeot UK (formerly Talbot),False
+200,SED,General Motors Luton Plant,False
+201,SEY,LDV,False
+202,SFA,Ford UK,False
+203,SFD,Alexander Dennis UK,False
+204,SHH,Honda UK,False
+205,SHS,Honda UK,False
+206,SJN,Nissan UK,False
+207,SKF,Vauxhall,False
+208,SLP,JCB Research UK,False
+209,SMT,Triumph Motorcycles,False
+210,SUF,Fiat Auto Poland,False
+211,SUL,FSC (Poland),False
+212,SUP,FSO-Daewoo (Poland),False
+213,SU9,Solaris Bus & Coach (Poland),False
+214,SUU,Solaris Bus & Coach (Poland),False
+215,SWV,TA-NO (Poland),False
+216,TCC,Micro Compact Car AG (smart 1998-1999),False
+217,TDM,QUANTYA Swiss Electric Movement (Switzerland),False
+218,TK9,SOR buses (Czech Republic),False
+219,TMA,Hyundai Motor Manufacturing Czech,False
+220,TMB,Škoda (Czech Republic),False
+221,TMK,Karosa (Czech Republic),False
+222,TMP,Škoda trolleybuses (Czech Republic),False
+223,TMT,Tatra (Czech Republic),False
+224,TM9,Škoda trolleybuses (Czech Republic),False
+225,TNE,TAZ,False
+226,TN9,Karosa (Czech Republic),False
+227,TRA,Ikarus Bus,False
+228,TRU,Audi Hungary,False
+229,TSB,Ikarus Bus,False
+230,TSE,"Ikarus Egyedi Autobuszgyar, (Hungary)",False
+231,TSM,Suzuki Hungary,False
+232,TW1,Toyota Caetano Portugal,False
+233,TYA,Mitsubishi Trucks Portugal,False
+234,TYB,Mitsubishi Trucks Portugal,False
+235,UU1,"Renault Dacia, (Romania)",False
+236,UU2,Oltcit,False
+237,UU3,ARO,False
+238,UU4,Roman SA,False
+239,UU5,Rocar,False
+240,UU6,Daewoo Romania,False
+241,UU7,Euro Bus Diamond,False
+242,UU9,Astra Bus,False
+243,UV9,ATP Bus,False
+244,UZT,UTB (Uzina de Tractoare Bra?ov),False
+245,U5Y,Kia Motors Slovakia,False
+246,U6Y,Kia Motors Slovakia,False
+247,VAG,Magna Steyr Puch,False
+248,VAN,MAN Austria,False
+249,VBK,KTM (Motorcycles),False
+250,VF1,Renault,False
+251,VF2,Renault,False
+252,VF3,Peugeot,False
+253,VF4,Talbot,False
+254,VF6,Renault (Trucks & Buses),False
+255,VF7,Citroën,False
+256,VF8,Matra,False
+257,VF9,Bugatti,False
+258,VG5,MBK (motorcycles),False
+259,VLU,Scania France,False
+260,VN1,SOVAB (France),False
+261,VNE,Irisbus (France),False
+262,VNK,Toyota France,False
+263,VNV,Renault-Nissan,False
+264,VSE,Suzuki Spain (Santana Motors),False
+265,VSK,Nissan Spain,False
+266,VSS,SEAT,False
+267,VSX,Opel Spain,False
+268,VS6,Ford Spain,False
+269,VS7,Citroën Spain,False
+270,VS9,Carrocerias Ayats (Spain),False
+271,VTH,Derbi (motorcycles),False
+272,VTL,Yamaha Spain (motorcycles),False
+273,VTT,Suzuki Spain (motorcycles),False
+274,VV9,TAURO Spain,False
+275,VWA,Nissan Spain,False
+276,VWV,Volkswagen Spain,False
+277,VX1,Zastava / Yugo Serbia,False
+278,WAG,Neoplan,False
+279,WAU,Audi,False
+280,WA1,Audi SUV,False
+281,WBA,BMW,False
+282,WBS,BMW M,False
+283,WBW,BMW,False
+284,WBY,BMW,False
+285,WB1,BMW Motorrad of North America,False
+286,WJM,Iveco Magirus,False
+287,WF0,Ford Germany,False
+288,WKE,Fahrzeugwerk Bernard Krone (truck trailers),False
+289,WKK,Kässbohrer/Setra,False
+290,WMA,MAN Germany,False
+291,WME,smart,False
+292,WMW,MINI,False
+293,WMZ,MINI,False
+294,WP0,Porsche,False
+295,WP1,Porsche SUV,False
+296,WSM,Schmitz-Cargobull (truck trailers),False
+297,W09,RUF,False
+298,W0L,Opel,False
+299,W0V,Opel (since 2017),False
+300,WUA,Audi Sport GmbH (formerly quattro GmbH),False
+301,WVG,Volkswagen MPV/SUV,False
+302,WVW,Volkswagen,False
+303,WV1,Volkswagen Commercial Vehicles,False
+304,WV2,Volkswagen Bus/Van,False
+305,WV3,Volkswagen Trucks,False
+306,XLB,Volvo (NedCar),False
+307,XLE,Scania Netherlands,False
+308,XLR,DAF (trucks),False
+309,XL4,Lightyear,False
+310,XL9,Spyker,False
+311,XMC,Mitsubishi (NedCar),False
+312,XMG,VDL Bus & Coach,False
+313,XTA,Lada/AvtoVAZ (Russia),False
+314,XTC,KAMAZ (Russia),False
+315,XTH,GAZ (Russia),False
+316,XTT,UAZ/Sollers (Russia),False
+317,XTU,Trolza (Russia),False
+318,XTY,LiAZ (Russia),False
+319,XUF,General Motors Russia,False
+320,XUU,"AvtoTor (Russia, General Motors SKD)",False
+321,XW8,Volkswagen Group Russia,False
+322,XWB,UZ-Daewoo (Uzbekistan),False
+323,XWE,"AvtoTor (Russia, Hyundai-Kia SKD)",False
+324,X1M,PAZ (Russia),False
+325,X4X,"AvtoTor (Russia, BMW SKD)",False
+326,X7L,Renault AvtoFramos (Russia),False
+327,X7M,Hyundai TagAZ (Russia),False
+328,YBW,Volkswagen Belgium,False
+329,YB1,Volvo Trucks Belgium,False
+330,YCM,Mazda Belgium,False
+331,YE2,Van Hool (buses),False
+332,YH2,BRP Finland (Lynx snowmobiles),False
+333,YK1,Saab-Valmet Finland,False
+334,YSC,Cadillac (Saab),False
+335,YS2,Scania AB,False
+336,YS3,Saab,False
+337,YS4,Scania Bus,False
+338,YTN,Saab NEVS,False
+339,YT9/007,Koenigsegg,False
+340,YT9/034,Carvia,False
+341,YU7,Husaberg (motorcycles),False
+342,YVV,Polestar (Volvo) (Sweden),False
+343,YV1,Volvo Cars,False
+344,YV4,Volvo Cars,False
+345,YV2,Volvo Trucks,False
+346,YV3,Volvo Buses,False
+347,Y3M,MAZ (Belarus),False
+348,Y6D,Zaporozhets/AvtoZAZ (Ukraine),False
+349,ZAA,Autobianchi,False
+350,ZAM,Maserati,False
+351,ZAP,Piaggio/Vespa/Gilera,False
+352,ZAR,Alfa Romeo,False
+353,ZBN,Benelli,False
+354,ZCG,Cagiva SpA / MV Agusta,False
+355,ZCF,Iveco,False
+356,ZDC,Honda Italia Industriale SpA,False
+357,ZDM,Ducati Motor Holdings SpA,False
+358,ZDF,Ferrari Dino,False
+359,ZD0,Yamaha Italy,False
+360,ZD3,Beta Motor,False
+361,ZD4,Aprilia,False
+362,ZFA,Fiat,False
+363,ZFC,Fiat V.I.,False
+364,ZFF,Ferrari,False
+365,ZGU,Moto Guzzi,False
+366,ZHW,Lamborghini,False
+367,ZJM,Malaguti,False
+368,ZJN,Innocenti,False
+369,ZKH,Husqvarna Motorcycles Italy,False
+370,ZLA,Lancia,False
+371,Z8M,Marussia (Russia),False
+372,1B3,Dodge,False
+373,1C3,Chrysler,False
+374,1C4,Chrysler,False
+375,1C6,Chrysler,False
+376,1D3,Dodge,False
+377,1FA,Ford Motor Company,False
+378,1FB,Ford Motor Company,False
+379,1FC,Ford Motor Company,False
+380,1FD,Ford Motor Company,False
+381,1FM,Ford Motor Company,False
+382,1FT,Ford Motor Company,False
+383,1FU,Freightliner,False
+384,1FV,Freightliner,False
+385,1F9,FWD Corp.,False
+386,1G,General Motors USA,False
+387,1GC,Chevrolet Truck USA,False
+388,1GT,GMC Truck USA,False
+389,1G1,Chevrolet USA,False
+390,1G2,Pontiac USA,False
+391,1G3,Oldsmobile USA,False
+392,1G4,Buick USA,False
+393,1G6,Cadillac USA,False
+394,1G8,Saturn USA,False
+395,1GM,Pontiac USA,False
+396,1GN,Chevrolet SUV USA,False
+397,1GY,Cadillac USA,False
+398,1H,Honda USA,False
+399,1HD,Harley-Davidson,False
+400,1HT,International Truck and Engine Corp. USA,False
+401,1J4,Jeep,False
+402,1J8,Jeep,False
+403,1L,Lincoln USA,False
+404,1ME,Mercury USA,False
+405,1M1,Mack Truck USA,False
+406,1M2,Mack Truck USA,False
+407,1M3,Mack Truck USA,False
+408,1M4,Mack Truck USA,False
+409,1M9,Mynatt Truck & Equipment,False
+410,1N,Nissan USA,False
+411,1NX,NUMMI USA,False
+412,1P3,Plymouth USA,False
+413,1PY,John Deere USA,False
+414,1R9,Roadrunner Hay Squeeze USA,False
+415,1VW,Volkswagen USA,False
+416,1XK,Kenworth USA,False
+417,1XP,Peterbilt USA,False
+418,1YV,Mazda USA (AutoAlliance International),False
+419,1ZV,Ford (AutoAlliance International),False
+420,2A4,Chrysler Canada,False
+421,2BP,Bombardier Recreational Products,False
+422,2B3,Dodge Canada,False
+423,2B7,Dodge Canada,False
+424,2C3,Chrysler Canada,False
+425,2CN,CAMI,False
+426,2D3,Dodge Canada,False
+427,2FA,Ford Motor Company Canada,False
+428,2FB,Ford Motor Company Canada,False
+429,2FC,Ford Motor Company Canada,False
+430,2FM,Ford Motor Company Canada,False
+431,2FT,Ford Motor Company Canada,False
+432,2FU,Freightliner,False
+433,2FV,Freightliner,False
+434,2FZ,Sterling,False
+435,2Gx,General Motors Canada,False
+436,2G1,Chevrolet Canada,False
+437,2G2,Pontiac Canada,False
+438,2G3,Oldsmobile Canada,False
+439,2G4,Buick Canada,False
+440,2G9,mfr. of less than 1000/ yr. Canada,False
+441,2HG,Honda Canada,False
+442,2HK,Honda Canada,False
+443,2HJ,Honda Canada,False
+444,2HM,Hyundai Canada,False
+445,2M,Mercury,False
+446,2NV,Nova Bus Canada,False
+447,2P3,Plymouth Canada,False
+448,2T,Toyota Canada,False
+449,2TP,Triple E Canada LTD,False
+450,2V4,Volkswagen Canada,False
+451,2V8,Volkswagen Canada,False
+452,2WK,Western Star,False
+453,2WL,Western Star,False
+454,2WM,Western Star,False
+455,363,Spyker,False
+456,3C4,Chrysler Mexico,False
+457,3C6,RAM Mexico,False
+458,3D3,Dodge Mexico,False
+459,3D4,Dodge Mexico,False
+460,3FA,Ford Motor Company Mexico,False
+461,3FE,Ford Motor Company Mexico,False
+462,3G,General Motors Mexico,False
+463,3H,Honda Mexico,False
+464,3JB,BRP Mexico (all-terrain vehicles),False
+465,3MD,Mazda Mexico,False
+466,3MZ,Mazda Mexico,False
+467,3N,Nissan Mexico,False
+468,3NS,Polaris Industries USA,False
+469,3NE,Polaris Industries USA,False
+470,3P3,Plymouth Mexico,False
+471,3VW,Volkswagen Mexico,False
+472,46J,Federal Motors Inc. USA,False
+473,4EN,Emergency One USA,False
+474,4F,Mazda USA,False
+475,4M,Mercury,False
+476,4P1,Pierce Manufacturing Inc. USA,False
+477,4RK,Nova Bus USA,False
+478,4S,Subaru-Isuzu Automotive,False
+479,4T,Toyota,False
+480,4T9,Lumen Motors,False
+481,4UF,Arctic Cat Inc.,False
+482,4US,BMW USA,False
+483,4UZ,Frt-Thomas Bus,False
+484,4V1,Volvo,False
+485,4V2,Volvo,False
+486,4V3,Volvo,False
+487,4V4,Volvo,False
+488,4V5,Volvo,False
+489,4V6,Volvo,False
+490,4VL,Volvo,False
+491,4VM,Volvo,False
+492,4VZ,Volvo,False
+493,538,Zero Motorcycles (USA),False
+494,5F,Honda USA-Alabama,False
+495,5J,Honda USA-Ohio,False
+496,5L,Lincoln,False
+497,5N1,Nissan USA,False
+498,5NP,Hyundai USA,False
+499,5T,Toyota USA - trucks,False
+500,5YJ,"Tesla, Inc.",False
+501,56K,Indian Motorcycle USA,False
+502,6AB,MAN Australia,False
+503,6F4,Nissan Motor Company Australia,False
+504,6F5,Kenworth Australia,False
+505,6FP,Ford Motor Company Australia,False
+506,6G1,General Motors-Holden (post Nov 2002),False
+507,6G2,Pontiac Australia (GTO & G8),False
+508,6H8,General Motors-Holden (pre Nov 2002),False
+509,6MM,Mitsubishi Motors Australia,False
+510,6T1,Toyota Motor Corporation Australia,False
+511,6U9,Privately Imported car in Australia,False
+512,795,Bugatti,False
+513,8AD,Peugeot Argentina,False
+514,8AF,Ford Motor Company Argentina,False
+515,8AG,Chevrolet Argentina,False
+516,8AJ,Toyota Argentina,False
+517,8AK,Suzuki Argentina,False
+518,8AP,Fiat Argentina,False
+519,8AW,Volkswagen Argentina,False
+520,8A1,Renault Argentina,False
+521,8GD,Peugeot Chile,False
+522,8GG,Chevrolet Chile,False
+523,8LD,Chevrolet Ecuador,False
+524,935,Citroën Brazil,False
+525,936,Peugeot Brazil,False
+526,93H,Honda Brazil,False
+527,93R,Toyota Brazil,False
+528,93U,Audi Brazil,False
+529,93V,Audi Brazil,False
+530,93X,Mitsubishi Motors Brazil,False
+531,93Y,Renault Brazil,False
+532,94D,Nissan Brazil,False
+533,9BF,Ford Motor Company Brazil,False
+534,9BG,Chevrolet Brazil,False
+535,9BR,Toyota Brazil,False
+536,9BS,Scania Brazil,False
+537,9BW,Volkswagen Brazil,False
+538,9FB,Renault Colombia,False
+539,9GA,Chevrolet Colombia,False
+540,JM,Mazda,False
+541,JTH,Lexus,False
+542,JTJ,Lexus,False
+543,KM8,Hyundai,False
+544,KMH,Hyundai,False
+545,KNA,Kia,False
+546,KNB,Kia,False
+547,KNC,Kia,False
+548,KND,Kia,False
+549,L56,Renault Samsung,False
+550,WDY,Mercedes-Benz (Sprinter),False
+551,WDP,Mercedes-Benz (Sprinter),False
+552,WDR,Mercedes-Benz (Sprinter),False
+553,WCD,Mercedes-Benz (Sprinter),False
+554,WDZ,Mercedes-Benz (Sprinter),False
+555,WD3,Daimler AG (Sprinter),False
+556,WD4,Daimler AG (Sprinter),False
+557,W04,Buick,False
+558,YH4,Fisker,False
+559,ZOM,OM,False
+560,1D7,Dodge,False
+561,1GB,Chevrolet USA,False
+562,1V1,Volkswagen USA (Commercials),False
+563,137,Hummer,False
+564,19U,Acura,False
+565,19V,Acura,False
+566,19X,Honda,False
+567,2C4,Chrysler Canada,False
+568,2D4,Dodge Canada,False
+569,2G,General Motors Canada,False
+570,2GC,Chevrolet Canada,False
+571,2GN,Chevrolet Canada,False
+572,2G6,Cadillac,False
+573,2HN,Acura,False
+574,2LM,Lincoln,False
+575,2T2,Lexus Canada,False
+576,3C3,Chrysler,False
+577,3CZ,Honda Mexico,False
+578,3D7,Dodge Mexico,False
+579,3GC,Chevrolet Mexico,False
+580,3GN,Chevrolet Mexico,False
+581,3GY,Cadillac,False
+582,3LN,Lincoln,False
+583,3TM,Toyota Mexico,False
+584,4A3,Mitsubishi,False
+585,4A4,Mitsubishi,False
+586,5FR,Acura,False
+587,5GA,Buick,False
+588,5GN,Hummer,False
+589,5GR,Hummer,False
+590,5J6,Honda,False
+591,5J8,Acura,False
+592,5UM,BMW,False
+593,5UX,BMW,False
+594,5XX,Kia,False
+595,5YF,Toyota,False
+596,55S,Mercedes-Benz,False
+597,58A,Lexus,False
+598,8BR,Mercedes-Benz Argentina,False
+599,9BD,Fiat Brazil,False

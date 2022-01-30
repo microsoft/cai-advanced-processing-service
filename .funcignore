@@ -1,7 +1,6 @@
 # Local files
 .git*
 .vscode
-local.settings.json
 
 # Tests
 tests/
@@ -17,6 +16,7 @@ dashboard/
 assets/img/
 assets/postman_collection/
 assets/luis/
+assets/speech/
 
 # Configs
 config.ini
