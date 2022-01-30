@@ -3,6 +3,8 @@ import logging
 import json
 import string
 import azure.functions as func
+from collections import defaultdict
+from typing import DefaultDict, List
 
 # Import custom modules and helpers
 from modules import data_connector, process_input, validate_data
@@ -20,6 +22,7 @@ from assets.constants import (
     MODULES, 
     STREET, 
     STREET_IN_CITY, 
+    ATTRIBUTE_LOOKUP_STREET,
     USE_DB, 
     ZIP
 )
@@ -111,31 +114,31 @@ class Validator(object):
             self.table_connection_data = table_data
 
         def run(self):
+            '''Run Validation for Address'''
             logging.info(f"[INFO] - Using zip code and city from request")
             zip_code = self.values[ZIP].replace(" ", "").zfill(5)
             # Retrieve city names based on zip code
-            try:
-                tasks = data_connector.get_data_from_table(
-                            self.table_connection_data, 
-                            ATTRIBUTE_VALIDATOR_CITY_TABLE, 
-                            ATTRIBUTE_VALIDATOR_ENV, 
-                            {"PartitionKey": str(zip_code)}
-                        )
-            except Exception as e:
-                logging.error(e)
-            logging.warning(tasks)
+            cities_matching_to_zip = data_connector.get_data_from_table(
+                        self.table_connection_data, 
+                        ATTRIBUTE_VALIDATOR_CITY_TABLE, 
+                        ATTRIBUTE_VALIDATOR_ENV, 
+                        {"PartitionKey": str(zip_code)}
+                    )
+            zip_mapping, city_mapping = process_input.map_data_from_table(cities_matching_to_zip)
 
-            #city_name = process_input.match_zip_to_city(self.values[ZIP], self.values[CITY], 0.1)
-            city_name = None
-            if zip_code: #and city_name:
+            # Match zip code to city names
+            city_name = process_input.match_zip_to_city(self.values[ZIP], self.values[CITY], zip_mapping, 0.1)
+
+            # If both zip code and city name were found, continue here
+            if zip_code and city_name:
+                # TODO: investigate why we check for a 0 here ...?
                 if self.values[ZIP][0] == '0':
                     self.values[ZIP] = self.values[ZIP][1:]
                 logging.info('INFO] - Found match for zip/city')
 
-                # Check street
-                result = None
+                # Check street - which streets are in this zip area?
                 try:
-                    tasks = data_connector.get_data_from_table(
+                    streets_in_zip = data_connector.get_data_from_table(
                                 self.table_connection_data, 
                                 ATTRIBUTE_VALIDATOR_ADDRESS_TABLE, 
                                 ATTRIBUTE_VALIDATOR_ENV, 
@@ -145,21 +148,22 @@ class Validator(object):
                     res = json.dumps(dict(error = True, error_message = "Error accessing database / ZIP not found", city_is_valid = True, zip = zip_code.zfill(5), city = city_name, street_is_valid = False, street_has_options = False))
                     return func.HttpResponse(res, mimetype='application/json', status_code=200)
 
-                _streets_in_zip_area = [task.RowKey for task in tasks]
-                if (not self.values[STREET] is None):
-                    result = validate_data.get_matching_streets(self.values[STREET], _streets_in_zip_area)
+                # Extract street names from result set
+                street_name = [task[ATTRIBUTE_LOOKUP_STREET] for task in streets_in_zip]
+                # Match streets - exact match or distance matching
+                result = validate_data.get_matching_streets(self.values[STREET], street_name)
 
+                # Found no matches to street
                 if not result:
-                    # no matches for street found
                     res = json.dumps(dict(error = False, city_is_valid = True, zip = zip_code.zfill(5), city = city_name, street_is_valid = False, street_has_options = False))
+                # Found too many matches for street
                 elif len(result) > 3:
-                    # to many matches for street found
                     res = json.dumps(dict(error = False, city_is_valid = True, zip = zip_code.zfill(5), city = city_name, street_is_valid = False, street_has_options = True))
+                # Multiple matches for street
                 elif len(result) > 1:
-                    # multiple matches for street found
                     res = json.dumps(dict(error = False, city_is_valid = True, zip = zip_code.zfill(5), city = city_name, street_is_valid = True, street_has_options = True, streets = result, number = self.values.get(HOUSE_NUMBER)))
+                # Found one street
                 else:
-                    # one street found
                     res = json.dumps(dict(error = False, city_is_valid = True, zip = zip_code.zfill(5), city = city_name, street_is_valid = True, street_has_options = False, street = result[0], number = self.values.get(HOUSE_NUMBER)))
             else: 
                 logging.info(f"[INFO] No match found for ZIP and City")
@@ -176,10 +180,13 @@ class Validator(object):
             self.table_connection_data = table_data
 
         def run(self):
+            '''Run Validation for Street in ZIP'''
             if self.values[ZIP][0] == '0':
                 self.values[ZIP] = self.values[ZIP][1:]
+
+            # Check street - which streets are in this zip area?
             try: 
-                tasks = data_connector.get_data_from_table(
+                streets_in_zip = data_connector.get_data_from_table(
                             self.table_connection_data, 
                             ATTRIBUTE_VALIDATOR_ADDRESS_TABLE, 
                             ATTRIBUTE_VALIDATOR_ENV, 
@@ -189,21 +196,22 @@ class Validator(object):
                 res = json.dumps(dict(error = True, error_message = "Error accessing database / ZIP not found", is_valid = False, has_options = False))
                 return func.HttpResponse(res, mimetype='application/json', status_code=400)
 
-            _streets_in_zip_area = [task.RowKey for task in tasks]
+             # Extract street names from result set
+            street_name = [task[ATTRIBUTE_LOOKUP_STREET] for task in streets_in_zip]
+            # Match streets - exact match or distance matching
+            result = validate_data.get_matching_streets(self.values[STREET], street_name)
 
-            result = validate_data.get_matching_streets(self.values[STREET], _streets_in_zip_area)
-
+            # Found no matches to street
             if not result:
-                # No matches for street found
                 res = json.dumps(dict(error = False, is_valid = False, has_options = False))
+            # Found too many matches for street
             elif len(result) > 3:
-                # Too many matches for street found
                 res = json.dumps(dict(error = False, is_valid = False, has_options = True))
+            # Multiple matches for street
             elif len(result) > 1:
-                # Multiple matches for street found
                 res = json.dumps(dict(error = False, is_valid = True, has_options = True, streets = result, number = self.values.get(HOUSE_NUMBER)))
+            # Found one street
             else:
-                # One street found
                 res = json.dumps(dict(error = False, is_valid = True, has_options = False, street = result[0], number = self.values.get(HOUSE_NUMBER)))
             return res
 
@@ -217,13 +225,21 @@ class Validator(object):
             self.table_connection_data = table_data
 
         def run(self):
+            '''Run Validation for ZIP Codes'''
             # Preprocess data
-            if all([self.values[ZIP], self.values[CITY]]):
-                logging.info(f"[INFO] - Using ZIP and City from request")
-                zip_code = self.values[ZIP].zfill(5)
-                city_name = process_input.match_zip_to_city(zip_code, self.values[CITY], 0.1)
-            else:
-                city_name = None
+            zip_code = self.values[ZIP].zfill(5)
+
+            # Retrieve city names based on zip code
+            cities_matching_to_zip = data_connector.get_data_from_table(
+                        self.table_connection_data, 
+                        ATTRIBUTE_VALIDATOR_CITY_TABLE, 
+                        ATTRIBUTE_VALIDATOR_ENV, 
+                        {"PartitionKey": str(zip_code)}
+                    )
+            zip_mapping, city_mapping = process_input.map_data_from_table(cities_matching_to_zip)
+
+            # Match zip code to city names
+            city_name = process_input.match_zip_to_city(self.values[ZIP], self.values[CITY], zip_mapping, 0.1)
 
             # Return values depending on match            
             if zip_code and city_name:

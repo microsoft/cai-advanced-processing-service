@@ -2,7 +2,7 @@ from assets.constants import LEV_DISTANCE_INIT
 from modules.similarity_score import levenshtein
 import logging
 
-def get_matching_streets(user_street: str, streets_in_zip_area):
+def get_matching_streets(user_street: str, streets_in_zip_area: list):
     '''Get matching streets considering zip area'''
     result = []
 

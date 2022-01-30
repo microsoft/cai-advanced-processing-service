@@ -23,4 +23,3 @@ with open(path, encoding='utf-8') as f:
 
             zip_mapping[zip_code].append(city)
             city_mapping[city].append(zip_code)
-            logging.warning(zip_mapping)

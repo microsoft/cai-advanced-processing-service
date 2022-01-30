@@ -2,6 +2,7 @@ import string
 import re
 from edit_distance import SequenceMatcher
 from typing import List, Dict, Tuple, Union, DefaultDict
+from collections import defaultdict
 from modules import similarity_score as simscore
 
 # Import custom modules and helpers
@@ -21,8 +22,8 @@ list_excl: Dict[str, str] = exc.obj
 list_digits: Dict[str, str] = dg.obj
 dict_months: Dict[str, str] = sp.months
 dict_day_ord: Dict[str, str] = sp.ordinal_number_mapping
-dict_zip_codes: DefaultDict[str, List[str]] = ct.zip_mapping
-dict_cities: DefaultDict[str, List[str]] = ct.city_mapping
+#dict_zip_codes: DefaultDict[str, List[str]] = ct.zip_mapping
+#dict_cities: DefaultDict[str, List[str]] = ct.city_mapping
 
 ##############################
 ##### Input Processing
@@ -50,14 +51,31 @@ def pp_normalize_street_name(phrase: Union[None, str, List[str]]) -> Union[str, 
     
     return ' '.join(result).lower().replace('straße', 'str').replace('strasse', 'str')
 
+def map_data_from_table(matches):
+    '''Map the address data retrieved from the data base to zip / city'''
+    # Zip: Cities
+    zip_mapping: DefaultDict[str, List[str]] = defaultdict(lambda: [])
+    # City: Zips
+    city_mapping: DefaultDict[str, List[str]] = defaultdict(lambda: [])
+    # Walk through the matches retrieved from the data base
+    for task in matches:
+        zip_code = task['PartitionKey']
+        city = task['RowKey']
+        # Clean data a bit if there is a dash in the string
+        if '-' in city:
+            zip_mapping[zip_code].append(city.replace('-', ' '))
+            city_mapping[city.replace('-', ' ')].append(zip_code)
+        # Append to lists
+        zip_mapping[zip_code].append(city)
+        city_mapping[city].append(zip_code)
+    return zip_mapping, city_mapping
 
-
-def match_zip_to_city(zip_code: str, city_phrase: str, matching_threshold: float =0.6) -> Union[str, None]:
+def match_zip_to_city(zip_code: str, city_phrase: str, matches, matching_threshold: float = 0.6) -> Union[str, None]:
     if zip_code is None:
         return None
 
-    if zip_code in dict_zip_codes:
-        city_list = dict_zip_codes[zip_code]
+    if zip_code in matches:
+        city_list = matches[zip_code]
 
         # Return the city that matches the city phrase closest
         best_match = get_closest_sequence_match(city_phrase, city_list, matching_threshold)
