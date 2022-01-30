@@ -10,7 +10,7 @@ def get_table_creds(application_name):
     '''Retrieve connection data from environment variables or local config'''
     try:
         # Load environment variables first
-        auth_attributes = {item: os.environ.get(item) for item in [f"{application_name}_CONNECTION_STRING", f"{application_name}_TABLE_NAME"]}
+        auth_attributes = {item: os.environ.get(item) for item in [f"{application_name}_CONNECTION_STRING"]}
         # If environment variables could not be loaded, we gather them from a local config
         if None in auth_attributes.values():
             # Local debugging
