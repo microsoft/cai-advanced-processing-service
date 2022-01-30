@@ -4,6 +4,7 @@ import sys
 import logging
 import configparser
 from azure.cosmosdb.table import TableService
+from azure.common import AzureMissingResourceHttpError
 
 def get_table_creds(application_name):
     '''Retrieve connection data from environment variables or local config'''
@@ -13,11 +14,11 @@ def get_table_creds(application_name):
         # If environment variables could not be loaded, we gather them from a local config
         if None in auth_attributes.values():
             # Local debugging
-            logging.info("No environment variable found, entered local debugging")
+            logging.info("[INFO] - No environment variable found, entered local debugging")
             sys.path.append('./')
             config = configparser.ConfigParser()
             config.read('config.ini')
-            auth_attributes = {item: config[application_name][item] for item in [f"{application_name}_CONNECTION_STRING"]}
+            auth_attributes = {item: config[application_name][item].replace('"', '') for item in [f"{application_name}_CONNECTION_STRING"]}
             logging.info('[INFO] - Loaded connection attributes from locale config file.')
     except KeyError:
         auth_attributes = None
@@ -34,7 +35,12 @@ def get_data_from_table(connection_data, table_name, application_name, table_fil
     else:
         _filter = None
     # Send request to table storage
-    customer_data = table_service.query_entities(table_name=table_name, filter=_filter)
+    try:
+        customer_data = table_service.query_entities(table_name=table_name, filter=_filter, timeout=5)
+    except AzureMissingResourceHttpError:
+        logging.error()
+        customer_data = None
+    # TODO: Improve error handling
     return customer_data.items
 
 def push_data_to_table(connection_data, application_name, data):
