@@ -1,8 +1,8 @@
 
 > LUIS application information
-> !# @app.name = voice-bot-mtc-lpr
-> !# @app.desc = LUIS App for iBDC VoiceBot Project. Prod.
-> !# @app.versionId = 0.5
+> !# @app.name = license-plate-recognizer-de
+> !# @app.desc = LUIS App for License Plate Recognizer
+> !# @app.versionId = 0.1
 > !# @app.culture = de-de
 > !# @app.luis_schema_version = 7.0.0
 > !# @app.tokenizerVersion = 1.0.0
@@ -10,7 +10,7 @@
 
 > # Intent definitions
 
-# LicensePlate
+# LicensePlateRecognition
 - äh das is {@platenumber=hhmr 1036}.
 - ah {@platenumber=hamburg berta cerca 2 4 3}
 - äh {@platenumber=l w r richtig 9 6 9}

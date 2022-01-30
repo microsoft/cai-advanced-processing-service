@@ -1,7 +1,7 @@
 ![Data Science Toolkit](assets/img/data-science-toolkit-banner.JPG)
 
-# looky, the smart authentication assistent
-looky is a collection of modules, wrapped in multiple APIs that help you to enrich your conversational AI applications in these three fields:
+# Conversational AI (CAI) Advanced Processing Service - a smart authentication assistent
+CAI Advanced Processing Service is a collection of modules, wrapped in multiple APIs that help you to enrich your conversational AI applications in these three fields:
 - Validation
 - Identification
 - Authentication
@@ -50,11 +50,6 @@ Our recommended setup can be deployed to your subscription using the following t
 We recommend using Python >= 3.7. On top of the Python base installation, some further packages are required to serve the purpose of the API collection. These are listed in the `requirements.txt` with the respective version numbers. When deploying the service, it will automatically be used for transferring and installing it.
 
 Other than that, we leverage [spaCy](https://spacy.io) and [Azure Table Storage](https://azure.microsoft.com/de-de/services/storage/tables/) as additional frameworks and components.
-
-## Deployments
-There are generally two ways how to deploy the solution:
-
-```az login```
 
 ## Module Definition
 The single modules that are used across multiple APIs are all stored in the subfolder `modules` and will be described below. They may also use another module itself when being accessed by an API.
@@ -490,7 +485,7 @@ First, you have to install/set up following components:
 1. Wait until the deployment is finished
 1. (optional, only has to be done for initial deployment OR when settings are updated) Execute following command:<br>
 `az webapp config appsettings set -g [insert name of resource group] -n [insert your function name] --settings @appsettings.json`
-1. Use [Postman](https://www.postman.com/downloads/) for testing the endpoints with the [collections](assets/postman-collection/looky.postman_collection.json)
+1. Use [Postman](https://www.postman.com/downloads/) for testing the endpoints with the [collections](assets/postman-collection/cai-advanced-processing-service.postman_collection.json)
 
 ## Contributing
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a

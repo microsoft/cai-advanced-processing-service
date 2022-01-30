@@ -131,3 +131,4 @@ appsettings.json
 # Others
 .vscode/
 config.ini
+notebooks/
