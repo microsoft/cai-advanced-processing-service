@@ -46,6 +46,18 @@
     },
     "AttributeValidator": {
         "modules": {
+            "address": {
+                "locales": {
+                    "DE": {},
+                    "DK": {}
+                },
+                "value_is_mandatory": {
+                    "zip":      true,
+                    "city":     true,
+                    "street":   true,
+                    "number":   false
+                }
+            },
             "iban": {
                 "locales": {
                     "DE": {
@@ -57,18 +69,6 @@
                 },
                 "value_is_mandatory": {
                     "iban": true
-                }
-            },
-            "address": {
-                "locales": {
-                    "DE": {},
-                    "DK": {}
-                },
-                "value_is_mandatory": {
-                    "zip":      true,
-                    "city":     true,
-                    "street":   true,
-                    "number":   false
                 }
             },
             "street_in_city": {
