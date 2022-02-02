@@ -134,3 +134,7 @@ local.settings.json
 .vscode/
 config.ini
 notebooks/
+
+
+
+test_*
