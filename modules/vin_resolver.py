@@ -7,14 +7,8 @@ import sys
 # Define logger
 logger = logging.getLogger(__name__)
 
-try:
-    from __app__.assets import characters
-    from __app__.modules import resolve_spelling as resolve
-except Exception as e:
-    logger.info('[INFO] Helper: Using local imports.')
-    sys.path.append('./')
-    from assets import characters
-    from modules import resolve_spelling as resolve
+from assets import characters
+from modules import resolve_spelling as resolve
 
 class VinResolver(object):
     def __init__(self, lang="de", clean=True):
