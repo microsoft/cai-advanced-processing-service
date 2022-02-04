@@ -48,8 +48,6 @@ class DataConnector:
     def __init__():
         pass
 
-
-
     def get_data_from_table(connection_data, table_name, application_name, table_filters=None):
         ''' Send request to authentication data table '''
         # Build connection data
