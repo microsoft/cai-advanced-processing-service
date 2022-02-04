@@ -27,3 +27,12 @@ LEV_DISTANCE_INIT = 2
 
 ATTRIBUTE_LOOKUP_ZIP = "ZIP"
 ATTRIBUTE_LOOKUP_STREET = "RowKey"
+
+region = ""
+CREDENTIALS = {
+    "VINResolver": [f"LUIS_ID_{region}", f"LUIS_KEY_{region}", f"LUIS_PREDICTION_ENDPOINT_{region}", f"LUIS_SLOT_{region}"],
+    "LicensePlateRecognizer": [f"LUIS_ID_{region}"],
+    "Authenticator": [f"CONNECTION_STRING"],
+    "AttributeValidator": [f"CONNECTION_STRING"],
+    "FormRecognizer": ["FR_NAME", "FR_TABLE_NAME", "FR_STORAGE_CONNECTION_STRING", "FR_RETURN_KEYS"]
+}

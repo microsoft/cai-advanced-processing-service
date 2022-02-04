@@ -8,7 +8,7 @@ from datetime import datetime
 import uuid
 
 # Import custom modules and helpers
-from modules import data_connector
+from modules.data_connector import DataConnector
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
@@ -28,14 +28,17 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             logging.warning('No parameter for copy_to_blob received, taking False as default')
 
     # Retreive connection data
-    connection_data, return_keys, endpoint, key = data_connector.get_formrecognizer_connection_data()
-
+    connection_data = data_connector.get_formrecognizer_connection_data()
+    
     # Process request
     if all([model_id, doc_url]):
         logging.info('Received both required parameters model_id and doc_url')
         # Initiate client and send request
         try:
-            form_recognizer_client = FormRecognizerClient(endpoint, AzureKeyCredential(key))
+            form_recognizer_client = FormRecognizerClient(
+                f"https://{connection_data.get('FR_NAME')}.cognitiveservices.azure.com", 
+                AzureKeyCredential(connection_data.get('FR_KEY'))
+            )
             poller = form_recognizer_client.begin_recognize_custom_forms_from_url(model_id = model_id, form_url = doc_url)
             result = poller.result()
         except Exception as e:
@@ -80,7 +83,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                 }
         else:
             storage = {
-                    'copy_to_blob': copy_to_blob
+                'copy_to_blob': copy_to_blob
             }
 
         # Return json
@@ -96,7 +99,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         logging.error('Request failed, please pass a valid model_id.')
         return func.HttpResponse(
              "Pass model id",
-             status_code=500
+             status_code = 400
         )
 
     # If doc_url does not exist
@@ -104,5 +107,5 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         logging.error('Request failed, please pass a valid document url.')
         return func.HttpResponse(
              "Pass URL",
-             status_code = 500
+             status_code = 400
         )
