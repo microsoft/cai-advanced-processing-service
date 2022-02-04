@@ -6,7 +6,7 @@ import configparser
 from azure.cosmosdb.table import TableService
 from azure.common import AzureMissingResourceHttpError
 
-from assets.constants import CREDENTIALS
+from assets.constants import SETTINGS_LOOKUP
 
 # config.ini
 # [MODULE_NAME]
@@ -17,7 +17,7 @@ class CredentialRetriever:
     def __init__(self, module, variables):
         self.module = module
         self.variables = variables
-        self.credentials = CREDENTIALS[module]
+        self.credentials = SETTINGS_LOOKUP[module]
 
     def load_credentials(self):
         try:
@@ -45,34 +45,52 @@ class CredentialRetriever:
         return {item: os.environ.get(item) for item in self.variables}
 
 class DataConnector:
-    def __init__():
-        pass
-
-    def get_data_from_table(connection_data, table_name, application_name, table_filters=None):
-        ''' Send request to authentication data table '''
-        # Build connection data
-        table_service = TableService(connection_string = connection_data[f"{application_name}_CONNECTION_STRING"])
-        # Assemble filters to a valid request, if not None
-        if table_filters is not None:
-            _filter = " and ".join([f"{key} eq '{table_filters[key]}'" for key, _ in table_filters.items()])
+    def __init__(self, use_db=True, local_file_path=None):
+        self.use_db = use_db
+        self.local_file_path = local_file_path
+        if self.use_db:
+            self.connector = self.LocalDataConnector
         else:
-            _filter = None
-        # Send request to table storage
-        try:
-            customer_data = table_service.query_entities(table_name=table_name, filter=_filter, timeout=5)
-        except AzureMissingResourceHttpError:
-            logging.error()
-            customer_data = None
-        # TODO: Improve error handling
-        return customer_data.items
+            self.connector = self.AzureDataConnector
 
-    def push_data_to_table(connection_data, application_name, data):
-        ''' Insert new data into table storage '''
-        # Build connection data
-        table_service = TableService(connection_string = connection_data[f"{application_name}_CONNECTION_STRING"])
-        # Send insert request
-        table_service.insert_or_replace_entity(connection_data[f"{application_name}_TABLE_NAME"], data)
+    class LocalDataConnector:
+        def __init__(self):
+            pass
 
+        def get_data(self):
+            pass
+
+        def push_data(self):
+            pass
+
+    class AzureDataConnector:
+        def __init__(self):
+            pass
+
+        def get_data(self, connection_data, table_name, application_name, table_filters=None):
+            ''' Send request to authentication data table '''
+            # Build connection data
+            table_service = TableService(connection_string = connection_data[f"{application_name}_CONNECTION_STRING"])
+            # Assemble filters to a valid request, if not None
+            if table_filters is not None:
+                _filter = " and ".join([f"{key} eq '{table_filters[key]}'" for key, _ in table_filters.items()])
+            else:
+                _filter = None
+            # Send request to table storage
+            try:
+                customer_data = table_service.query_entities(table_name=table_name, filter=_filter, timeout=5)
+            except AzureMissingResourceHttpError:
+                logging.error()
+                customer_data = None
+            # TODO: Improve error handling
+            return customer_data.items
+
+        def push_data(self, connection_data, application_name, data):
+            ''' Insert new data into table storage '''
+            # Build connection data
+            table_service = TableService(connection_string = connection_data[f"{application_name}_CONNECTION_STRING"])
+            # Send insert request
+            table_service.insert_or_replace_entity(connection_data[f"{application_name}_TABLE_NAME"], data)
 
 def main():
     customer_data = get_data_from_table(connection_data, application_name, table_filters)

@@ -29,7 +29,7 @@ ATTRIBUTE_LOOKUP_ZIP = "ZIP"
 ATTRIBUTE_LOOKUP_STREET = "RowKey"
 
 region = ""
-CREDENTIALS = {
+SETTINGS_LOOKUP = {
     "VINResolver": [f"LUIS_ID_{region}", f"LUIS_KEY_{region}", f"LUIS_PREDICTION_ENDPOINT_{region}", f"LUIS_SLOT_{region}"],
     "LicensePlateRecognizer": [f"LUIS_ID_{region}"],
     "Authenticator": [f"CONNECTION_STRING"],
