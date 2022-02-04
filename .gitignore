@@ -132,3 +132,5 @@ appsettings.json
 .vscode/
 config.ini
 notebooks/
+*.local.settings.json
+local.settings.json
