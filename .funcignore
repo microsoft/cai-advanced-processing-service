@@ -17,6 +17,7 @@ assets/img/
 assets/postman_collection/
 assets/luis/
 assets/speech/
+assets/*.csv
 
 # Configs
 config.ini
