@@ -2,16 +2,16 @@
 import logging
 import json
 import azure.functions as func
+
+# Import custom modules
+from modules.retrieve_credentials import CredentialRetriever
+from modules.data_connector import DataConnector
 from assets.constants import (
     CONFIG,
     MANIFEST,
     TABLE_REQUESTOR,
     TABLE_REQUESTOR_ENV
 )
-
-# Import custom modules
-from modules.retrieve_credentials import CredentialRetriever
-from modules.data_connector import DataConnector
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info("Python HTTP trigger function processed a request.")
@@ -52,7 +52,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             logging.error(f'Failed to establish connection to table storage -> {e}')
             return func.HttpResponse(
                 "[ERROR] - Connection to table storage could not be established, please verify the connection string and table name.",
-                status_code=400
+                status_code = 400
              )
         # Return set as json
         res = json.dumps(dict(results = customer_data), default=str)
@@ -60,5 +60,5 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     else:
         return func.HttpResponse(
              "[ERROR] - Pass a table and set of variables you want to look up in the customer data base, for example:\n {'table': {'name': 'UserData'}, 'params': {'PartitionKey': 'UserData'}}.",
-             status_code=400
+             status_code = 400
         )

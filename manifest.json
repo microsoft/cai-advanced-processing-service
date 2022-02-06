@@ -98,9 +98,15 @@
             "local_data_path": ""
         }
     },
-    "LicensePlateRecognizer": {
+    "FormRecognizer": {
         "config": {
             "use_db": true,
+            "local_data_path": ""
+        }
+    },
+    "LicensePlateRecognizer": {
+        "config": {
+            "use_db": false,
             "local_data_path": ""
         }
     },

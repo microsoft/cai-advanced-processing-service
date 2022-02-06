@@ -61,7 +61,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse("Manifest could not be found, please pass a valid manifest name.", status_code=400)
 
     # Retrieve credentials
-    credentials = CredentialRetriever(LICENSE_PLATE_RECOGNIZER_ENV).load_credentials(normalize=('{region_code}', lang))
+    credentials = CredentialRetriever(LICENSE_PLATE_RECOGNIZER_ENV, normalize=('{region_code}', lang)).load_credentials()
 
     # Create instance of class with locale
     matcher = LicensePlateRecognizer(region, lang).matcher

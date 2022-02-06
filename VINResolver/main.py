@@ -58,7 +58,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         logger.info(f'[INFO] Set params -> expectedwmi: {expectedwmi}, language: {lang}.')
 
     # Retrieve credentials
-    credentials = CredentialRetriever(VIN_RESOLVER_ENV).load_credentials(normalize=('{region_code}', lang))
+    credentials = CredentialRetriever(VIN_RESOLVER_ENV, normalize=('{region_code}', lang)).load_credentials()
 
     if credentials is None:
         return func.HttpResponse(

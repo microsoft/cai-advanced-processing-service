@@ -8,11 +8,13 @@ import configparser
 from assets.constants import SETTINGS_LOOKUP
 
 class CredentialRetriever:
-    def __init__(self, app):
+    def __init__(self, app, normalize=False):
         self.app = app
         self.required_credentials = SETTINGS_LOOKUP[self.app]
+        if normalize:
+            self.required_credentials = [attribute.replace(normalize[0], normalize[1].upper()) for attribute in self.required_credentials]
 
-    def load_credentials(self, normalize=False):
+    def load_credentials(self):
         '''Load credentials from environment variables or configs
         Args:
             normalize tuple of strings
@@ -27,9 +29,6 @@ class CredentialRetriever:
         except KeyError:
             self.authentication_attributes = None
             logging.error('[ERROR] - Could not retrieve connection attributes, please verify they are correctly set.')
-        finally:
-            if normalize:
-                self.authentication_attributes = [attribute.replace(normalize[0], normalize=[1]) for attribute in self.authentication_attributes]
         return self.authentication_attributes
 
     def _get_from_configfile(self):
@@ -43,4 +42,4 @@ class CredentialRetriever:
     
     def _get_from_appsettings(self):
         '''Retrieve connection data from app settings'''
-        return {item: os.environ.get(item) for item in self.required_credentials}
+        return {f'{self.app}_{item}': os.environ.get(f'{self.app}_{item}') for item in self.required_credentials}
