@@ -15,7 +15,9 @@ class CleanText(object):
     def __init__(self, locale):
         # Create lookup table for accellerated cleaning
         self.table = str.maketrans({key: None for key in string.punctuation if key not in ['-', '*']})        
-        
+
+        # TODO: return a False if the locale is not supported at all
+
         # Import dictionaires
         self.dict_char = characters.alphabet.get(locale)
         self.dict_spec = characters.specials.get(locale)

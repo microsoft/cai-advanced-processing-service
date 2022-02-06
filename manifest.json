@@ -97,5 +97,17 @@
             "use_db": true,
             "local_data_path": ""
         }
+    },
+    "LicensePlateRecognizer": {
+        "config": {
+            "use_db": true,
+            "local_data_path": ""
+        }
+    },
+    "TableRequestor": {
+        "config": {
+            "use_db": true,
+            "local_data_path": ""
+        }
     }
 }

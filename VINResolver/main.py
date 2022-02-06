@@ -1,8 +1,7 @@
-import logging
+'''VIN RESOLVER'''
 import json
-
+import logging
 import azure.functions as func
-
 
 # Define global logger
 logger = logging.getLogger(__name__)
@@ -15,8 +14,10 @@ for handler in logger.handlers:
 
 # Import custom modules
 from modules.libvin import Vin
-from modules import luis_helper
+from modules import luis_helper as luis
 from modules import resolve_spelling as resolve
+from modules.retrieve_credentials import CredentialRetriever
+from assets.constants import CONFIG, MANIFEST, VIN_RESOLVER_ENV
 
 def clean(phrase, lang='de'):
     """Cleaning steps for extracted phrase, with area detection in between"""
@@ -34,20 +35,20 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     # Get query and request parameters
     try:
-        req_body = req.get_json()
-        query = req_body.get('query')
+        req_body    = req.get_json()
+        query       = req_body.get('query')
         expectedwmi = [i.upper() for i in req_body.get('expectedwmi')]
-        lang = req_body.get('locale')
+        lang        = req_body.get('locale')
     except Exception as e:
         logger.info(f'[INFO] Trying to receive request via params -> {e}')
-        query = req.params.get('query')
+        query       = req.params.get('query')
         expectedwmi = req.params.get('expectedwmi')
-        lang = req.params.get('locale')
+        lang        = req.params.get('locale')
     finally:    
         # Fill eventually missing params with default ones
         if not lang:
             lang = 'de'
-        if  not expectedwmi:
+        if not expectedwmi:
             expectedwmi = 'WDC'
         
         # Snip off everything after first three characters 
@@ -56,10 +57,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         lang = lang[:2]
         logger.info(f'[INFO] Set params -> expectedwmi: {expectedwmi}, language: {lang}.')
 
-    # Load luis credentials 
-    luis_creds = luis_helper.get_luis_creds(lang, "VINResolver")
+    # Retrieve credentials
+    credentials = CredentialRetriever(VIN_RESOLVER_ENV).load_credentials(normalize=('{region_code}', lang))
 
-    if luis_creds is None:
+    if credentials is None:
         return func.HttpResponse(
              "[ERROR] Locale not supported",
              status_code = 400
@@ -68,9 +69,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     # If query is not empty, go ahead
     elif query:
         # Get LUIS entity results
-        r = luis_helper.score_luis(query, luis_creds)
-        logger.info(f'[INFO] luis query: {query}')
-        logger.info(f'[INFO] luis response: {r}')
+        r = luis.score(query, credentials, VIN_RESOLVER_ENV, lang)
         try:
             r_ent = r['prediction']['entities']['$instance']['vin'][0]
         except KeyError:

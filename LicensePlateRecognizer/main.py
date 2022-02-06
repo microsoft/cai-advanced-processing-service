@@ -2,6 +2,7 @@
 import json
 import logging
 import azure.functions as func
+from assets.constants import CONFIG, LICENSE_PLATE_RECOGNIZER, LICENSE_PLATE_RECOGNIZER_ENV, MANIFEST
 
 # Define global logger
 logger = logging.getLogger(__name__)
@@ -13,23 +14,26 @@ for handler in logger.handlers:
         handler.setFormatter(formatter)
 
 # Import custom modules and helpers
-from modules import license_plate_recognizer as lpr
-from modules import request_luis
+from modules.license_plate_recognizer import LicensePlateRecognizer
+from modules.retrieve_credentials import CredentialRetriever
+from modules import luis_helper as luis
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logger.info('[INFO] LicensePlate Post Processing started.')
 
     # Get query and request parameters
     try:
-        req_body = req.get_json()
-        query = req_body.get('query')
-        region = req_body.get('region')
-        lang = req_body.get('locale')
+        req_body    = req.get_json()
+        query       = req_body.get('query')
+        region      = req_body.get('region')
+        lang        = req_body.get('locale')
+        manifest    = req_body.get(MANIFEST)
     except Exception as e:
         logger.info(f'[INFO] Trying to receive request via params -> {e}')
-        query = req.params.get('query')
-        region = req.params.get('region')
-        lang = req.params.get('locale')
+        query       = req.params.get('query')
+        region      = req.params.get('region')
+        lang        = req.params.get('locale')
+        manifest    = req.params.get('manifest')
     finally:    
         # Fill eventually missing params with default ones
         if not lang and not region:
@@ -39,20 +43,33 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             lang = region
         elif lang and not region:
             region = lang
+        # If no manifest has been passed, we take manifest.json by default
+        if not manifest:
+            logging.info(f'[INFO] - No manifest name passed in the request, fallback to "{MANIFEST}.json."')
+            manifest = MANIFEST
         # Snip off everything after first two characters (e.g. en-us -> en)
         region = region[:2]
         lang = lang[:2]
         logger.info(f'[INFO] Set params -> region: {region}, language: {lang}.')
     
+    # Read manifest and extract module information
+    try:
+        with open(f'{manifest}.json', 'r') as mf:
+            _manifest       =  json.load(mf)
+            manifest        = _manifest[LICENSE_PLATE_RECOGNIZER]
+    except FileNotFoundError:
+        return func.HttpResponse("Manifest could not be found, please pass a valid manifest name.", status_code=400)
+
+    # Retrieve credentials
+    credentials = CredentialRetriever(LICENSE_PLATE_RECOGNIZER_ENV).load_credentials(normalize=('{region_code}', lang))
+
     # Create instance of class with locale
-    matcher = lpr.LicensePlateRecognizer(region, lang).matcher
-    # Load luis credentials 
-    luis_creds = request_luis.get_luis_creds(region)
+    matcher = LicensePlateRecognizer(region, lang).matcher
 
     # If query is not empty, go ahead
     if query and matcher is not None:
         # Get LUIS entity results
-        r = request_luis.score_luis(query, luis_creds)
+        r = luis.score(query, credentials, LICENSE_PLATE_RECOGNIZER_ENV, lang)
         try:
             r_ent = r['prediction']['entities']['$instance']['platenumber'][0]
         except KeyError:
@@ -101,7 +118,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(
             res, mimetype='application/json'
         )
-    elif matcher is None or luis_creds is None:
+    elif matcher is None or credentials is None:
         return func.HttpResponse(
              "[ERROR] Locale not supported",
              status_code = 400

@@ -25,14 +25,26 @@ ZIP = "zip"
 
 LEV_DISTANCE_INIT = 2
 
+CUSTOMER_DATA_TABLE = "CustomerData"
+
 ATTRIBUTE_LOOKUP_ZIP = "ZIP"
 ATTRIBUTE_LOOKUP_STREET = "RowKey"
 
-region = ""
+AUTHENTICATOR = "Authenticator"
+AUTHENTICATOR_ENV = "AUTHENTICATOR"
+FORM_REGOGNIZER_ENV = "FORM_RECOGNIZER"
+LICENSE_PLATE_RECOGNIZER = "LicensePlateRecognizer"
+LICENSE_PLATE_RECOGNIZER_ENV = "LICENSE_PLATE_RECOGNIZER"
+TABLE_REQUESTOR = "TableRequestor"
+TABLE_REQUESTOR_ENV = "TABLE_REQUESTOR"
+VIN_RESOLVER = "VINResolver"
+VIN_RESOLVER_ENV = "VIN_RESOLVER"
+
 SETTINGS_LOOKUP = {
-    "VINResolver": [f"LUIS_ID_{region}", f"LUIS_KEY_{region}", f"LUIS_PREDICTION_ENDPOINT_{region}", f"LUIS_SLOT_{region}"],
-    "LicensePlateRecognizer": [f"LUIS_ID_{region}"],
-    "Authenticator": [f"CONNECTION_STRING"],
-    "AttributeValidator": [f"CONNECTION_STRING"],
-    "FormRecognizer": ["FR_NAME", "FR_TABLE_NAME", "FR_STORAGE_CONNECTION_STRING", "FR_RETURN_KEYS"]
+    AUTHENTICATOR_ENV:              ["CONNECTION_STRING"],
+    ATTRIBUTE_VALIDATOR_ENV:        ["CONNECTION_STRING"],
+    FORM_REGOGNIZER_ENV:            ["FR_NAME", "FR_TABLE_NAME", "FR_STORAGE_CONNECTION_STRING", "FR_RETURN_KEYS"],
+    LICENSE_PLATE_RECOGNIZER_ENV:   ["CONNECTION_STRING", "LUIS_ID_{region_code}", "LUIS_ID_{region_code}", "LUIS_KEY_{region_code}", "LUIS_PREDICTION_ENDPOINT_{region_code}", "LUIS_SLOT_{region_code}"],
+    TABLE_REQUESTOR_ENV:            ["CONNECTION_STRING"],
+    VIN_RESOLVER_ENV:               ["LUIS_ID_{region_code}", "LUIS_KEY_{region_code}", "LUIS_PREDICTION_ENDPOINT_{region_code}", "LUIS_SLOT_{region_code}"],
 }
