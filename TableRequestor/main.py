@@ -1,18 +1,10 @@
 ''' TABLE REQUESTOR API '''
 import logging
-import os
 import json
-import sys
-import configparser
-from datetime import datetime
 import azure.functions as func
 
 # Import custom modules
-try:
-    from __app__.modules import request_table as request
-except Exception as e:
-    logging.info("[INFO] Helper: Using local imports.")
-    from modules import request_table as request
+from modules import data_connector
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info("Python HTTP trigger function processed a request.")
@@ -28,21 +20,14 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         params = False
 
     # Load connection string
-    connection_string = os.environ.get("USER_STORAGE_CONNECTION_STRING")
-    if not connection_string:
-        # Local debugging
-        logging.warning("No environment variable found, entered local debugging")
-        sys.path.append('./')
-        config = configparser.ConfigParser()
-        config.read('config.ini')
-        connection_string = config['userdata']['USER_STORAGE_CONNECTION_STRING']
+    auth_attributes = data_connector.get_table_creds(['USER_STORAGE_CONNECTION_STRING'])
 
     # Process request
     if all([table_name, params]):
-        connection_data = {'table_name': table_name, 'connection_string': connection_string.replace('"', "")}
+        connection_data = {'table_name': table_name, 'connection_string': auth_attributes['USER_STORAGE_CONNECTION_STRING'].replace('"', "")}
         # Request data from storage
         try:
-            customer_data = request.get_data_from_table(connection_data, params)
+            customer_data = data_connector.get_data_from_table(connection_data, params)
         except Exception as e:
             logging.error(f'Failed to establish connection to table storage -> {e}')
             return func.HttpResponse(

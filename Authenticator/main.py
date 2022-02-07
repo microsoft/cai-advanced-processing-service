@@ -1,32 +1,19 @@
 ''' AUTHENTICATION API '''
-import re
 import json
 import logging
 import azure.functions as func
 
-# Import custom modules
-try:
-    from __app__.assets import characters
-    from __app__.modules import request_table as request
-    from __app__.modules import resolve_spelling as resolve
-    from __app__.modules import pattern_matcher as patterns
-    from __app__.modules import similarity_score as simscore
-    import __app__.helper
-except Exception as e:
-    logging.info('[INFO] Helper: Using local imports.')
-    from assets import characters
-    from modules import request_table as request
-    from modules import resolve_spelling as resolve
-    from modules import pattern_matcher as patterns
-    from modules import similarity_score as simscore
-    from . import helper
+# Import custom modules and helpers
+from modules import data_connector
+from modules import resolve_spelling as resolve
+from modules import similarity_score as simscore
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     # Load connection string
-    auth_attributes = helper.get_connection_data(['USER_STORAGE_CONNECTION_STRING', 'AUTHENTICATION_TABLE'])
+    auth_attributes = data_connector.get_table_creds(['connection_string', 'authentication_table'])
 
     # Assemble connectiond ata
-    connection_data = {'table_name': auth_attributes['AUTHENTICATION_TABLE'], 'connection_string': auth_attributes['USER_STORAGE_CONNECTION_STRING'].replace('"', "")}
+    connection_data = {'table_name': auth_attributes['AUTHENTICATION_TABLE'], 'connection_string': auth_attributes['connection_string'].replace('"', "")}
     
     # Receive request and collect parameters
     try:
@@ -43,7 +30,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         # If no manifest has been passed, we take manifest.json by default
         if not manifest:
             manifest = 'manifest'
-        # Set verbose flag if wanted, but disable it in general for any stage that goes beyond DEV
+        # Set verbose flag if wanteßd, but disable it in general for any stage that goes beyond DEV
         verbose = req_body.get('verbose')
         # verbose = False # If verbose parameter wants to be declined in general
     except ValueError:
@@ -57,9 +44,11 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     # Read manifest
     try:
         with open(f'{manifest}.json', 'r') as mf:
-            manifest = json.load(mf)
+            manifest = json.load(mf)['Authenticator']
     except FileNotFoundError:
-        return func.HttpResponse("Manifest could not be loaded, you have to pass a valid manifest name.", status_code=400)
+        return func.HttpResponse("Manifest file could not be found, you have to pass a valid manifest name.", status_code=400)
+    except KeyError:
+        return func.HttpResponse("API-specific manifest could not be loaded, please verify manifest", status_code=400)
 
     # Quit, if too few attributes have been passed
     if len(attributes) < manifest.get('config')['min_attributes']:
@@ -71,7 +60,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     # Check if required attributes are there
     if not set([key for key, value in manifest.get('attributes').items() if manifest.get('attributes')[key]['required']]) <= set(attributes.keys()):
-        return func.HttpResponse("Not all required arguments have been passed.")
+        return func.HttpResponse("Not all required arguments have been passed.", status_code=400)
 
     # Preprocess user id first, as we need it for the lookup
     cleaned = {}
@@ -81,7 +70,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     # Gather data from database
     try:
-        customer_data = request.get_data_from_table(connection_data = connection_data, table_filters = {'PartitionKey': connection_data['table_name'], 'RowKey': cleaned['Id']})
+        customer_data = data_connector.get_data_from_table(connection_data = connection_data, table_filters = {'PartitionKey': connection_data['table_name'], 'RowKey': cleaned['Id']})
         logging.info(f'Received response with data from backend, loaded {len(customer_data)} data set(s).')
     except Exception as e:
         logging.error(f'Could not load user dict -> {e}.')
@@ -102,9 +91,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         
     # Define checks
     checks = {
-        1: simscore.apply_check_1,
-        2: simscore.apply_check_2,
-        3: simscore.apply_check_3
+        1: simscore.apply_check_exact,
+        2: simscore.apply_check_levensthein,
+        3: simscore.apply_check_phonetic
     }
 
     # If method is between 1 and 3, it will exclusively be applied
@@ -120,8 +109,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     
     # Return verbose information
     if verbose:
-        logging.warning(f'Customer data: {customer_data}.')
-        logging.warning(f'Cleaned request: {cleaned}.')
+        logging.info(f'[INFO - VERBOSE] - Customer data: {customer_data}.')
+        logging.info(f'[INFO - VERBOSE] - Cleaned request: {cleaned}.')
         response_json = dict(result = dict(authenticated = all(match.values())), verbose = dict(attributes = match, method = method))
     else:
         response_json = dict(result = dict(authenticated = all(match.values())))

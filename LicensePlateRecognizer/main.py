@@ -12,17 +12,9 @@ for handler in logger.handlers:
     if isinstance(handler, logging.Streamhandler):
         handler.setFormatter(formatter)
 
-# Import custom modules
-try:
-    from __app__ import helper as helper
-    from __app__.modules import license_plate_recognizer as lpr
-    from __app__.modules import resolve_spelling as resolve
-    logger.info("[INFO] Helper: Using app imports.")
-except Exception as e:
-    logger.info("[INFO] Helper: Using local imports.")
-    import LicensePlateRecognizer.helper as helper
-    from modules import license_plate_recognizer as lpr
-    from modules import resolve_spelling as resolve
+# Import custom modules and helpers
+from modules import license_plate_recognizer as lpr
+from modules import request_luis
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logger.info('[INFO] LicensePlate Post Processing started.')
@@ -55,12 +47,12 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     # Create instance of class with locale
     matcher = lpr.LicensePlateRecognizer(region, lang).matcher
     # Load luis credentials 
-    luis_creds = helper.get_luis_creds(region)
+    luis_creds = request_luis.get_luis_creds(region)
 
     # If query is not empty, go ahead
     if query and matcher is not None:
         # Get LUIS entity results
-        r = helper.score_luis(query, luis_creds)
+        r = request_luis.score_luis(query, luis_creds)
         try:
             r_ent = r['prediction']['entities']['$instance']['platenumber'][0]
         except KeyError:

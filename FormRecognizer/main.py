@@ -1,24 +1,14 @@
 ''' FORM RECOGNIZER FUNCTION '''
-import os
 import json
-import sys
-import configparser
 import logging
 import azure.functions as func
-from azure.core.exceptions import ResourceNotFoundError
 from azure.ai.formrecognizer import FormRecognizerClient
-from azure.ai.formrecognizer import FormTrainingClient
 from azure.core.credentials import AzureKeyCredential
 from datetime import datetime
 import uuid
 
-try:
-    import __app__.helper
-    from __app__.modules import request_table as blob
-except Exception as e:
-    logging.info('[INFO] Helper: Using local imports.')
-    from . import helper
-    from modules import request_table as blob
+# Import custom modules and helpers
+from modules import data_connector
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
@@ -38,7 +28,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             logging.warning('No parameter for copy_to_blob received, taking False as default')
 
     # Retreive connection data
-    connection_data, return_keys, key = helper.get_connection_data()
+    connection_data, return_keys, endpoint, key = data_connector.get_formrecognizer_connection_data()
 
     # Process request
     if all([model_id, doc_url]):
@@ -76,7 +66,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         if copy_to_blob:
             try:
                 meta_dict = {'PartitionKey': 'FormData', 'RowKey': uuid.uuid4().hex, 'time': datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")}
-                blob.push_data_to_table(connection_data, {**meta_dict, **return_dict})
+                data_connector.push_data_to_table(connection_data, {**meta_dict, **return_dict})
                 logging.info('Pushed data to table storage')
                 storage = {
                     'copy_to_blob': copy_to_blob, 

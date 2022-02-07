@@ -1,5 +1,4 @@
 import logging
-import os
 import json
 import spacy
 import logging
@@ -35,7 +34,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     if len(documents) > 0:
         res = []
-        for index, entry in enumerate(documents):
+        for _, entry in enumerate(documents):
             doc = nlp(entry["data"]["text"])
             matches = matcher(doc)
             if len(matches) > 0:
