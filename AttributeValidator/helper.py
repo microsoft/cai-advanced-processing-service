@@ -39,7 +39,7 @@ class Validator(object):
         self.config = manifest[CONFIG]
         self.values = values
         self.region = region.upper()
-        
+
         # Retrieve credentials and set up data connector
         self.credentials = CredentialRetriever(ATTRIBUTE_VALIDATOR_ENV).load_credentials()
         self.connector = DataConnector(ATTRIBUTE_VALIDATOR_ENV, self.config, self.credentials).connector

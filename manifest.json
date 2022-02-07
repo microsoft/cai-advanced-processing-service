@@ -36,7 +36,6 @@
                 "exact_match":  true,
                 "structure":    "[A-Z]{1,2}[0-9]{3}"
             }
-
         },
         "config": {
             "min_attributes":   3,

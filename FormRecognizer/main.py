@@ -42,7 +42,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                 manifest        = _manifest[FORM_RECOGNIZER]
         except FileNotFoundError:
             return func.HttpResponse("Manifest could not be found, please pass a valid manifest name.", status_code=400)
-
+          
     # Retrieve credentials and set up data connector
     credentials = CredentialRetriever(FORM_REGOGNIZER_ENV).load_credentials()
     connector = DataConnector(FORM_REGOGNIZER_ENV, manifest.get(CONFIG), credentials).connector

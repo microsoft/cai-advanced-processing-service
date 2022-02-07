@@ -37,6 +37,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     except KeyError:
         return func.HttpResponse(f"This module is not known by the manifest, please select between: {', '.join(manifest[MODULES].keys())}.", status_code = 400)
 
+
     # Create instance of class with module and (optional) region, as needed
     validation = helper.Validator(module, manifest, values, region)
     
