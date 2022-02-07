@@ -1,92 +1,66 @@
 ''' TABLE REQUEST MODULE '''
-import os
-import sys
 import logging
-import configparser
 from azure.cosmosdb.table import TableService
 from azure.common import AzureMissingResourceHttpError
 
-class CredentialRetriever;
-    def __init__():
-        pass
-
-    def get_table_creds(application_name):
-        '''Retrieve connection data from environment variables or local config'''
-        try:
-            # Load environment variables first
-            auth_attributes = {item: os.environ.get(item) for item in [f"{application_name}_CONNECTION_STRING"]}
-            # If environment variables could not be loaded, we gather them from a local config
-            if None in auth_attributes.values():
-                # Local debugging
-                logging.info("[INFO] - No environment variable found, entered local debugging")
-                sys.path.append('./')
-                config = configparser.ConfigParser()
-                config.read('config.ini')
-                auth_attributes = {item: config[application_name][item].replace('"', '') for item in [f"{application_name}_CONNECTION_STRING"]}
-                logging.info('[INFO] - Loaded connection attributes from locale config file.')
-        except KeyError:
-            auth_attributes = None
-            logging.error('[ERROR] - Could not retrieve connection attributes, please verify they are correctly set.')
-        return auth_attributes
-
-    def get_formrecognizer_connection_data():
-        '''Retrieve connection data from environment variables or local config'''
-        # Model ID from when you trained your model.
-        endpoint = f"https://{os.environ.get('FORM_RECOGNIZER_NAME')}.cognitiveservices.azure.com"
-        key = os.environ.get("FORM_RECOGNIZER_KEY")
-        connection_data = {}
-        connection_data['table_name'] = os.environ.get("FR_TABLE_NAME")
-        connection_data['connection_string'] = os.environ.get("FR_STORAGE_CONNECTION_STRING")
-        return_keys = os.environ.get("FR_RETURN_KEYS")
-
-        # If environment variables do not exist, we enter local debugging using a config.ini
-        if not endpoint or not key:
-            # Local debugging
-            logging.warning("No environment variable found, entered local debugging")
-            sys.path.append('./')
-            config = configparser.ConfigParser()
-            config.read('config.ini')
-            endpoint = f"https://{config['formrec']['name']}.cognitiveservices.azure.com"
-            key = config['formrec']['key']
-            return_keys = config['formrec']['FR_RETURN_KEYS']
-            # Prepare connection data as dict
-            connection_data = {}
-            connection_data['table_name'] = config['formrec']['FR_TABLE_NAME']
-            connection_data['connection_string'] = config['formrec']['FR_STORAGE_CONNECTION_STRING'].replace('"', '')
-        return connection_data, return_keys, endpoint, key
-
+from assets.constants import (
+    USE_DB
+)
 
 class DataConnector:
-    def __init__():
-        pass
-
-
-
-    def get_data_from_table(connection_data, table_name, application_name, table_filters=None):
-        ''' Send request to authentication data table '''
-        # Build connection data
-        table_service = TableService(connection_string = connection_data[f"{application_name}_CONNECTION_STRING"])
-        # Assemble filters to a valid request, if not None
-        if table_filters is not None:
-            _filter = " and ".join([f"{key} eq '{table_filters[key]}'" for key, _ in table_filters.items()])
+    def __init__(self, app, config, credentials):
+        self.app = app
+        self.config = config
+        self.credenitals = credentials
+        # Depending on whether we use db or not, we decide which data connector will be activated
+        if self.config.get(USE_DB):
+            logging.info('[INFO] - Setting up Azure data connector.')
+            self.connector = self.AzureDataConnector(self.app, self.credenitals)
         else:
-            _filter = None
-        # Send request to table storage
-        try:
-            customer_data = table_service.query_entities(table_name=table_name, filter=_filter, timeout=5)
-        except AzureMissingResourceHttpError:
-            logging.error()
-            customer_data = None
-        # TODO: Improve error handling
-        return customer_data.items
+            logging.info('[INFO] - Setting local data connector.')
+            self.connector = self.LocalDataConnector(self.app, self.config)
 
-    def push_data_to_table(connection_data, application_name, data):
-        ''' Insert new data into table storage '''
-        # Build connection data
-        table_service = TableService(connection_string = connection_data[f"{application_name}_CONNECTION_STRING"])
-        # Send insert request
-        table_service.insert_or_replace_entity(connection_data[f"{application_name}_TABLE_NAME"], data)
+    class LocalDataConnector:
+        def __init__(self, app, config):
+            # self.app = app for folder to find stuff in 
+            self.app = app
+            self.local_file_path = config.get('local_file_path')
 
+        def get_data(self):
+            pass
+
+        def push_data(self):
+            pass
+
+    class AzureDataConnector:
+        def __init__(self, app, credentials):
+            self.app = app
+            self.credentials = credentials
+
+        def get_data(self, table_name, table_filters=None):
+            ''' Send request to authentication data table '''
+            # Build connection data
+            table_service = TableService(connection_string = self.credentials[f"{self.app}_CONNECTION_STRING"])
+            # Assemble filters to a valid request, if not None
+            if table_filters is not None:
+                _filter = " and ".join([f"{key} eq '{table_filters[key]}'" for key, _ in table_filters.items()])
+            else:
+                _filter = None
+            # Send request to table storage
+            try:
+                customer_data = table_service.query_entities(table_name = table_name, filter = _filter, timeout = 5)
+            except AzureMissingResourceHttpError:
+                logging.error()
+                customer_data = None
+            # TODO: Improve error handling
+            return customer_data.items
+
+        def push_data(self, connection_data, data):
+            ''' Insert new data into table storage '''
+            # Build connection data
+            table_service = TableService(connection_string = self.credentials[f"{self.app}_CONNECTION_STRING"])
+            # Send insert request
+            table_service.insert_or_replace_entity(connection_data[f"{self.app}_TABLE_NAME"], data)
 
 def main():
     customer_data = get_data_from_table(connection_data, application_name, table_filters)

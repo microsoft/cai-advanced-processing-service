@@ -3,11 +3,11 @@ import logging
 import json
 import string
 import azure.functions as func
-from collections import defaultdict
-from typing import DefaultDict, List
 
 # Import custom modules and helpers
-from modules import data_connector, process_input, validate_data
+from modules import process_input, validate_data
+from modules.retrieve_credentials import CredentialRetriever
+from modules.data_connector import DataConnector
 from assets.constants import (
     ADDRESS, 
     ATTRIBUTE_VALIDATOR_ENV,
@@ -39,20 +39,20 @@ class Validator(object):
         self.config = manifest[CONFIG]
         self.values = values
         self.region = region.upper()
-        if self.config[USE_DB]:
-            self.table_connection_data = data_connector.get_table_creds(ATTRIBUTE_VALIDATOR_ENV)
-        else:
-            self.local_data_path = self.config[LOCAL_DATA_PATH]
+
+        # Retrieve credentials and set up data connector
+        self.credentials = CredentialRetriever(ATTRIBUTE_VALIDATOR_ENV).load_credentials()
+        self.connector = DataConnector(ATTRIBUTE_VALIDATOR_ENV, self.config, self.credentials).connector
 
         # Set module for validation
         if module == IBAN:
             self.matcher = self.ValidateIBAN(self.config, self.manifest, self.values, self.region)
         elif module == ADDRESS:
-            self.matcher = self.ValidateAddress(self.config, self.manifest, self.values, self.region, self.table_connection_data)
+            self.matcher = self.ValidateAddress(self.config, self.manifest, self.values, self.region, self.connector)
         elif module == STREET_IN_CITY:
-            self.matcher = self.ValidateStreet(self.config, self.manifest, self.values, self.region, self.table_connection_data)
+            self.matcher = self.ValidateStreet(self.config, self.manifest, self.values, self.region, self.connector)
         elif module == ZIP:
-            self.matcher = self.ValidateZIP(self.config, self.manifest, self.values, self.region, self.table_connection_data)
+            self.matcher = self.ValidateZIP(self.config, self.manifest, self.values, self.region, self.connector)
         else:
             self.matcher = False
         
@@ -105,25 +105,22 @@ class Validator(object):
             return res
 
     class ValidateAddress(object):
-        def __init__(self, config, manifest, values, region, table_data):
+        def __init__(self, config, manifest, values, region, connector):
             # Import from main class
             self.config = config
             self.manifest = manifest
             self.values = values
             self.region = region
-            self.table_connection_data = table_data
+            self.connector = connector
 
         def run(self):
             '''Run Validation for Address'''
             logging.info(f"[INFO] - Using zip code and city from request")
             zip_code = self.values[ZIP].replace(" ", "").zfill(5)
             # Retrieve city names based on zip code
-            cities_matching_to_zip = data_connector.get_data_from_table(
-                        self.table_connection_data, 
+            cities_matching_to_zip = self.connector.get_data(
                         ATTRIBUTE_VALIDATOR_CITY_TABLE, 
-                        ATTRIBUTE_VALIDATOR_ENV, 
-                        {"PartitionKey": str(zip_code)}
-                    )
+                        {"PartitionKey": str(zip_code)})
             zip_mapping, city_mapping = process_input.map_data_from_table(cities_matching_to_zip)
 
             # Match zip code to city names
@@ -138,12 +135,9 @@ class Validator(object):
 
                 # Check street - which streets are in this zip area?
                 try:
-                    streets_in_zip = data_connector.get_data_from_table(
-                                self.table_connection_data, 
-                                ATTRIBUTE_VALIDATOR_ADDRESS_TABLE, 
-                                ATTRIBUTE_VALIDATOR_ENV, 
-                                {"PartitionKey": str(zip_code)}
-                            )
+                    streets_in_zip = self.connector.get_data(
+                            ATTRIBUTE_VALIDATOR_ADDRESS_TABLE, 
+                            {"PartitionKey": zip_code})
                 except:
                     res = json.dumps(dict(error = True, error_message = "Error accessing database / ZIP not found", city_is_valid = True, zip = zip_code.zfill(5), city = city_name, street_is_valid = False, street_has_options = False))
                     return func.HttpResponse(res, mimetype='application/json', status_code=200)
@@ -171,13 +165,13 @@ class Validator(object):
             return res
 
     class ValidateStreet(object):
-        def __init__(self, config, manifest, values, region, table_data):
+        def __init__(self, config, manifest, values, region, connector):
             # Import from main class
             self.config = config
             self.manifest = manifest
             self.values = values
             self.region = region
-            self.table_connection_data = table_data
+            self.connector = connector
 
         def run(self):
             '''Run Validation for Street in ZIP'''
@@ -186,12 +180,9 @@ class Validator(object):
 
             # Check street - which streets are in this zip area?
             try: 
-                streets_in_zip = data_connector.get_data_from_table(
-                            self.table_connection_data, 
-                            ATTRIBUTE_VALIDATOR_ADDRESS_TABLE, 
-                            ATTRIBUTE_VALIDATOR_ENV, 
-                            {"PartitionKey": str(self.values[ZIP])}
-                        )
+                streets_in_zip = self.connector.get_data(
+                        ATTRIBUTE_VALIDATOR_ADDRESS_TABLE, 
+                        {"PartitionKey": str(self.values[ZIP])})
             except:
                 res = json.dumps(dict(error = True, error_message = "Error accessing database / ZIP not found", is_valid = False, has_options = False))
                 return func.HttpResponse(res, mimetype='application/json', status_code=400)
@@ -216,13 +207,13 @@ class Validator(object):
             return res
 
     class ValidateZIP(object):
-        def __init__(self, config, manifest, values, region, table_data):
+        def __init__(self, config, manifest, values, region, connector):
             # Import from main class
             self.config = config
             self.values = values
             self.region = region
             self.manifest = manifest
-            self.table_connection_data = table_data
+            self.connector = connector
 
         def run(self):
             '''Run Validation for ZIP Codes'''
@@ -230,12 +221,9 @@ class Validator(object):
             zip_code = self.values[ZIP].zfill(5)
 
             # Retrieve city names based on zip code
-            cities_matching_to_zip = data_connector.get_data_from_table(
-                        self.table_connection_data, 
+            cities_matching_to_zip = self.connector.get_data(
                         ATTRIBUTE_VALIDATOR_CITY_TABLE, 
-                        ATTRIBUTE_VALIDATOR_ENV, 
-                        {"PartitionKey": str(zip_code)}
-                    )
+                        {"PartitionKey": str(zip_code)})
             zip_mapping, city_mapping = process_input.map_data_from_table(cities_matching_to_zip)
 
             # Match zip code to city names
