@@ -6,6 +6,7 @@
 azure-functions
 ddt
 pytest
+wheel
 
 # Infrastructure
 azure-storage-blob
