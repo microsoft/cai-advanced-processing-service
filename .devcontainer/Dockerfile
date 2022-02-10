@@ -2,6 +2,7 @@
 # https://github.com/Azure/azure-functions-docker/blob/dev/host/3.0/buster/amd64/python/python38/python38-core-tools.Dockerfile
 FROM mcr.microsoft.com/azure-functions/python:3.0-python3.8-core-tools
 
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 RUN pip install jupyter
