@@ -1,39 +1,40 @@
-name: Unit Testing
+# Run unit tests to ensure functionality
+name: Testing - Unit Tests
 on:
   push:
     branches:
       - "main"
-      - "feature/systematic_unit_testing"
   pull_request:
     branches:
       - "main"
 
+# Run unit tests
 jobs:
   test:
     runs-on: ubuntu-latest
 
+    # Run tests in multiple Python versions
     strategy:
       matrix:
-        # Run in all these versions of Python
         python-version: [3.7, 3.8, 3.9]
 
     steps:
-        # Checkout the latest code from the repo
+      # Checkout the latest code from the repo
       - name: Checkout repo
         uses: actions/checkout@v2
-        # Setup which version of Python to use
+      # Setup which version of Python to use
       - name: Set Up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-        # Display the Python version being used
+      # Display the Python version being used
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
-        # Install the package using the setup.py
+      # Install the requires packages from requirements.txt
       - name: Install package
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-        # Run the tests. I'm using pytest and the file is in the tests directory.
+      # Run the tests. I'm using pytest and the file is in the tests directory.
       - name: Run unit tests
         run: pytest tests/test_AttributeValidator.py

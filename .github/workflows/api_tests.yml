@@ -1,0 +1,31 @@
+# Run API tests after successful deployment to production
+name: Testing - Post-Deployment via Postman
+on:
+  workflow_run:
+    workflows: ["Deployment to Azure Function"]
+    types:
+      - completed
+
+# Run tests
+jobs:
+  test-api:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      
+    # Install Node on the runner
+    - name: Install Node
+      uses: actions/setup-node@v1
+      with: 
+        node-version: '12.x'
+    
+    # Install the newman command line utility and also install the html extra reporter
+    - name: Install newman
+      run: |
+       npm install -g newman
+       npm install -g newman-reporter-htmlextra
+
+    # Run the Postman collection with required variables
+    - name: Run POSTMAN collection
+      run: |
+        newman run "assets/postman-collection/cai-advanced-processing-service.postman_collection.json" --folder Deployed --env-var ${{ secrets.POSTMAN_API_KEY }} --env-var ${{ secrets.POSTMAN_FUNCTION_URI }}

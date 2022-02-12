@@ -146,7 +146,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"attributes\":\r\n        {\r\n            \"Firstname\": \"Satya\",\r\n            \"Lastname\": \"Nadella\",\r\n            \"Birthdate\": \"19.08.1967\",\r\n            \"Id\": \"80555500\"\r\n        },\r\n    \"method\": 4,\r\n    \"verbose\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}\r\n",
+							"raw": "{\r\n    \"attributes\":\r\n        {\r\n            \"Firstname\": \"Satya\",\r\n            \"Lastname\": \"Nadella\",\r\n            \"Birthdate\": \"19.08.1967\",\r\n            \"Id\": \"9999\"\r\n        },\r\n    \"method\": 4,\r\n    \"verbose\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -306,7 +306,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"table\": {\r\n        \"name\": \"ndsjustizdemozeugentermine\"\r\n    },\r\n    \"params\": {\r\n        \"Nachname\": \"Mustermann\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"table\": {\r\n        \"name\": \"CustomerData\"\r\n    },\r\n    \"params\": {\r\n        \"PartitionKey\": \"CustomerData\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -373,7 +373,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "{{attributevalidator_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
@@ -416,7 +416,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "{{attributevalidator_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
@@ -459,7 +459,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "{{attributevalidator_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
@@ -502,7 +502,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "{{attributevalidator_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
@@ -544,6 +544,11 @@
 							"type": "apikey",
 							"apikey": [
 								{
+									"key": "value",
+									"value": "{{APIKey}}",
+									"type": "string"
+								},
+								{
 									"key": "in",
 									"value": "header",
 									"type": "string"
@@ -552,11 +557,6 @@
 									"key": "key",
 									"value": "x-functions-key",
 									"type": "string"
-								},
-								{
-									"key": "value",
-									"value": "{{authenticator_APIKey}}",
-									"type": "string"
 								}
 							]
 						},
@@ -564,7 +564,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"attributes\":\r\n        {\r\n            \"Firstname\": \"Satya\",\r\n            \"Lastname\": \"Nadella\",\r\n            \"Birthdate\": \"19.08.1967\",\r\n            \"Id\": \"80555500\"\r\n        },\r\n    \"method\": 4,\r\n    \"verbose\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}\r\n",
+							"raw": "{\r\n    \"attributes\":\r\n        {\r\n            \"Firstname\": \"Satya\",\r\n            \"Lastname\": \"Nadella\",\r\n            \"Birthdate\": \"19.08.1967\",\r\n            \"Id\": \"9999\"\r\n        },\r\n    \"method\": 4,\r\n    \"verbose\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -592,13 +592,13 @@
 							"type": "apikey",
 							"apikey": [
 								{
-									"key": "in",
-									"value": "header",
+									"key": "value",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
-									"key": "value",
-									"value": "{{batchtesting_APIKey}}",
+									"key": "in",
+									"value": "header",
 									"type": "string"
 								},
 								{
@@ -634,67 +634,17 @@
 					"response": []
 				},
 				{
-					"name": "Deployed - FormRecognizer",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "in",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "x-functions-key",
-									"type": "string"
-								},
-								{
-									"key": "value",
-									"value": "{{formrecognizer_APIKey}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"model_id\": \"4b173cbf-a153-4c8b-b980-fc9e7399602d\",\r\n    \"doc_url\": \"https://nonstopstore.blob.core.windows.net/forms/form3.pdf?sv=2019-12-12&st=2021-03-07T10%3A19%3A08Z&se=2021-04-08T09%3A19%3A00Z&sr=b&sp=r&sig=hYgtrgzNegieovT47H0bEhpcPS34FgKqJHFtG7VuyHk%3D\",\r\n    \"copy_to_blob\": true\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://{{FunctionURI}}/api/formrecognizer",
-							"protocol": "https",
-							"host": [
-								"{{FunctionURI}}"
-							],
-							"path": [
-								"api",
-								"formrecognizer"
-							],
-							"query": [
-								{
-									"key": "",
-									"value": "",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Deployed - LicensePlateRecognizer",
 					"request": {
 						"auth": {
 							"type": "apikey",
 							"apikey": [
 								{
+									"key": "value",
+									"value": "{{APIKey}}",
+									"type": "string"
+								},
+								{
 									"key": "in",
 									"value": "header",
 									"type": "string"
@@ -702,11 +652,6 @@
 								{
 									"key": "key",
 									"value": "x-functions-key",
-									"type": "string"
-								},
-								{
-									"key": "value",
-									"value": "{{licenseplaterecognizer_APIKey}}",
 									"type": "string"
 								}
 							]
@@ -743,6 +688,11 @@
 							"type": "apikey",
 							"apikey": [
 								{
+									"key": "value",
+									"value": "{{APIKey}}",
+									"type": "string"
+								},
+								{
 									"key": "in",
 									"value": "header",
 									"type": "string"
@@ -751,11 +701,6 @@
 									"key": "key",
 									"value": "x-functions-key",
 									"type": "string"
-								},
-								{
-									"key": "value",
-									"value": "{{spellingresolver_APIKey}}",
-									"type": "string"
 								}
 							]
 						},
@@ -763,7 +708,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"text\": \"Martha Anton humbug drei 4\",\r\n    \"convertnumbers\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}",
+							"raw": "{\r\n    \"query\": \"Martha Anton humbug drei 4\",\r\n    \"convertnumbers\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -791,6 +736,11 @@
 							"type": "apikey",
 							"apikey": [
 								{
+									"key": "value",
+									"value": "{{APIKey}}",
+									"type": "string"
+								},
+								{
 									"key": "in",
 									"value": "header",
 									"type": "string"
@@ -799,11 +749,6 @@
 									"key": "key",
 									"value": "x-functions-key",
 									"type": "string"
-								},
-								{
-									"key": "value",
-									"value": "{{tablerequestor_APIKey}}",
-									"type": "string"
 								}
 							]
 						},
@@ -811,7 +756,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"storageaccountname\": \"teststorage\",\r\n \"table\": {\r\n \"name\": \"ndsjustizdemozeugentermine\"\r\n },\r\n \"params\": {\r\n \"PartitionKey\": \"UserData\"\r\n }\r\n}",
+							"raw": "{\r\n    \"table\": {\r\n        \"name\": \"CustomerData\"\r\n    },\r\n    \"params\": {\r\n        \"PartitionKey\": \"CustomerData\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -847,7 +792,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "{{vinresolver_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
