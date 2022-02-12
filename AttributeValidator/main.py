@@ -21,7 +21,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             manifest = MANIFEST
         if not module:
             return func.HttpResponse("[ERROR] - Received bad request body: missing module declaration.", status_code = 400)
-        logging.info(f'[INFO] Set params -> module: {module} in {region}.')
+        logging.info(f'[INFO] - Set params -> module: {module} in {region}.')
     except ValueError:
         return func.HttpResponse("[ERROR] - Received bad request body: format of request body not valid.", status_code = 400)
 

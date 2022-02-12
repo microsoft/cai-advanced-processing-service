@@ -37,7 +37,6 @@ class CredentialRetriever:
         sys.path.append('./')
         config = configparser.ConfigParser()
         config.read('config.ini')
-        logging.warning({f'{self.app}_{item}': config[self.app][item].replace('"', '') for item in self.required_credentials})
         return {f'{self.app}_{item}': config[self.app][item].replace('"', '') for item in self.required_credentials}
     
     def _get_from_appsettings(self):

@@ -50,7 +50,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         # Snip off everything after first two characters (e.g. en-us -> en)
         region = region[:2]
         lang = lang[:2]
-        logger.info(f'[INFO] Set params -> region: {region}, language: {lang}.')
+        logger.info(f'[INFO] - Set params -> region: {region}, language: {lang}.')
     
     # Read manifest and extract module information
     try:
