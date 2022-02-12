@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - "main"
+      - "feature/systematic_unit_testing"
   pull_request:
     branches:
       - "main"
