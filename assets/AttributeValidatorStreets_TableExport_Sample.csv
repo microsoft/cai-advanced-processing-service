@@ -1,0 +1,30 @@
+PartitionKey,RowKey,Timestamp,CITY,CITY@type,DISTRICT,DISTRICT@type
+10115,Ackerstr.,2022-01-30T14:53:13.3158803Z,Berlin,String,Mitte,String
+10115,Am Nordbahnhof,2022-01-30T14:53:13.4560692Z,Berlin,String,Mitte,String
+10115,Am Pankepark,2022-01-30T14:53:13.56231Z,Berlin,String,Mitte,String
+10115,An der Kieler Brücke,2022-01-30T14:53:13.6639019Z,Berlin,String,Mitte,String
+10115,Anklamer Str.,2022-01-30T14:53:13.7723834Z,Berlin,String,Mitte,String
+10115,Bergstr.,2022-01-30T14:53:13.8773608Z,Berlin,String,Mitte,String
+10115,Berliner Mauerweg,2022-01-30T14:53:13.9811855Z,Berlin,String,Mitte,String
+10115,Bernauer Str.,2022-01-30T14:53:14.0969682Z,Berlin,String,Mitte,String
+10115,Borsigstr.,2022-01-30T14:53:14.1981654Z,Berlin,String,Mitte,String
+10115,Boyenstr.,2022-01-30T14:53:14.299551Z,Berlin,String,Mitte,String
+10115,Brunnenstr.,2022-01-30T14:53:14.4039757Z,Berlin,String,Mitte,String
+10115,Caroline-Michaelis-Str.,2022-01-30T14:53:14.5112843Z,Berlin,String,Mitte,String
+10115,Chausseestr.,2022-01-30T14:53:14.6107496Z,Berlin,String,Mitte,String
+10115,Eichendorffstr.,2022-01-30T14:53:14.7223796Z,Berlin,String,Mitte,String
+10115,Elisabeth-Schwarzhaupt-Platz,2022-01-30T14:53:14.8153706Z,Berlin,String,Mitte,String
+10115,Elisabethkirchstr.,2022-01-30T14:53:14.9225632Z,Berlin,String,Mitte,String
+10115,Gartenstr.,2022-01-30T14:53:15.0263148Z,Berlin,String,Mitte,String
+10115,Große Hamburger Str.,2022-01-30T14:53:15.1321328Z,Berlin,String,Mitte,String
+10115,Habersaathstr.,2022-01-30T14:53:15.2316739Z,Berlin,String,Mitte,String
+10115,Hannoversche Str.,2022-01-30T14:53:15.3427566Z,Berlin,String,Mitte,String
+10115,Hans-Peter-Streichplatz,2022-01-30T14:53:15.4439098Z,Berlin,String,Mitte,String
+10115,Hessische Str.,2022-01-30T14:53:15.5454555Z,Berlin,String,Mitte,String
+10115,Ida-von-Arnim-Str.,2022-01-30T14:53:15.6506225Z,Berlin,String,Mitte,String
+10115,Invalidenstr.,2022-01-30T14:53:15.7566507Z,Berlin,String,Mitte,String
+10115,Julie-Wolfthorn-Str.,2022-01-30T14:53:15.8603715Z,Berlin,String,Mitte,String
+10115,Kieler Brücke,2022-01-30T14:53:15.9662194Z,Berlin,String,Mitte,String
+10115,Kieler Str.,2022-01-30T14:53:16.0671871Z,Berlin,String,Mitte,String
+10115,Kleine Hamburger Str.,2022-01-30T14:53:16.1722235Z,Berlin,String,Mitte,String
+10115,Koppenplatz,2022-01-30T14:53:16.2767457Z,Berlin,String,Mitte,String
