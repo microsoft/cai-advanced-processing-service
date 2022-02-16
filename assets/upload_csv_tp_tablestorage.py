@@ -1,7 +1,7 @@
 import pandas as pd  
 from azure.cosmosdb.table import TableService  
 
-connection_string = 'DefaultEndpointsProtocol=https;AccountName=jagotestingfunctions;AccountKey=BcO40SL6rf1CRa6nvg9U+F40Io92ml2b+JJJfeWZI4D3bg/BsIm+DJo8YFIWQe4+gGa/ZerTodWydASD44vECQ==;EndpointSuffix=core.windows.net'
+connection_string = '<connection-string>'
 csvfile = "./AttributeValidatorStreets_TableExport.csv"
 table_name = csvfile.replace(".csv","")
 table_name = table_name.replace("./","")
