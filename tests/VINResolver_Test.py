@@ -2,7 +2,8 @@ import json
 import logging
 import time
 import sys
-sys.path.insert(1, '..')
+# sys.path.insert(1, '..')
+sys.path.append("./")
 from  modules.libvin import Vin
 import VINResolver
 
@@ -176,20 +177,24 @@ errors = []
 luis_err = []
 validvin_err = []
 status_err = []
-for query, vin in zip(test_query, test_vin):
+for query, vin , validin in zip(test_query, test_vin, test_validin):
     try:
         res, status_code = VINResolver.test_VINResolver(query)
         resVIN = res['vinQuery'].upper()
         v = Vin(resVIN)
         if resVIN != vin.upper():
-            logging.warning(f'[ERROR Luis] VIN mismatch for {query} -> {vin} != {resVIN}')
+            logging.warning(f'[ERROR] VIN mismatch for {query} -> {vin} != {resVIN}')
             errors.append(query)
             luis_err.append(query)
-        if not v.is_valid:
-            logging.warning(f'[ERROR vinvalid] false VIN:')
+        if v.is_valid != validin:
+            logging.warning(f'[ERROR vinvalid] false VIN: {resVIN}')
             validvin_err.append(query)
-        if status_code:
-            logging.warning(f'[ERROR] VIN mismatch for {query} -> {vin} != {resVIN}')
+        if status_code != 200:
+            if res['error']:
+                message = f"[ERROR LUIS] {res['error']['message']}, status_code: {status_code}"
+            else:
+                 message =f"[ERROR LUIS] unknow status_code: {status_code}",
+            logging.warning(message)
             status_err.append(query)
     except Exception as e:
         logging.warning(query, e, res)
