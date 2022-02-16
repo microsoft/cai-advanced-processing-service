@@ -23,6 +23,7 @@ from assets.constants import (
     STREET, 
     STREET_IN_CITY, 
     ATTRIBUTE_LOOKUP_STREET,
+    ATTRIBUTE_LOOKUP_ZIP,
     USE_DB, 
     ZIP
 )
@@ -120,7 +121,7 @@ class Validator(object):
             # Retrieve city names based on zip code
             cities_matching_to_zip = self.connector.get_data(
                         ATTRIBUTE_VALIDATOR_CITY_TABLE, 
-                        {"PartitionKey": str(zip_code)})
+                        {"PartitionKey": ATTRIBUTE_LOOKUP_ZIP, ATTRIBUTE_LOOKUP_ZIP: str(zip_code)})
             zip_mapping, city_mapping = process_input.map_data_from_table(cities_matching_to_zip)
 
             # Match zip code to city names
@@ -223,7 +224,7 @@ class Validator(object):
             # Retrieve city names based on zip code
             cities_matching_to_zip = self.connector.get_data(
                         ATTRIBUTE_VALIDATOR_CITY_TABLE, 
-                        {"PartitionKey": str(zip_code)})
+                        {"PartitionKey": ATTRIBUTE_LOOKUP_ZIP, ATTRIBUTE_LOOKUP_ZIP: str(zip_code)})
             zip_mapping, city_mapping = process_input.map_data_from_table(cities_matching_to_zip)
 
             # Match zip code to city names
