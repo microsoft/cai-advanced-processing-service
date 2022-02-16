@@ -1,500 +1,500 @@
-PartitionKey,RowKey,Timestamp,ZIP,ZIP@type,City,City@type,Region,Region@type
-ZIP,9101,,10115,String,Berlin,String,DE,String
-ZIP,9102,,10115,String,Mitte,String,DE,String
-ZIP,9103,,10117,String,Berlin,String,DE,String
-ZIP,9104,,10117,String,Mitte,String,DE,String
-ZIP,9105,,10117,String,Spandau,String,DE,String
-ZIP,9106,,10119,String,Berlin,String,DE,String
-ZIP,9107,,10119,String,Mitte,String,DE,String
-ZIP,9108,,10119,String,Pankow,String,DE,String
-ZIP,9109,,10119,String,Prenzlauer Berg,String,DE,String
-ZIP,9110,,10178,String,Berlin,String,DE,String
-ZIP,9111,,10178,String,Mitte,String,DE,String
-ZIP,9112,,10178,String,Britz,String,DE,String
-ZIP,9113,,10178,String,Wedding,String,DE,String
-ZIP,9114,,10179,String,Berlin,String,DE,String
-ZIP,9115,,10179,String,Mitte,String,DE,String
-ZIP,9116,,10243,String,Berlin,String,DE,String
-ZIP,9117,,10243,String,Friedrichshain,String,DE,String
-ZIP,9118,,10243,String,Friedrichshain-Kreuzberg,String,DE,String
-ZIP,9119,,10243,String,Alt-Hohenschönhausen,String,DE,String
-ZIP,9120,,10245,String,Berlin,String,DE,String
-ZIP,9121,,10245,String,Friedrichshain,String,DE,String
-ZIP,9122,,10245,String,Friedrichshain-Kreuzberg,String,DE,String
-ZIP,9123,,10247,String,Berlin,String,DE,String
-ZIP,9124,,10247,String,Friedrichshain,String,DE,String
-ZIP,9125,,10247,String,Friedrichshain-Kreuzberg,String,DE,String
-ZIP,9126,,10247,String,Pankow,String,DE,String
-ZIP,9127,,10247,String,Prenzlauer Berg,String,DE,String
-ZIP,9128,,10249,String,Berlin,String,DE,String
-ZIP,9129,,10249,String,Friedrichshain,String,DE,String
-ZIP,9130,,10249,String,Friedrichshain-Kreuzberg,String,DE,String
-ZIP,9131,,10249,String,Pankow,String,DE,String
-ZIP,9132,,10249,String,Prenzlauer Berg,String,DE,String
-ZIP,9133,,10315,String,Berlin,String,DE,String
-ZIP,9134,,10315,String,Friedrichsfelde,String,DE,String
-ZIP,9135,,10315,String,Lichtenberg,String,DE,String
-ZIP,9136,,10315,String,KGA Bielefeld,String,DE,String
-ZIP,9137,,10315,String,Neu-Hohenschönhausen,String,DE,String
-ZIP,9138,,10315,String,Stadtrandsiedlung Malchow,String,DE,String
-ZIP,9139,,10315,String,Biesdorf,String,DE,String
-ZIP,9140,,10317,String,Berlin,String,DE,String
-ZIP,9141,,10317,String,Lichtenberg,String,DE,String
-ZIP,9142,,10317,String,Rummelsburg,String,DE,String
-ZIP,9143,,10317,String,Friedrichsfelde,String,DE,String
-ZIP,9144,,10318,String,Berlin,String,DE,String
-ZIP,9145,,10318,String,Karlshorst,String,DE,String
-ZIP,9146,,10318,String,Lichtenberg,String,DE,String
-ZIP,9147,,10318,String,Oberschöneweide,String,DE,String
-ZIP,9148,,10318,String,KGA Wuhlheide Lichtenberg,String,DE,String
-ZIP,9149,,10318,String,KGA Biesenhorst 2,String,DE,String
-ZIP,9150,,10318,String,KGA Blockdamm,String,DE,String
-ZIP,9151,,10319,String,Berlin,String,DE,String
-ZIP,9152,,10319,String,Friedrichsfelde,String,DE,String
-ZIP,9153,,10319,String,Lichtenberg,String,DE,String
-ZIP,9154,,10365,String,Berlin,String,DE,String
-ZIP,9155,,10365,String,Lichtenberg,String,DE,String
-ZIP,9156,,10367,String,Berlin,String,DE,String
-ZIP,9157,,10367,String,Lichtenberg,String,DE,String
-ZIP,9158,,10369,String,Berlin,String,DE,String
-ZIP,9159,,10369,String,Fennpfuhl,String,DE,String
-ZIP,9160,,10369,String,Lichtenberg,String,DE,String
-ZIP,9161,,10369,String,KGA Langes Höhe,String,DE,String
-ZIP,9162,,10405,String,Berlin,String,DE,String
-ZIP,9163,,10405,String,Pankow,String,DE,String
-ZIP,9164,,10405,String,Prenzlauer Berg,String,DE,String
-ZIP,9165,,10407,String,Berlin,String,DE,String
-ZIP,9166,,10407,String,Pankow,String,DE,String
-ZIP,9167,,10407,String,Prenzlauer Berg,String,DE,String
-ZIP,9168,,10407,String,KGA Grönland,String,DE,String
-ZIP,9169,,10407,String,KGA Neues Heim,String,DE,String
-ZIP,9170,,10407,String,KGA Volkspark Prenzlauer Berg,String,DE,String
-ZIP,9171,,10409,String,Berlin,String,DE,String
-ZIP,9172,,10409,String,Pankow,String,DE,String
-ZIP,9173,,10409,String,Prenzlauer Berg,String,DE,String
-ZIP,9174,,10435,String,Berlin,String,DE,String
-ZIP,9175,,10435,String,Pankow,String,DE,String
-ZIP,9176,,10435,String,Prenzlauer Berg,String,DE,String
-ZIP,9177,,10435,String,Mitte,String,DE,String
-ZIP,9178,,10437,String,Berlin,String,DE,String
-ZIP,9179,,10437,String,Pankow,String,DE,String
-ZIP,9180,,10437,String,Prenzlauer Berg,String,DE,String
-ZIP,9181,,10439,String,Berlin,String,DE,String
-ZIP,9182,,10439,String,Pankow,String,DE,String
-ZIP,9183,,10439,String,Prenzlauer Berg,String,DE,String
-ZIP,9184,,10551,String,Berlin,String,DE,String
-ZIP,9185,,10551,String,Mitte,String,DE,String
-ZIP,9186,,10551,String,Moabit,String,DE,String
-ZIP,9187,,10553,String,Berlin,String,DE,String
-ZIP,9188,,10553,String,Mitte,String,DE,String
-ZIP,9189,,10553,String,Moabit,String,DE,String
-ZIP,9190,,10555,String,Berlin,String,DE,String
-ZIP,9191,,10555,String,Hansaviertel,String,DE,String
-ZIP,9192,,10555,String,Mitte,String,DE,String
-ZIP,9193,,10555,String,Moabit,String,DE,String
-ZIP,9194,,10555,String,Wedding,String,DE,String
-ZIP,9195,,10557,String,Berlin,String,DE,String
-ZIP,9196,,10557,String,Hansaviertel,String,DE,String
-ZIP,9197,,10557,String,Mitte,String,DE,String
-ZIP,9198,,10557,String,Moabit,String,DE,String
-ZIP,9199,,10557,String,Tiergarten,String,DE,String
-ZIP,9200,,10559,String,Berlin,String,DE,String
-ZIP,9201,,10559,String,Mitte,String,DE,String
-ZIP,9202,,10559,String,Moabit,String,DE,String
-ZIP,9203,,10585,String,Berlin,String,DE,String
-ZIP,9204,,10585,String,Charlottenburg,String,DE,String
-ZIP,9205,,10585,String,Charlottenburg-Wilmersdorf,String,DE,String
-ZIP,9206,,10587,String,Berlin,String,DE,String
-ZIP,9207,,10587,String,Charlottenburg,String,DE,String
-ZIP,9208,,10587,String,Charlottenburg-Wilmersdorf,String,DE,String
-ZIP,9209,,10589,String,Berlin,String,DE,String
-ZIP,9210,,10589,String,Charlottenburg,String,DE,String
-ZIP,9211,,10589,String,Charlottenburg-Wilmersdorf,String,DE,String
-ZIP,9212,,10589,String,Charlottenburg-Nord,String,DE,String
-ZIP,9213,,10589,String,Kol. Gerickes Hof,String,DE,String
-ZIP,9214,,10623,String,Berlin,String,DE,String
-ZIP,9215,,10623,String,Charlottenburg,String,DE,String
-ZIP,9216,,10623,String,Charlottenburg-Wilmersdorf,String,DE,String
-ZIP,9217,,10623,String,Tiergarten,String,DE,String
-ZIP,9218,,10623,String,Hansaviertel,String,DE,String
-ZIP,9219,,10625,String,Berlin,String,DE,String
-ZIP,9220,,10625,String,Charlottenburg,String,DE,String
-ZIP,9221,,10625,String,Charlottenburg-Wilmersdorf,String,DE,String
-ZIP,9222,,10627,String,Berlin,String,DE,String
-ZIP,9223,,10627,String,Charlottenburg,String,DE,String
-ZIP,9224,,10627,String,Charlottenburg-Wilmersdorf,String,DE,String
-ZIP,9225,,10629,String,Berlin,String,DE,String
-ZIP,9226,,10629,String,Charlottenburg,String,DE,String
-ZIP,9227,,10629,String,Charlottenburg-Wilmersdorf,String,DE,String
-ZIP,9228,,10707,String,Berlin,String,DE,String
-ZIP,9229,,10707,String,Charlottenburg-Wilmersdorf,String,DE,String
-ZIP,9230,,10707,String,Wilmersdorf,String,DE,String
-ZIP,9231,,10707,String,Charlottenburg,String,DE,String
-ZIP,9232,,10709,String,Berlin,String,DE,String
-ZIP,9233,,10709,String,Charlottenburg-Wilmersdorf,String,DE,String
-ZIP,9234,,10709,String,Halensee,String,DE,String
-ZIP,9235,,10709,String,Wilmersdorf,String,DE,String
-ZIP,9236,,10709,String,Charlottenburg,String,DE,String
-ZIP,9237,,10709,String,Schmargendorf,String,DE,String
-ZIP,9238,,10711,String,Berlin,String,DE,String
-ZIP,9239,,10711,String,Charlottenburg-Wilmersdorf,String,DE,String
-ZIP,9240,,10711,String,Halensee,String,DE,String
-ZIP,9241,,10711,String,Charlottenburg,String,DE,String
-ZIP,9242,,10711,String,Grunewald,String,DE,String
-ZIP,9243,,10711,String,Wilmersdorf,String,DE,String
-ZIP,9244,,10711,String,Schmargendorf,String,DE,String
-ZIP,9245,,10713,String,Berlin,String,DE,String
-ZIP,9246,,10713,String,Charlottenburg-Wilmersdorf,String,DE,String
-ZIP,9247,,10713,String,Wilmersdorf,String,DE,String
-ZIP,9248,,10713,String,Halensee,String,DE,String
-ZIP,9249,,10713,String,Schmargendorf,String,DE,String
-ZIP,9250,,10715,String,Berlin,String,DE,String
-ZIP,9251,,10715,String,Charlottenburg-Wilmersdorf,String,DE,String
-ZIP,9252,,10715,String,Wilmersdorf,String,DE,String
-ZIP,9253,,10717,String,Berlin,String,DE,String
-ZIP,9254,,10717,String,Charlottenburg-Wilmersdorf,String,DE,String
-ZIP,9255,,10717,String,Wilmersdorf,String,DE,String
-ZIP,9256,,10719,String,Berlin,String,DE,String
-ZIP,9257,,10719,String,Charlottenburg-Wilmersdorf,String,DE,String
-ZIP,9258,,10719,String,Wilmersdorf,String,DE,String
-ZIP,9259,,10719,String,Charlottenburg,String,DE,String
-ZIP,9260,,10777,String,Berlin,String,DE,String
-ZIP,9261,,10777,String,Schöneberg,String,DE,String
-ZIP,9262,,10777,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9263,,10777,String,Wilmersdorf,String,DE,String
-ZIP,9264,,10779,String,Berlin,String,DE,String
-ZIP,9265,,10779,String,Schöneberg,String,DE,String
-ZIP,9266,,10779,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9267,,10779,String,Wilmersdorf,String,DE,String
-ZIP,9268,,10781,String,Berlin,String,DE,String
-ZIP,9269,,10781,String,Schöneberg,String,DE,String
-ZIP,9270,,10781,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9271,,10783,String,Berlin,String,DE,String
-ZIP,9272,,10783,String,Schöneberg,String,DE,String
-ZIP,9273,,10783,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9274,,10785,String,Berlin,String,DE,String
-ZIP,9275,,10785,String,Mitte,String,DE,String
-ZIP,9276,,10785,String,Tiergarten,String,DE,String
-ZIP,9277,,10785,String,Kreuzberg,String,DE,String
-ZIP,9278,,10785,String,Schöneberg,String,DE,String
-ZIP,9279,,10787,String,Berlin,String,DE,String
-ZIP,9280,,10787,String,Mitte,String,DE,String
-ZIP,9281,,10787,String,Schöneberg,String,DE,String
-ZIP,9282,,10787,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9283,,10787,String,Tiergarten,String,DE,String
-ZIP,9284,,10787,String,Charlottenburg,String,DE,String
-ZIP,9285,,10789,String,Berlin,String,DE,String
-ZIP,9286,,10789,String,Schöneberg,String,DE,String
-ZIP,9287,,10789,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9288,,10789,String,Charlottenburg,String,DE,String
-ZIP,9289,,10789,String,Wilmersdorf,String,DE,String
-ZIP,9290,,10823,String,Berlin,String,DE,String
-ZIP,9291,,10823,String,Schöneberg,String,DE,String
-ZIP,9292,,10823,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9293,,10825,String,Berlin,String,DE,String
-ZIP,9294,,10825,String,Schöneberg,String,DE,String
-ZIP,9295,,10825,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9296,,10825,String,Wilmersdorf,String,DE,String
-ZIP,9297,,10827,String,Berlin,String,DE,String
-ZIP,9298,,10827,String,Schöneberg,String,DE,String
-ZIP,9299,,10827,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9300,,10827,String,Friedenau,String,DE,String
-ZIP,9301,,10827,String,Dahlem,String,DE,String
-ZIP,9302,,10829,String,Berlin,String,DE,String
-ZIP,9303,,10829,String,Schöneberg,String,DE,String
-ZIP,9304,,10829,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9305,,10829,String,Tempelhof,String,DE,String
-ZIP,9306,,10961,String,Berlin,String,DE,String
-ZIP,9307,,10961,String,Friedrichshain-Kreuzberg,String,DE,String
-ZIP,9308,,10961,String,Kreuzberg,String,DE,String
-ZIP,9309,,10963,String,Berlin,String,DE,String
-ZIP,9310,,10963,String,Friedrichshain-Kreuzberg,String,DE,String
-ZIP,9311,,10963,String,Kreuzberg,String,DE,String
-ZIP,9312,,10963,String,Tiergarten,String,DE,String
-ZIP,9313,,10965,String,Berlin,String,DE,String
-ZIP,9314,,10965,String,Friedrichshain-Kreuzberg,String,DE,String
-ZIP,9315,,10965,String,Kreuzberg,String,DE,String
-ZIP,9316,,10965,String,Schöneberg,String,DE,String
-ZIP,9317,,10965,String,Neukölln,String,DE,String
-ZIP,9318,,10965,String,Tempelhof,String,DE,String
-ZIP,9319,,10967,String,Berlin,String,DE,String
-ZIP,9320,,10967,String,Friedrichshain-Kreuzberg,String,DE,String
-ZIP,9321,,10967,String,Kreuzberg,String,DE,String
-ZIP,9322,,10967,String,Neukölln,String,DE,String
-ZIP,9323,,10969,String,Berlin,String,DE,String
-ZIP,9324,,10969,String,Friedrichshain-Kreuzberg,String,DE,String
-ZIP,9325,,10969,String,Kreuzberg,String,DE,String
-ZIP,9326,,10969,String,Mitte,String,DE,String
-ZIP,9327,,10997,String,Berlin,String,DE,String
-ZIP,9328,,10997,String,Friedrichshain-Kreuzberg,String,DE,String
-ZIP,9329,,10997,String,Kreuzberg,String,DE,String
-ZIP,9330,,10999,String,Berlin,String,DE,String
-ZIP,9331,,10999,String,Friedrichshain-Kreuzberg,String,DE,String
-ZIP,9332,,10999,String,Kreuzberg,String,DE,String
-ZIP,9333,,12043,String,Berlin,String,DE,String
-ZIP,9334,,12043,String,Neukölln,String,DE,String
-ZIP,9335,,12045,String,Berlin,String,DE,String
-ZIP,9336,,12045,String,Neukölln,String,DE,String
-ZIP,9337,,12047,String,Berlin,String,DE,String
-ZIP,9338,,12047,String,Neukölln,String,DE,String
-ZIP,9339,,12049,String,Berlin,String,DE,String
-ZIP,9340,,12049,String,Neukölln,String,DE,String
-ZIP,9341,,12051,String,Berlin,String,DE,String
-ZIP,9342,,12051,String,Neukölln,String,DE,String
-ZIP,9343,,12053,String,Berlin,String,DE,String
-ZIP,9344,,12053,String,Neukölln,String,DE,String
-ZIP,9345,,12055,String,Berlin,String,DE,String
-ZIP,9346,,12055,String,Neukölln,String,DE,String
-ZIP,9347,,12057,String,Berlin,String,DE,String
-ZIP,9348,,12057,String,Neukölln,String,DE,String
-ZIP,9349,,12057,String,Kol. Zur Rose,String,DE,String
-ZIP,9350,,12057,String,Kol. Freiheit,String,DE,String
-ZIP,9351,,12057,String,Kreuzberg,String,DE,String
-ZIP,9352,,12057,String,Kol. Helmutstal,String,DE,String
-ZIP,9353,,12057,String,Kol. Volksgärten,String,DE,String
-ZIP,9354,,12059,String,Berlin,String,DE,String
-ZIP,9355,,12059,String,Neukölln,String,DE,String
-ZIP,9356,,12099,String,Berlin,String,DE,String
-ZIP,9357,,12099,String,Tempelhof,String,DE,String
-ZIP,9358,,12099,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9359,,12099,String,Kol. Frieden,String,DE,String
-ZIP,9360,,12099,String,Neukölln,String,DE,String
-ZIP,9361,,12099,String,Kol. Albrechtshöhe,String,DE,String
-ZIP,9362,,12099,String,Mariendorf,String,DE,String
-ZIP,9363,,12099,String,Kol. Bergfrieden,String,DE,String
-ZIP,9364,,12099,String,Britz,String,DE,String
-ZIP,9365,,12101,String,Berlin,String,DE,String
-ZIP,9366,,12101,String,Tempelhof,String,DE,String
-ZIP,9367,,12101,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9368,,12101,String,Staaken,String,DE,String
-ZIP,9369,,12101,String,Wittenau,String,DE,String
-ZIP,9370,,12101,String,Schöneberg,String,DE,String
-ZIP,9371,,12101,String,Kol. Papestr.,String,DE,String
-ZIP,9372,,12103,String,Berlin,String,DE,String
-ZIP,9373,,12103,String,Tempelhof,String,DE,String
-ZIP,9374,,12103,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9375,,12103,String,Schöneberg,String,DE,String
-ZIP,9376,,12103,String,Mariendorf,String,DE,String
-ZIP,9377,,12105,String,Berlin,String,DE,String
-ZIP,9378,,12105,String,Marienhof,String,DE,String
-ZIP,9379,,12105,String,Tempelhof,String,DE,String
-ZIP,9380,,12105,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9381,,12105,String,Mariendorf,String,DE,String
-ZIP,9382,,12105,String,Schöneberg,String,DE,String
-ZIP,9383,,12107,String,Berlin,String,DE,String
-ZIP,9384,,12107,String,Marienhof,String,DE,String
-ZIP,9385,,12107,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9386,,12107,String,Mariendorf,String,DE,String
-ZIP,9387,,12107,String,Kol. An der Rennbahn,String,DE,String
-ZIP,9388,,12107,String,Tempelhof,String,DE,String
-ZIP,9389,,12107,String,Marienfelde,String,DE,String
-ZIP,9390,,12107,String,Buckow,String,DE,String
-ZIP,9391,,12107,String,Lichtenrade,String,DE,String
-ZIP,9392,,12109,String,Berlin,String,DE,String
-ZIP,9393,,12109,String,Marienhof,String,DE,String
-ZIP,9394,,12109,String,Tempelhof,String,DE,String
-ZIP,9395,,12109,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9396,,12109,String,Mariendorf,String,DE,String
-ZIP,9397,,12109,String,Kol. Kleeblatt,String,DE,String
-ZIP,9398,,12109,String,Kol. Marienglück,String,DE,String
-ZIP,9399,,12109,String,Kol. Fröhliche Eintracht,String,DE,String
-ZIP,9400,,12109,String,Kol. Abendrot,String,DE,String
-ZIP,9401,,12109,String,Kol. Alpental,String,DE,String
-ZIP,9402,,12157,String,Berlin,String,DE,String
-ZIP,9403,,12157,String,Schöneberg,String,DE,String
-ZIP,9404,,12157,String,Steglitz,String,DE,String
-ZIP,9405,,12157,String,Steglitz-Zehlendorf,String,DE,String
-ZIP,9406,,12157,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9407,,12157,String,Kol. Grüne Aue,String,DE,String
-ZIP,9408,,12157,String,Friedenau,String,DE,String
-ZIP,9409,,12159,String,Berlin,String,DE,String
-ZIP,9410,,12159,String,Friedenau,String,DE,String
-ZIP,9411,,12159,String,Schöneberg,String,DE,String
-ZIP,9412,,12159,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9413,,12161,String,Berlin,String,DE,String
-ZIP,9414,,12161,String,Friedenau,String,DE,String
-ZIP,9415,,12161,String,Schöneberg,String,DE,String
-ZIP,9416,,12161,String,Steglitz,String,DE,String
-ZIP,9417,,12161,String,Steglitz-Zehlendorf,String,DE,String
-ZIP,9418,,12161,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9419,,12161,String,Wilmersdorf,String,DE,String
-ZIP,9420,,12163,String,Berlin,String,DE,String
-ZIP,9421,,12163,String,Steglitz,String,DE,String
-ZIP,9422,,12163,String,Steglitz-Zehlendorf,String,DE,String
-ZIP,9423,,12163,String,Friedenau,String,DE,String
-ZIP,9424,,12163,String,Dahlem,String,DE,String
-ZIP,9425,,12163,String,Wilmersdorf,String,DE,String
-ZIP,9426,,12165,String,Berlin,String,DE,String
-ZIP,9427,,12165,String,Steglitz,String,DE,String
-ZIP,9428,,12165,String,Steglitz-Zehlendorf,String,DE,String
-ZIP,9429,,12167,String,Berlin,String,DE,String
-ZIP,9430,,12167,String,Steglitz,String,DE,String
-ZIP,9431,,12167,String,Steglitz-Zehlendorf,String,DE,String
-ZIP,9432,,12169,String,Berlin,String,DE,String
-ZIP,9433,,12169,String,Schöneberg,String,DE,String
-ZIP,9434,,12169,String,Steglitz,String,DE,String
-ZIP,9435,,12169,String,Steglitz-Zehlendorf,String,DE,String
-ZIP,9436,,12169,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9437,,12203,String,Berlin,String,DE,String
-ZIP,9438,,12203,String,Lichterfelde,String,DE,String
-ZIP,9439,,12203,String,Steglitz-Zehlendorf,String,DE,String
-ZIP,9440,,12205,String,Berlin,String,DE,String
-ZIP,9441,,12205,String,Lichterfelde,String,DE,String
-ZIP,9442,,12205,String,Steglitz-Zehlendorf,String,DE,String
-ZIP,9443,,12207,String,Berlin,String,DE,String
-ZIP,9444,,12207,String,Lichterfelde,String,DE,String
-ZIP,9445,,12207,String,Steglitz-Zehlendorf,String,DE,String
-ZIP,9446,,12207,String,Prenzlauer Berg,String,DE,String
-ZIP,9447,,12209,String,Berlin,String,DE,String
-ZIP,9448,,12209,String,Lichterfelde,String,DE,String
-ZIP,9449,,12209,String,Steglitz-Zehlendorf,String,DE,String
-ZIP,9450,,12247,String,Berlin,String,DE,String
-ZIP,9451,,12247,String,Lankwitz,String,DE,String
-ZIP,9452,,12247,String,Steglitz-Zehlendorf,String,DE,String
-ZIP,9453,,12247,String,Steglitz,String,DE,String
-ZIP,9454,,12247,String,Wilhelmstadt,String,DE,String
-ZIP,9455,,12249,String,Berlin,String,DE,String
-ZIP,9456,,12249,String,Lankwitz,String,DE,String
-ZIP,9457,,12249,String,Steglitz-Zehlendorf,String,DE,String
-ZIP,9458,,12249,String,Marienfelde,String,DE,String
-ZIP,9459,,12277,String,Berlin,String,DE,String
-ZIP,9460,,12277,String,Marienfelde,String,DE,String
-ZIP,9461,,12277,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9462,,12277,String,Mariendorf,String,DE,String
-ZIP,9463,,12279,String,Berlin,String,DE,String
-ZIP,9464,,12279,String,Marienfelde,String,DE,String
-ZIP,9465,,12279,String,Tempelhof,String,DE,String
-ZIP,9466,,12279,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9467,,12279,String,Lichterfelde,String,DE,String
-ZIP,9468,,12305,String,Berlin,String,DE,String
-ZIP,9469,,12305,String,Lichtenrade,String,DE,String
-ZIP,9470,,12305,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9471,,12305,String,Buckow,String,DE,String
-ZIP,9472,,12307,String,Berlin,String,DE,String
-ZIP,9473,,12307,String,Lichtenrade,String,DE,String
-ZIP,9474,,12307,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9475,,12307,String,Marienfelde,String,DE,String
-ZIP,9476,,12309,String,Berlin,String,DE,String
-ZIP,9477,,12309,String,Lichtenrade,String,DE,String
-ZIP,9478,,12309,String,Tempelhof-Schöneberg,String,DE,String
-ZIP,9479,,12347,String,Berlin,String,DE,String
-ZIP,9480,,12347,String,Britz,String,DE,String
-ZIP,9481,,12347,String,Neukölln,String,DE,String
-ZIP,9482,,12347,String,Kol. Roseneck,String,DE,String
-ZIP,9483,,12347,String,Kol. Guter Wille,String,DE,String
-ZIP,9484,,12347,String,Kol. Ostelbien,String,DE,String
-ZIP,9485,,12347,String,Kol. Sorgenfrei,String,DE,String
-ZIP,9486,,12347,String,Charlottenburg,String,DE,String
-ZIP,9487,,12347,String,Wilhelmstadt,String,DE,String
-ZIP,9488,,12347,String,Kol. Blaschkotal,String,DE,String
-ZIP,9489,,12347,String,Tempelhof,String,DE,String
-ZIP,9490,,12349,String,Berlin,String,DE,String
-ZIP,9491,,12349,String,Buckow,String,DE,String
-ZIP,9492,,12349,String,Neukölln,String,DE,String
-ZIP,9493,,12349,String,Kol. Heimaterde,String,DE,String
-ZIP,9494,,12349,String,Britz,String,DE,String
-ZIP,9495,,12349,String,Kol. Kurt-Poethig,String,DE,String
-ZIP,9496,,12349,String,Kol. Zur Windmühle,String,DE,String
-ZIP,9497,,12349,String,Kol. Friedland 3,String,DE,String
-ZIP,9498,,12349,String,Wedding,String,DE,String
-ZIP,9499,,12349,String,Kol. Goldregen,String,DE,String
-ZIP,9500,,12351,String,Berlin,String,DE,String
-ZIP,9501,,12351,String,Buckow,String,DE,String
-ZIP,9502,,12351,String,Gropiusstadt,String,DE,String
-ZIP,9503,,12351,String,Neukölln,String,DE,String
-ZIP,9504,,12351,String,Britz,String,DE,String
-ZIP,9505,,12351,String,Rudow,String,DE,String
-ZIP,9506,,12351,String,Reinickendorf,String,DE,String
-ZIP,9507,,12353,String,Berlin,String,DE,String
-ZIP,9508,,12353,String,Buckow,String,DE,String
-ZIP,9509,,12353,String,Gropiusstadt,String,DE,String
-ZIP,9510,,12353,String,Neukölln,String,DE,String
-ZIP,9511,,12353,String,Rudow,String,DE,String
-ZIP,9512,,12353,String,Kol. Grüner Stern,String,DE,String
-ZIP,9513,,12355,String,Berlin,String,DE,String
-ZIP,9514,,12355,String,Neukölln,String,DE,String
-ZIP,9515,,12355,String,Rudow,String,DE,String
-ZIP,9516,,12355,String,Kol. Platanenblick,String,DE,String
-ZIP,9517,,12355,String,Siedl. An der Rudower Höhe,String,DE,String
-ZIP,9518,,12357,String,Berlin,String,DE,String
-ZIP,9519,,12357,String,Neukölln,String,DE,String
-ZIP,9520,,12357,String,Rudow,String,DE,String
-ZIP,9521,,12357,String,Buckow,String,DE,String
-ZIP,9522,,12357,String,Falkenhagener Feld,String,DE,String
-ZIP,9523,,12359,String,Berlin,String,DE,String
-ZIP,9524,,12359,String,Britz,String,DE,String
-ZIP,9525,,12359,String,Neukölln,String,DE,String
-ZIP,9526,,12359,String,Kol. Britzer Wiesen,String,DE,String
-ZIP,9527,,12359,String,Kol. Ideal III,String,DE,String
-ZIP,9528,,12359,String,Rudow,String,DE,String
-ZIP,9529,,12359,String,Kol. Am Wiesenweg,String,DE,String
-ZIP,9530,,12359,String,Buckow,String,DE,String
-ZIP,9531,,12359,String,Kol. Edelweiß,String,DE,String
-ZIP,9532,,12359,String,Kol. Hasenheim,String,DE,String
-ZIP,9533,,12359,String,Kol. Am Buschkrug,String,DE,String
-ZIP,9534,,12435,String,Alt-Treptow,String,DE,String
-ZIP,9535,,12435,String,Berlin,String,DE,String
-ZIP,9536,,12435,String,Plänterwald,String,DE,String
-ZIP,9537,,12435,String,Treptow-Köpenick,String,DE,String
-ZIP,9538,,12437,String,Baumschulenweg,String,DE,String
-ZIP,9539,,12437,String,Berlin,String,DE,String
-ZIP,9540,,12437,String,Plänterwald,String,DE,String
-ZIP,9541,,12437,String,Treptow-Köpenick,String,DE,String
-ZIP,9542,,12437,String,KGA Oberer Damm,String,DE,String
-ZIP,9543,,12437,String,Niederschöneweide,String,DE,String
-ZIP,9544,,12437,String,KGA Britzer Allee,String,DE,String
-ZIP,9545,,12437,String,KGA Späthstraße 53,String,DE,String
-ZIP,9546,,12437,String,KGA Waldesgrund,String,DE,String
-ZIP,9547,,12437,String,Johannisthal,String,DE,String
-ZIP,9548,,12437,String,KGA Gemütlichkeit III,String,DE,String
-ZIP,9549,,12437,String,KGA Einigkeit II,String,DE,String
-ZIP,9550,,12437,String,KGA Holunderbusch,String,DE,String
-ZIP,9551,,12439,String,Berlin,String,DE,String
-ZIP,9552,,12439,String,Niederschöneweide,String,DE,String
-ZIP,9553,,12439,String,Treptow-Köpenick,String,DE,String
-ZIP,9554,,12439,String,KGA Waldland,String,DE,String
-ZIP,9555,,12459,String,Berlin,String,DE,String
-ZIP,9556,,12459,String,Köpenick,String,DE,String
-ZIP,9557,,12459,String,Oberschöneweide,String,DE,String
-ZIP,9558,,12459,String,Treptow-Köpenick,String,DE,String
-ZIP,9559,,12459,String,KGA Am Freibad,String,DE,String
-ZIP,9560,,12459,String,KGA Gartenfreunde Wuhlheide,String,DE,String
-ZIP,9561,,12459,String,KGA Grüne Aue,String,DE,String
-ZIP,9562,,12459,String,KGA Wilhelmstrand,String,DE,String
-ZIP,9563,,12459,String,Charlottenburg,String,DE,String
-ZIP,9564,,12459,String,Spandau,String,DE,String
-ZIP,9565,,12459,String,Siedl. Oberspree Köpenick,String,DE,String
-ZIP,9566,,12487,String,Berlin,String,DE,String
-ZIP,9567,,12487,String,Johannisthal,String,DE,String
-ZIP,9568,,12487,String,Treptow-Köpenick,String,DE,String
-ZIP,9569,,12487,String,KGA Lindental,String,DE,String
-ZIP,9570,,12487,String,KGA Heide am Wasser,String,DE,String
-ZIP,9571,,12487,String,KGA Gemütliches Heim,String,DE,String
-ZIP,9572,,12487,String,KGA Goldweide,String,DE,String
-ZIP,9573,,12487,String,KGA Späthswalde,String,DE,String
-ZIP,9574,,12487,String,KGA Hermannsruh,String,DE,String
-ZIP,9575,,12487,String,Baumschulenweg,String,DE,String
-ZIP,9576,,12487,String,KGA Neuseeland,String,DE,String
-ZIP,9577,,12487,String,Kladow,String,DE,String
-ZIP,9578,,12487,String,Wedding,String,DE,String
-ZIP,9579,,12487,String,Niederschöneweide,String,DE,String
-ZIP,9580,,12489,String,Adlershof,String,DE,String
-ZIP,9581,,12489,String,Berlin,String,DE,String
-ZIP,9582,,12489,String,Treptow-Köpenick,String,DE,String
-ZIP,9583,,12489,String,KGA Am Adlergestell,String,DE,String
-ZIP,9584,,12489,String,KGA Teltowkanal III,String,DE,String
-ZIP,9585,,12489,String,Johannisthal,String,DE,String
-ZIP,9586,,12489,String,KGA Lange Gurke,String,DE,String
-ZIP,9587,,12524,String,Altglienicke,String,DE,String
-ZIP,9588,,12524,String,Berlin,String,DE,String
-ZIP,9589,,12524,String,Bohnsdorf,String,DE,String
-ZIP,9590,,12524,String,Semnonenweg,String,DE,String
-ZIP,9591,,12524,String,Treptow-Köpenick,String,DE,String
-ZIP,9592,,12524,String,Wartenberg,String,DE,String
-ZIP,9593,,12524,String,KGA Falkenbrunn 1,String,DE,String
-ZIP,9594,,12526,String,Berlin,String,DE,String
-ZIP,9595,,12526,String,Bohnsdorf,String,DE,String
-ZIP,9596,,12526,String,Treptow-Köpenick,String,DE,String
-ZIP,9597,,12526,String,Altglienicke,String,DE,String
-ZIP,9598,,12526,String,Stadtrandsiedlung Malchow,String,DE,String
-ZIP,9599,,12527,String,Berlin,String,DE,String
+PartitionKey,RowKey,ZIP,City,Region
+ZIP,9101,10115,Berlin,DE
+ZIP,9102,10115,Mitte,DE
+ZIP,9103,10117,Berlin,DE
+ZIP,9104,10117,Mitte,DE
+ZIP,9105,10117,Spandau,DE
+ZIP,9106,10119,Berlin,DE
+ZIP,9107,10119,Mitte,DE
+ZIP,9108,10119,Pankow,DE
+ZIP,9109,10119,Prenzlauer Berg,DE
+ZIP,9110,10178,Berlin,DE
+ZIP,9111,10178,Mitte,DE
+ZIP,9112,10178,Britz,DE
+ZIP,9113,10178,Wedding,DE
+ZIP,9114,10179,Berlin,DE
+ZIP,9115,10179,Mitte,DE
+ZIP,9116,10243,Berlin,DE
+ZIP,9117,10243,Friedrichshain,DE
+ZIP,9118,10243,Friedrichshain-Kreuzberg,DE
+ZIP,9119,10243,Alt-Hohenschönhausen,DE
+ZIP,9120,10245,Berlin,DE
+ZIP,9121,10245,Friedrichshain,DE
+ZIP,9122,10245,Friedrichshain-Kreuzberg,DE
+ZIP,9123,10247,Berlin,DE
+ZIP,9124,10247,Friedrichshain,DE
+ZIP,9125,10247,Friedrichshain-Kreuzberg,DE
+ZIP,9126,10247,Pankow,DE
+ZIP,9127,10247,Prenzlauer Berg,DE
+ZIP,9128,10249,Berlin,DE
+ZIP,9129,10249,Friedrichshain,DE
+ZIP,9130,10249,Friedrichshain-Kreuzberg,DE
+ZIP,9131,10249,Pankow,DE
+ZIP,9132,10249,Prenzlauer Berg,DE
+ZIP,9133,10315,Berlin,DE
+ZIP,9134,10315,Friedrichsfelde,DE
+ZIP,9135,10315,Lichtenberg,DE
+ZIP,9136,10315,KGA Bielefeld,DE
+ZIP,9137,10315,Neu-Hohenschönhausen,DE
+ZIP,9138,10315,Stadtrandsiedlung Malchow,DE
+ZIP,9139,10315,Biesdorf,DE
+ZIP,9140,10317,Berlin,DE
+ZIP,9141,10317,Lichtenberg,DE
+ZIP,9142,10317,Rummelsburg,DE
+ZIP,9143,10317,Friedrichsfelde,DE
+ZIP,9144,10318,Berlin,DE
+ZIP,9145,10318,Karlshorst,DE
+ZIP,9146,10318,Lichtenberg,DE
+ZIP,9147,10318,Oberschöneweide,DE
+ZIP,9148,10318,KGA Wuhlheide Lichtenberg,DE
+ZIP,9149,10318,KGA Biesenhorst 2,DE
+ZIP,9150,10318,KGA Blockdamm,DE
+ZIP,9151,10319,Berlin,DE
+ZIP,9152,10319,Friedrichsfelde,DE
+ZIP,9153,10319,Lichtenberg,DE
+ZIP,9154,10365,Berlin,DE
+ZIP,9155,10365,Lichtenberg,DE
+ZIP,9156,10367,Berlin,DE
+ZIP,9157,10367,Lichtenberg,DE
+ZIP,9158,10369,Berlin,DE
+ZIP,9159,10369,Fennpfuhl,DE
+ZIP,9160,10369,Lichtenberg,DE
+ZIP,9161,10369,KGA Langes Höhe,DE
+ZIP,9162,10405,Berlin,DE
+ZIP,9163,10405,Pankow,DE
+ZIP,9164,10405,Prenzlauer Berg,DE
+ZIP,9165,10407,Berlin,DE
+ZIP,9166,10407,Pankow,DE
+ZIP,9167,10407,Prenzlauer Berg,DE
+ZIP,9168,10407,KGA Grönland,DE
+ZIP,9169,10407,KGA Neues Heim,DE
+ZIP,9170,10407,KGA Volkspark Prenzlauer Berg,DE
+ZIP,9171,10409,Berlin,DE
+ZIP,9172,10409,Pankow,DE
+ZIP,9173,10409,Prenzlauer Berg,DE
+ZIP,9174,10435,Berlin,DE
+ZIP,9175,10435,Pankow,DE
+ZIP,9176,10435,Prenzlauer Berg,DE
+ZIP,9177,10435,Mitte,DE
+ZIP,9178,10437,Berlin,DE
+ZIP,9179,10437,Pankow,DE
+ZIP,9180,10437,Prenzlauer Berg,DE
+ZIP,9181,10439,Berlin,DE
+ZIP,9182,10439,Pankow,DE
+ZIP,9183,10439,Prenzlauer Berg,DE
+ZIP,9184,10551,Berlin,DE
+ZIP,9185,10551,Mitte,DE
+ZIP,9186,10551,Moabit,DE
+ZIP,9187,10553,Berlin,DE
+ZIP,9188,10553,Mitte,DE
+ZIP,9189,10553,Moabit,DE
+ZIP,9190,10555,Berlin,DE
+ZIP,9191,10555,Hansaviertel,DE
+ZIP,9192,10555,Mitte,DE
+ZIP,9193,10555,Moabit,DE
+ZIP,9194,10555,Wedding,DE
+ZIP,9195,10557,Berlin,DE
+ZIP,9196,10557,Hansaviertel,DE
+ZIP,9197,10557,Mitte,DE
+ZIP,9198,10557,Moabit,DE
+ZIP,9199,10557,Tiergarten,DE
+ZIP,9200,10559,Berlin,DE
+ZIP,9201,10559,Mitte,DE
+ZIP,9202,10559,Moabit,DE
+ZIP,9203,10585,Berlin,DE
+ZIP,9204,10585,Charlottenburg,DE
+ZIP,9205,10585,Charlottenburg-Wilmersdorf,DE
+ZIP,9206,10587,Berlin,DE
+ZIP,9207,10587,Charlottenburg,DE
+ZIP,9208,10587,Charlottenburg-Wilmersdorf,DE
+ZIP,9209,10589,Berlin,DE
+ZIP,9210,10589,Charlottenburg,DE
+ZIP,9211,10589,Charlottenburg-Wilmersdorf,DE
+ZIP,9212,10589,Charlottenburg-Nord,DE
+ZIP,9213,10589,Kol. Gerickes Hof,DE
+ZIP,9214,10623,Berlin,DE
+ZIP,9215,10623,Charlottenburg,DE
+ZIP,9216,10623,Charlottenburg-Wilmersdorf,DE
+ZIP,9217,10623,Tiergarten,DE
+ZIP,9218,10623,Hansaviertel,DE
+ZIP,9219,10625,Berlin,DE
+ZIP,9220,10625,Charlottenburg,DE
+ZIP,9221,10625,Charlottenburg-Wilmersdorf,DE
+ZIP,9222,10627,Berlin,DE
+ZIP,9223,10627,Charlottenburg,DE
+ZIP,9224,10627,Charlottenburg-Wilmersdorf,DE
+ZIP,9225,10629,Berlin,DE
+ZIP,9226,10629,Charlottenburg,DE
+ZIP,9227,10629,Charlottenburg-Wilmersdorf,DE
+ZIP,9228,10707,Berlin,DE
+ZIP,9229,10707,Charlottenburg-Wilmersdorf,DE
+ZIP,9230,10707,Wilmersdorf,DE
+ZIP,9231,10707,Charlottenburg,DE
+ZIP,9232,10709,Berlin,DE
+ZIP,9233,10709,Charlottenburg-Wilmersdorf,DE
+ZIP,9234,10709,Halensee,DE
+ZIP,9235,10709,Wilmersdorf,DE
+ZIP,9236,10709,Charlottenburg,DE
+ZIP,9237,10709,Schmargendorf,DE
+ZIP,9238,10711,Berlin,DE
+ZIP,9239,10711,Charlottenburg-Wilmersdorf,DE
+ZIP,9240,10711,Halensee,DE
+ZIP,9241,10711,Charlottenburg,DE
+ZIP,9242,10711,Grunewald,DE
+ZIP,9243,10711,Wilmersdorf,DE
+ZIP,9244,10711,Schmargendorf,DE
+ZIP,9245,10713,Berlin,DE
+ZIP,9246,10713,Charlottenburg-Wilmersdorf,DE
+ZIP,9247,10713,Wilmersdorf,DE
+ZIP,9248,10713,Halensee,DE
+ZIP,9249,10713,Schmargendorf,DE
+ZIP,9250,10715,Berlin,DE
+ZIP,9251,10715,Charlottenburg-Wilmersdorf,DE
+ZIP,9252,10715,Wilmersdorf,DE
+ZIP,9253,10717,Berlin,DE
+ZIP,9254,10717,Charlottenburg-Wilmersdorf,DE
+ZIP,9255,10717,Wilmersdorf,DE
+ZIP,9256,10719,Berlin,DE
+ZIP,9257,10719,Charlottenburg-Wilmersdorf,DE
+ZIP,9258,10719,Wilmersdorf,DE
+ZIP,9259,10719,Charlottenburg,DE
+ZIP,9260,10777,Berlin,DE
+ZIP,9261,10777,Schöneberg,DE
+ZIP,9262,10777,Tempelhof-Schöneberg,DE
+ZIP,9263,10777,Wilmersdorf,DE
+ZIP,9264,10779,Berlin,DE
+ZIP,9265,10779,Schöneberg,DE
+ZIP,9266,10779,Tempelhof-Schöneberg,DE
+ZIP,9267,10779,Wilmersdorf,DE
+ZIP,9268,10781,Berlin,DE
+ZIP,9269,10781,Schöneberg,DE
+ZIP,9270,10781,Tempelhof-Schöneberg,DE
+ZIP,9271,10783,Berlin,DE
+ZIP,9272,10783,Schöneberg,DE
+ZIP,9273,10783,Tempelhof-Schöneberg,DE
+ZIP,9274,10785,Berlin,DE
+ZIP,9275,10785,Mitte,DE
+ZIP,9276,10785,Tiergarten,DE
+ZIP,9277,10785,Kreuzberg,DE
+ZIP,9278,10785,Schöneberg,DE
+ZIP,9279,10787,Berlin,DE
+ZIP,9280,10787,Mitte,DE
+ZIP,9281,10787,Schöneberg,DE
+ZIP,9282,10787,Tempelhof-Schöneberg,DE
+ZIP,9283,10787,Tiergarten,DE
+ZIP,9284,10787,Charlottenburg,DE
+ZIP,9285,10789,Berlin,DE
+ZIP,9286,10789,Schöneberg,DE
+ZIP,9287,10789,Tempelhof-Schöneberg,DE
+ZIP,9288,10789,Charlottenburg,DE
+ZIP,9289,10789,Wilmersdorf,DE
+ZIP,9290,10823,Berlin,DE
+ZIP,9291,10823,Schöneberg,DE
+ZIP,9292,10823,Tempelhof-Schöneberg,DE
+ZIP,9293,10825,Berlin,DE
+ZIP,9294,10825,Schöneberg,DE
+ZIP,9295,10825,Tempelhof-Schöneberg,DE
+ZIP,9296,10825,Wilmersdorf,DE
+ZIP,9297,10827,Berlin,DE
+ZIP,9298,10827,Schöneberg,DE
+ZIP,9299,10827,Tempelhof-Schöneberg,DE
+ZIP,9300,10827,Friedenau,DE
+ZIP,9301,10827,Dahlem,DE
+ZIP,9302,10829,Berlin,DE
+ZIP,9303,10829,Schöneberg,DE
+ZIP,9304,10829,Tempelhof-Schöneberg,DE
+ZIP,9305,10829,Tempelhof,DE
+ZIP,9306,10961,Berlin,DE
+ZIP,9307,10961,Friedrichshain-Kreuzberg,DE
+ZIP,9308,10961,Kreuzberg,DE
+ZIP,9309,10963,Berlin,DE
+ZIP,9310,10963,Friedrichshain-Kreuzberg,DE
+ZIP,9311,10963,Kreuzberg,DE
+ZIP,9312,10963,Tiergarten,DE
+ZIP,9313,10965,Berlin,DE
+ZIP,9314,10965,Friedrichshain-Kreuzberg,DE
+ZIP,9315,10965,Kreuzberg,DE
+ZIP,9316,10965,Schöneberg,DE
+ZIP,9317,10965,Neukölln,DE
+ZIP,9318,10965,Tempelhof,DE
+ZIP,9319,10967,Berlin,DE
+ZIP,9320,10967,Friedrichshain-Kreuzberg,DE
+ZIP,9321,10967,Kreuzberg,DE
+ZIP,9322,10967,Neukölln,DE
+ZIP,9323,10969,Berlin,DE
+ZIP,9324,10969,Friedrichshain-Kreuzberg,DE
+ZIP,9325,10969,Kreuzberg,DE
+ZIP,9326,10969,Mitte,DE
+ZIP,9327,10997,Berlin,DE
+ZIP,9328,10997,Friedrichshain-Kreuzberg,DE
+ZIP,9329,10997,Kreuzberg,DE
+ZIP,9330,10999,Berlin,DE
+ZIP,9331,10999,Friedrichshain-Kreuzberg,DE
+ZIP,9332,10999,Kreuzberg,DE
+ZIP,9333,12043,Berlin,DE
+ZIP,9334,12043,Neukölln,DE
+ZIP,9335,12045,Berlin,DE
+ZIP,9336,12045,Neukölln,DE
+ZIP,9337,12047,Berlin,DE
+ZIP,9338,12047,Neukölln,DE
+ZIP,9339,12049,Berlin,DE
+ZIP,9340,12049,Neukölln,DE
+ZIP,9341,12051,Berlin,DE
+ZIP,9342,12051,Neukölln,DE
+ZIP,9343,12053,Berlin,DE
+ZIP,9344,12053,Neukölln,DE
+ZIP,9345,12055,Berlin,DE
+ZIP,9346,12055,Neukölln,DE
+ZIP,9347,12057,Berlin,DE
+ZIP,9348,12057,Neukölln,DE
+ZIP,9349,12057,Kol. Zur Rose,DE
+ZIP,9350,12057,Kol. Freiheit,DE
+ZIP,9351,12057,Kreuzberg,DE
+ZIP,9352,12057,Kol. Helmutstal,DE
+ZIP,9353,12057,Kol. Volksgärten,DE
+ZIP,9354,12059,Berlin,DE
+ZIP,9355,12059,Neukölln,DE
+ZIP,9356,12099,Berlin,DE
+ZIP,9357,12099,Tempelhof,DE
+ZIP,9358,12099,Tempelhof-Schöneberg,DE
+ZIP,9359,12099,Kol. Frieden,DE
+ZIP,9360,12099,Neukölln,DE
+ZIP,9361,12099,Kol. Albrechtshöhe,DE
+ZIP,9362,12099,Mariendorf,DE
+ZIP,9363,12099,Kol. Bergfrieden,DE
+ZIP,9364,12099,Britz,DE
+ZIP,9365,12101,Berlin,DE
+ZIP,9366,12101,Tempelhof,DE
+ZIP,9367,12101,Tempelhof-Schöneberg,DE
+ZIP,9368,12101,Staaken,DE
+ZIP,9369,12101,Wittenau,DE
+ZIP,9370,12101,Schöneberg,DE
+ZIP,9371,12101,Kol. Papestr.,DE
+ZIP,9372,12103,Berlin,DE
+ZIP,9373,12103,Tempelhof,DE
+ZIP,9374,12103,Tempelhof-Schöneberg,DE
+ZIP,9375,12103,Schöneberg,DE
+ZIP,9376,12103,Mariendorf,DE
+ZIP,9377,12105,Berlin,DE
+ZIP,9378,12105,Marienhof,DE
+ZIP,9379,12105,Tempelhof,DE
+ZIP,9380,12105,Tempelhof-Schöneberg,DE
+ZIP,9381,12105,Mariendorf,DE
+ZIP,9382,12105,Schöneberg,DE
+ZIP,9383,12107,Berlin,DE
+ZIP,9384,12107,Marienhof,DE
+ZIP,9385,12107,Tempelhof-Schöneberg,DE
+ZIP,9386,12107,Mariendorf,DE
+ZIP,9387,12107,Kol. An der Rennbahn,DE
+ZIP,9388,12107,Tempelhof,DE
+ZIP,9389,12107,Marienfelde,DE
+ZIP,9390,12107,Buckow,DE
+ZIP,9391,12107,Lichtenrade,DE
+ZIP,9392,12109,Berlin,DE
+ZIP,9393,12109,Marienhof,DE
+ZIP,9394,12109,Tempelhof,DE
+ZIP,9395,12109,Tempelhof-Schöneberg,DE
+ZIP,9396,12109,Mariendorf,DE
+ZIP,9397,12109,Kol. Kleeblatt,DE
+ZIP,9398,12109,Kol. Marienglück,DE
+ZIP,9399,12109,Kol. Fröhliche Eintracht,DE
+ZIP,9400,12109,Kol. Abendrot,DE
+ZIP,9401,12109,Kol. Alpental,DE
+ZIP,9402,12157,Berlin,DE
+ZIP,9403,12157,Schöneberg,DE
+ZIP,9404,12157,Steglitz,DE
+ZIP,9405,12157,Steglitz-Zehlendorf,DE
+ZIP,9406,12157,Tempelhof-Schöneberg,DE
+ZIP,9407,12157,Kol. Grüne Aue,DE
+ZIP,9408,12157,Friedenau,DE
+ZIP,9409,12159,Berlin,DE
+ZIP,9410,12159,Friedenau,DE
+ZIP,9411,12159,Schöneberg,DE
+ZIP,9412,12159,Tempelhof-Schöneberg,DE
+ZIP,9413,12161,Berlin,DE
+ZIP,9414,12161,Friedenau,DE
+ZIP,9415,12161,Schöneberg,DE
+ZIP,9416,12161,Steglitz,DE
+ZIP,9417,12161,Steglitz-Zehlendorf,DE
+ZIP,9418,12161,Tempelhof-Schöneberg,DE
+ZIP,9419,12161,Wilmersdorf,DE
+ZIP,9420,12163,Berlin,DE
+ZIP,9421,12163,Steglitz,DE
+ZIP,9422,12163,Steglitz-Zehlendorf,DE
+ZIP,9423,12163,Friedenau,DE
+ZIP,9424,12163,Dahlem,DE
+ZIP,9425,12163,Wilmersdorf,DE
+ZIP,9426,12165,Berlin,DE
+ZIP,9427,12165,Steglitz,DE
+ZIP,9428,12165,Steglitz-Zehlendorf,DE
+ZIP,9429,12167,Berlin,DE
+ZIP,9430,12167,Steglitz,DE
+ZIP,9431,12167,Steglitz-Zehlendorf,DE
+ZIP,9432,12169,Berlin,DE
+ZIP,9433,12169,Schöneberg,DE
+ZIP,9434,12169,Steglitz,DE
+ZIP,9435,12169,Steglitz-Zehlendorf,DE
+ZIP,9436,12169,Tempelhof-Schöneberg,DE
+ZIP,9437,12203,Berlin,DE
+ZIP,9438,12203,Lichterfelde,DE
+ZIP,9439,12203,Steglitz-Zehlendorf,DE
+ZIP,9440,12205,Berlin,DE
+ZIP,9441,12205,Lichterfelde,DE
+ZIP,9442,12205,Steglitz-Zehlendorf,DE
+ZIP,9443,12207,Berlin,DE
+ZIP,9444,12207,Lichterfelde,DE
+ZIP,9445,12207,Steglitz-Zehlendorf,DE
+ZIP,9446,12207,Prenzlauer Berg,DE
+ZIP,9447,12209,Berlin,DE
+ZIP,9448,12209,Lichterfelde,DE
+ZIP,9449,12209,Steglitz-Zehlendorf,DE
+ZIP,9450,12247,Berlin,DE
+ZIP,9451,12247,Lankwitz,DE
+ZIP,9452,12247,Steglitz-Zehlendorf,DE
+ZIP,9453,12247,Steglitz,DE
+ZIP,9454,12247,Wilhelmstadt,DE
+ZIP,9455,12249,Berlin,DE
+ZIP,9456,12249,Lankwitz,DE
+ZIP,9457,12249,Steglitz-Zehlendorf,DE
+ZIP,9458,12249,Marienfelde,DE
+ZIP,9459,12277,Berlin,DE
+ZIP,9460,12277,Marienfelde,DE
+ZIP,9461,12277,Tempelhof-Schöneberg,DE
+ZIP,9462,12277,Mariendorf,DE
+ZIP,9463,12279,Berlin,DE
+ZIP,9464,12279,Marienfelde,DE
+ZIP,9465,12279,Tempelhof,DE
+ZIP,9466,12279,Tempelhof-Schöneberg,DE
+ZIP,9467,12279,Lichterfelde,DE
+ZIP,9468,12305,Berlin,DE
+ZIP,9469,12305,Lichtenrade,DE
+ZIP,9470,12305,Tempelhof-Schöneberg,DE
+ZIP,9471,12305,Buckow,DE
+ZIP,9472,12307,Berlin,DE
+ZIP,9473,12307,Lichtenrade,DE
+ZIP,9474,12307,Tempelhof-Schöneberg,DE
+ZIP,9475,12307,Marienfelde,DE
+ZIP,9476,12309,Berlin,DE
+ZIP,9477,12309,Lichtenrade,DE
+ZIP,9478,12309,Tempelhof-Schöneberg,DE
+ZIP,9479,12347,Berlin,DE
+ZIP,9480,12347,Britz,DE
+ZIP,9481,12347,Neukölln,DE
+ZIP,9482,12347,Kol. Roseneck,DE
+ZIP,9483,12347,Kol. Guter Wille,DE
+ZIP,9484,12347,Kol. Ostelbien,DE
+ZIP,9485,12347,Kol. Sorgenfrei,DE
+ZIP,9486,12347,Charlottenburg,DE
+ZIP,9487,12347,Wilhelmstadt,DE
+ZIP,9488,12347,Kol. Blaschkotal,DE
+ZIP,9489,12347,Tempelhof,DE
+ZIP,9490,12349,Berlin,DE
+ZIP,9491,12349,Buckow,DE
+ZIP,9492,12349,Neukölln,DE
+ZIP,9493,12349,Kol. Heimaterde,DE
+ZIP,9494,12349,Britz,DE
+ZIP,9495,12349,Kol. Kurt-Poethig,DE
+ZIP,9496,12349,Kol. Zur Windmühle,DE
+ZIP,9497,12349,Kol. Friedland 3,DE
+ZIP,9498,12349,Wedding,DE
+ZIP,9499,12349,Kol. Goldregen,DE
+ZIP,9500,12351,Berlin,DE
+ZIP,9501,12351,Buckow,DE
+ZIP,9502,12351,Gropiusstadt,DE
+ZIP,9503,12351,Neukölln,DE
+ZIP,9504,12351,Britz,DE
+ZIP,9505,12351,Rudow,DE
+ZIP,9506,12351,Reinickendorf,DE
+ZIP,9507,12353,Berlin,DE
+ZIP,9508,12353,Buckow,DE
+ZIP,9509,12353,Gropiusstadt,DE
+ZIP,9510,12353,Neukölln,DE
+ZIP,9511,12353,Rudow,DE
+ZIP,9512,12353,Kol. Grüner Stern,DE
+ZIP,9513,12355,Berlin,DE
+ZIP,9514,12355,Neukölln,DE
+ZIP,9515,12355,Rudow,DE
+ZIP,9516,12355,Kol. Platanenblick,DE
+ZIP,9517,12355,Siedl. An der Rudower Höhe,DE
+ZIP,9518,12357,Berlin,DE
+ZIP,9519,12357,Neukölln,DE
+ZIP,9520,12357,Rudow,DE
+ZIP,9521,12357,Buckow,DE
+ZIP,9522,12357,Falkenhagener Feld,DE
+ZIP,9523,12359,Berlin,DE
+ZIP,9524,12359,Britz,DE
+ZIP,9525,12359,Neukölln,DE
+ZIP,9526,12359,Kol. Britzer Wiesen,DE
+ZIP,9527,12359,Kol. Ideal III,DE
+ZIP,9528,12359,Rudow,DE
+ZIP,9529,12359,Kol. Am Wiesenweg,DE
+ZIP,9530,12359,Buckow,DE
+ZIP,9531,12359,Kol. Edelweiß,DE
+ZIP,9532,12359,Kol. Hasenheim,DE
+ZIP,9533,12359,Kol. Am Buschkrug,DE
+ZIP,9534,12435,Alt-Treptow,DE
+ZIP,9535,12435,Berlin,DE
+ZIP,9536,12435,Plänterwald,DE
+ZIP,9537,12435,Treptow-Köpenick,DE
+ZIP,9538,12437,Baumschulenweg,DE
+ZIP,9539,12437,Berlin,DE
+ZIP,9540,12437,Plänterwald,DE
+ZIP,9541,12437,Treptow-Köpenick,DE
+ZIP,9542,12437,KGA Oberer Damm,DE
+ZIP,9543,12437,Niederschöneweide,DE
+ZIP,9544,12437,KGA Britzer Allee,DE
+ZIP,9545,12437,KGA Späthstraße 53,DE
+ZIP,9546,12437,KGA Waldesgrund,DE
+ZIP,9547,12437,Johannisthal,DE
+ZIP,9548,12437,KGA Gemütlichkeit III,DE
+ZIP,9549,12437,KGA Einigkeit II,DE
+ZIP,9550,12437,KGA Holunderbusch,DE
+ZIP,9551,12439,Berlin,DE
+ZIP,9552,12439,Niederschöneweide,DE
+ZIP,9553,12439,Treptow-Köpenick,DE
+ZIP,9554,12439,KGA Waldland,DE
+ZIP,9555,12459,Berlin,DE
+ZIP,9556,12459,Köpenick,DE
+ZIP,9557,12459,Oberschöneweide,DE
+ZIP,9558,12459,Treptow-Köpenick,DE
+ZIP,9559,12459,KGA Am Freibad,DE
+ZIP,9560,12459,KGA Gartenfreunde Wuhlheide,DE
+ZIP,9561,12459,KGA Grüne Aue,DE
+ZIP,9562,12459,KGA Wilhelmstrand,DE
+ZIP,9563,12459,Charlottenburg,DE
+ZIP,9564,12459,Spandau,DE
+ZIP,9565,12459,Siedl. Oberspree Köpenick,DE
+ZIP,9566,12487,Berlin,DE
+ZIP,9567,12487,Johannisthal,DE
+ZIP,9568,12487,Treptow-Köpenick,DE
+ZIP,9569,12487,KGA Lindental,DE
+ZIP,9570,12487,KGA Heide am Wasser,DE
+ZIP,9571,12487,KGA Gemütliches Heim,DE
+ZIP,9572,12487,KGA Goldweide,DE
+ZIP,9573,12487,KGA Späthswalde,DE
+ZIP,9574,12487,KGA Hermannsruh,DE
+ZIP,9575,12487,Baumschulenweg,DE
+ZIP,9576,12487,KGA Neuseeland,DE
+ZIP,9577,12487,Kladow,DE
+ZIP,9578,12487,Wedding,DE
+ZIP,9579,12487,Niederschöneweide,DE
+ZIP,9580,12489,Adlershof,DE
+ZIP,9581,12489,Berlin,DE
+ZIP,9582,12489,Treptow-Köpenick,DE
+ZIP,9583,12489,KGA Am Adlergestell,DE
+ZIP,9584,12489,KGA Teltowkanal III,DE
+ZIP,9585,12489,Johannisthal,DE
+ZIP,9586,12489,KGA Lange Gurke,DE
+ZIP,9587,12524,Altglienicke,DE
+ZIP,9588,12524,Berlin,DE
+ZIP,9589,12524,Bohnsdorf,DE
+ZIP,9590,12524,Semnonenweg,DE
+ZIP,9591,12524,Treptow-Köpenick,DE
+ZIP,9592,12524,Wartenberg,DE
+ZIP,9593,12524,KGA Falkenbrunn 1,DE
+ZIP,9594,12526,Berlin,DE
+ZIP,9595,12526,Bohnsdorf,DE
+ZIP,9596,12526,Treptow-Köpenick,DE
+ZIP,9597,12526,Altglienicke,DE
+ZIP,9598,12526,Stadtrandsiedlung Malchow,DE
+ZIP,9599,12527,Berlin,DE
