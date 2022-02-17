@@ -134,4 +134,3 @@ appsettings.json
 config.ini
 notebooks/
 *.local.settings.json
-local.settings.json

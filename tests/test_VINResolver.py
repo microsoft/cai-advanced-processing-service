@@ -5,7 +5,26 @@ import sys
 # sys.path.insert(1, '..')
 sys.path.append("./")
 from  modules.libvin import Vin
-import VINResolver
+
+import requests
+
+def testVINResolver(r, region="de", locale="de"):
+  # Unit URL
+  url = "http://localhost:7071/api/VINResolver"
+
+  payload = json.dumps({
+    "query": r,
+    "expectedwmi": ["WDI"],
+    "locale": locale
+  })
+  headers = {
+    'Content-Type': 'application/json'
+  }
+
+  response = requests.request("GET", url, headers=headers, data=payload)
+  res = json.loads(response.text)
+  
+  return res, response.status_code
 
 
 """
@@ -85,7 +104,6 @@ test_query = [
     'zeppelin deutschland drei martin sierra tristan zoro berta stefan vier zürich tango elektrisch acht new york bertha norbert ist das.',
     'neun bravo madagaskar zwo viere paula anja valencia err vier viktor x-ray tristan amerika err upsala werner genau',
     '3HCAVXFCE3F2DA543 ist mein fahrzeugidentnummer.',
-    'zoro alfa marie udin petra new york siebene julius ludwig neune charly sechse gustav konrad gee leopold juliett ist das.',
     '9BDLFX976NVVA4TVC ist mein vin',
     'VANTVW2763AN0A9VA ist das.',
     'JA41SSLM4SSA86G5T ist mein fahrzeugidentnummer.',
@@ -149,7 +167,7 @@ test_vin = [
             'KM1NZH8J2FZCNCUZP', '4V2ANN3WXLMMEXMS2', 'LDCLJTVXNW9X36U77', '1M4LLYZ8D7ZR3GH2Z', 
             'KNCURVXEJYAEXT3X4', '1M943VZRST9BTJKXV', '1F9G80GZKBP0ZWJHZ', 'XLBATBZ2CM8WRECMB', 
             '5J6X0HENHXY6LMZ60', 'XLR1L4GW019811SUL', 'ZDFX41W6KPPG45WWS', 'ZD3MSTZBS4ZTE8NBN', 
-            '9BM24PAVR4VXTARUW', '3HCAVXFCE3F2DA543', 'ZAMUPN7JL9C6GKGLJ', '9BDLFX976NVVA4TVC', 
+            '9BM24PAVR4VXTARUW', '3HCAVXFCE3F2DA543', 'ZAMUPN7JL9C6GKGLJ',  
             'VANTVW2763AN0A9VA', 'JA41SSLM4SSA86G5T', 'MB81XPZNWBP0V1GK5', 'WBY26GSFVPBJU8UK0', 
             'WD4A8YVK2VVWFX6NB', 'SJNUWP3F3EHPY687F', '2G6MV2GG9ANUTHSNS', '3GYRHX963RHXJMMC6', 
             '2HMXN5V64S0UX1C17', 'ZAMGF0YANKWXVSUY3', 'VF7VUXLNCX54GRP5H', 'NLNZLX9YGBUC7G2LS', 
@@ -167,7 +185,7 @@ test_validin =[False, False, False, False, False,
                True, False, True, True, True, True, True, False, True, True, False, 
                True, False, False, True, False, True, False, True, False, True, True, 
                True, False, False, False, True, False, False, True, False, True, True,
-               True, True, False, True, True, True, True, True, True, True, True, False,
+               True, True, False, True, True, True, True, True, True, True, False,
                False, False, True, True, True, True, True, False, False, False, True, False,
                False, True, False, True, True, False, True, False, True, True, False, True,
                True, True, True, True, False, True, True, True, True]
@@ -178,8 +196,9 @@ luis_err = []
 validvin_err = []
 status_err = []
 for query, vin , validin in zip(test_query, test_vin, test_validin):
+
     try:
-        res, status_code = VINResolver.test_VINResolver(query)
+        res, status_code = testVINResolver(query)
         resVIN = res['vinQuery'].upper()
         v = Vin(resVIN)
         if resVIN != vin.upper():
@@ -197,9 +216,17 @@ for query, vin , validin in zip(test_query, test_vin, test_validin):
             logging.warning(message)
             status_err.append(query)
     except Exception as e:
-        logging.warning(query, e, res)
+        logging.warning(query, e)
         errors.append(query)
 
 end = time.time() - start
 
-logging.warning(f'[INFO] DONE -> {1 - (len(errors)/len(test_query)):.2%}. \n\tTotal duration \t\t{end:.3}s \n\tDuration per loop \t{end/len(test_query):.3}s')
+message = []
+message.append(f'[INFO] DONE -> {1 - (len(errors)/len(test_query)):.2%}. ')
+message.append(f'\tTotal duration \t\t{end:.3}s ')
+message.append(f'\tDuration per loop \t{end/len(test_query):.3}s')
+message.append(f'\tNumber of bad requests \t{len(status_err)}')
+validvin_errs = '\n'.join(validvin_err)
+message.append(f'Validvin Errors: {validvin_errs}')
+
+logging.warning('\n'.join(message))
