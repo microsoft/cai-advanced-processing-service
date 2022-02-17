@@ -38,5 +38,5 @@ jobs:
       # Run the tests. I'm using pytest and the file is in the tests directory.
       - name: Run unit tests
         run: pytest tests/test_AttributeValidator.py
-        run: pytest tests\test_SpellingResolver.py
-        run: pytest tests\test_HealthCheck.py
+        run: pytest tests/test_SpellingResolver.py
+        run: pytest tests/test_HealthCheck.py
