@@ -1,3 +1,4 @@
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -126,15 +127,11 @@ dmypy.json
 bin
 obj
 appsettings.json
-local.settings.json
-*.local.settings.json
 .python_packages
 
 # Others
 .vscode/
 config.ini
 notebooks/
-
-
-
-test_*
+*.local.settings.json
+local.settings.json

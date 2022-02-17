@@ -1,17 +1,31 @@
+# Local files
 .git*
 .vscode
-local.settings.json
-test
+
+# Tests
+tests/
+
+# Virtual Environments
 .venv
 venv
+
+# Streamlit Dashboard
 dashboard/
-tests/
+
+# Assets
 assets/img/
 assets/postman_collection/
 assets/luis/
+assets/speech/
+assets/*.csv
+
+# Configs
 config.ini
 config.sample.ini
 deploy.ps1
-README.md
-GET_YOUR_KEYS.md
-notebooks/
+appsettings.sample.json
+appsettings.json
+
+# Documentation
+*.md
+docs/

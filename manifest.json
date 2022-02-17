@@ -1,43 +1,118 @@
 {
-    "attributes": {
-        "Id": {
-            "required": true,
-            "preprocess": true,
-            "exact_match": true
+    "Authenticator": {
+        "attributes": {
+            "Id": {
+                "required":     true,
+                "preprocess":   true,
+                "exact_match":  true
+            },
+            "Firstname": {
+                "required":     false,
+                "preprocess":   true,
+                "exact_match":  false,
+                "max_distance": 2
+            },
+            "Lastname": {
+                "required":     false,
+                "preprocess":   true,
+                "exact_match":  false,
+                "max_distance_levenshtein": 1,
+                "max_distance_damerau":     1,
+                "max_distance_jaro":        0.9
+            },
+            "Birthdate": {
+                "required":     false,
+                "preprocess":   false,
+                "exact_match":  true
+            },
+            "PIN": {
+                "required":     false,
+                "preprocess":   true,
+                "exact_match":  true
+            },
+            "ContractNumber": {
+                "required":     false,
+                "preprocess":   true,
+                "exact_match":  true,
+                "structure":    "[A-Z]{1,2}[0-9]{3}"
+            }
         },
-        "Firstname": {
-            "required": false,
-            "preprocess": true,
-            "exact_match": false,
-            "max_distance": 2
-        },
-        "Lastname": {
-            "required": false,
-            "preprocess": true,
-            "exact_match": false,
-            "max_distance_levenshtein": 1,
-            "max_distance_damerau": 1,
-            "max_distance_jaro": 0.9
-        },
-        "Birthdate": {
-            "required": false,
-            "preprocess": false,
-            "exact_match": true
-        },
-        "PIN": {
-            "required": false,
-            "preprocess": true,
-            "exact_match": true
-        },
-        "ContractNumber": {
-            "required": false,
-            "preprocess": true,
-            "exact_match": true,
-            "structure": "[A-Z]{1,2}[0-9]{3}"
+        "config": {
+            "min_attributes":   3,
+            "use_db":           true,
+            "local_data_path": ""
         }
-
     },
-    "config": {
-        "min_attributes": 3
+    "AttributeValidator": {
+        "modules": {
+            "address": {
+                "locales": {
+                    "DE": {},
+                    "DK": {}
+                },
+                "value_is_mandatory": {
+                    "zip":      true,
+                    "city":     true,
+                    "street":   true,
+                    "number":   false
+                }
+            },
+            "iban": {
+                "locales": {
+                    "DE": {
+                        "length": 22
+                    },
+                    "DK": {
+                        "length": 22
+                    }
+                },
+                "value_is_mandatory": {
+                    "iban": true
+                }
+            },
+            "street_in_city": {
+                "locales": {
+                    "DE": {},
+                    "DK": {}
+                },
+                "value_is_mandatory": {
+                    "zip":      true,
+                    "street":   true,
+                    "number":   false
+                }
+            },
+            "zip": {
+                "locales": {
+                    "DE": {},
+                    "DK": {}
+                },
+                "value_is_mandatory": {
+                    "zip":      true,
+                    "city":     true
+                }
+            }
+        },
+        "config": {
+            "use_db": true,
+            "local_data_path": ""
+        }
+    },
+    "FormRecognizer": {
+        "config": {
+            "use_db": true,
+            "local_data_path": ""
+        }
+    },
+    "LicensePlateRecognizer": {
+        "config": {
+            "use_db": false,
+            "local_data_path": ""
+        }
+    },
+    "TableRequestor": {
+        "config": {
+            "use_db": true,
+            "local_data_path": ""
+        }
     }
 }

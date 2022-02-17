@@ -8,17 +8,16 @@ sys.path.append('./')
 # Define logger
 logger = logging.getLogger(__name__)
 
-try:
-    from __app__.assets import characters
-except Exception as e:
-    logger.info('[INFO] Helper: Using local imports.')
-    from assets import characters
+# Import custom modules and helpers
+from assets import characters
 
 class CleanText(object):
     def __init__(self, locale):
         # Create lookup table for accellerated cleaning
         self.table = str.maketrans({key: None for key in string.punctuation if key not in ['-', '*']})        
-        
+
+        # TODO: return a False if the locale is not supported at all
+
         # Import dictionaires
         self.dict_char = characters.alphabet.get(locale)
         self.dict_spec = characters.specials.get(locale)
