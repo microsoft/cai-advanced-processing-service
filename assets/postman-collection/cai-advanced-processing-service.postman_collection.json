@@ -368,7 +368,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "{{vinresolver_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
@@ -413,7 +413,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "{{attributevalidator_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
@@ -456,7 +456,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "{{attributevalidator_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
@@ -499,7 +499,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "{{attributevalidator_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
@@ -542,7 +542,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "{{attributevalidator_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
@@ -595,7 +595,7 @@
 								},
 								{
 									"key": "value",
-									"value": "{{authenticator_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								}
 							]
@@ -638,7 +638,7 @@
 								},
 								{
 									"key": "value",
-									"value": "{{batchtesting_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
@@ -691,7 +691,7 @@
 								},
 								{
 									"key": "value",
-									"value": "{{formrecognizer_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								}
 							]
@@ -746,7 +746,7 @@
 								},
 								{
 									"key": "value",
-									"value": "{{licenseplaterecognizer_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								}
 							]
@@ -794,7 +794,7 @@
 								},
 								{
 									"key": "value",
-									"value": "{{spellingresolver_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								}
 							]
@@ -842,7 +842,7 @@
 								},
 								{
 									"key": "value",
-									"value": "{{tablerequestor_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								}
 							]
@@ -887,7 +887,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "{{vinresolver_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
@@ -935,7 +935,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "{{vinresolver_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
