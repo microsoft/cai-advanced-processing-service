@@ -41,4 +41,3 @@ jobs:
           pytest tests/test_AttributeValidator.py
           pytest tests/test_SpellingResolver.py
           pytest tests/test_HealthCheck.py
-          

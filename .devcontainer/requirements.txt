@@ -24,3 +24,4 @@ en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_
 pandas
 requests
 requests_cache
+

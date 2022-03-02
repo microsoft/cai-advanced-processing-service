@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> releases/0.93beta
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
