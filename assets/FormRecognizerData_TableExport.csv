@@ -1,0 +1,11 @@
+PartitionKey,RowKey,Timestamp,Adresse,Adresse@type,Behoerde,Behoerde@type,Geschaeftsnummer,Geschaeftsnummer@type,TerminDatum,TerminDatum@type,time,time@type,Bankinstitut,Bankinstitut@type,BehoerdeOrt,BehoerdeOrt@type,Kontoinhaber,Kontoinhaber@type
+FormData,04065709f08b428dabe4a4018d646f8b,2022-03-02T13:22:59.5678426Z,Martina Mustermann Meine Str. 28 22112 Dein Stadt,String,Hannover,String,ZG88888888,String,09.02.2021,String,2021-03-09 15:34:41.858266,String,,,,,,
+FormData,0adee816c06c42fd92d3f4cf91e1e963,2022-03-02T13:22:59.5678426Z,,,,,,,,,2021-03-10 11:37:52.916705,String,,,,,,
+FormData,38fc98a3eddc42aeb7f85871246b5375,2022-03-02T13:22:59.5678426Z,Martina Mustermann Meine Str. 28 22112 Dein Stadt,String,,,ZG88888888,String,09.02.2021,String,2021-03-09 17:34:33.551160,String,Deutsche Bank,String,Hannover,String,Martina Mustermann,String
+FormData,56e66360349a4511b6a16646f359a112,2022-03-02T13:22:59.5678426Z,Martina Mustermann Meine Str. 28 22112 Dein Stadt,String,,,ZG88888888,String,09.02.2021,String,2021-03-10 11:29:33.286834,String,Deutsche Bank,String,Hannover,String,Martina Mustermann,String
+FormData,5f09a5ed1e6b496497cd112f85a73d02,2022-03-02T13:22:59.5678426Z,,,,,,,,,2021-03-10 11:35:31.785130,String,,,,,,
+FormData,9ff0eed91beb4e76b1f9115c4c9dffc7,2022-03-02T13:22:59.5678426Z,Anne Schöne Am Reitplatz 7 30657 Hannover,String,,,ZE190982,String,11.03.2021,String,2021-04-14 09:10:49.763590,String,Sparkasse Hannover,String,Hannover,String,Anne Schöne,String
+FormData,a7bdf8451a9149078c6d55510624b3f7,2022-03-02T13:22:59.5678426Z,Anne Schöne Am Reitplatz 7 30657 Hannover,String,,,ZE190982,String,11.03.2021,String,2021-03-11 21:48:08.631740,String,Sparkasse Hannover,String,Hannover,String,Anne Schöne,String
+FormData,e971fed9172c483f8a6b2116ab676209,2022-03-02T13:22:59.5678426Z,,,,,,,,,2021-03-10 11:36:48.800984,String,,,,,,
+FormData,e98f2532b75c4ee3a0d484c3dfbbe253,2022-03-02T13:22:59.5678426Z,,,,,,,,,2021-03-10 11:31:07.447451,String,,,,,,
+FormData,ee4663d8ca154c2185237fff9d775ba3,2022-03-02T13:22:59.5678426Z,Anne Schöne Am Reitplatz 7 30657 Hannover,String,,,,,11.03.2021,String,2021-04-14 09:19:40.546532,String,Sparkasse Hannover,String,Hannover,String,Anne Schöne,String
