@@ -1,0 +1,5 @@
+{
+    "purge_protection" : true,
+    "arm_storage_account" : true,
+    "storage_account_tier" : "Standard"
+}

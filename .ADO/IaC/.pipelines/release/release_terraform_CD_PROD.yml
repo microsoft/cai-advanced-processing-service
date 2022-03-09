@@ -1,0 +1,11 @@
+# Explicitly set none for repositry trigger
+trigger: none
+
+resources:
+  pipelines:
+  - pipeline: infrastructure_build  # Name of the pipeline resource
+    source: Terraform.PROD.CI # Name of the triggering pipeline
+  
+stages:
+- template: stages/prod.yml
+...

@@ -1,0 +1,17 @@
+stages:
+  - stage: TerraformProd
+    variables:
+      - name: TF_VAR_TEAM_NAME
+        value: testcai
+      - name: TF_VAR_STAGE_NAME
+        value: prod
+      - name: TF_VAR_STAGE_NUMBER
+        value:  001
+      - name: TF_VAR_LOCATION
+        value: 'West Europe'
+    jobs:
+      - template: jobs/deploy_terraform.yml # Template deploy Terraform
+        parameters:
+          environment: 'ProdTerraform'
+          serviceconnection: 'caiserviceprinciple'
+

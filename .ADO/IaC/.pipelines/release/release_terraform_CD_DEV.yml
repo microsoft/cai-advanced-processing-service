@@ -1,0 +1,14 @@
+trigger: none
+
+resources:
+  pipelines:
+  - pipeline: infrastructure_build  # Name of the pipeline resource
+    source: Terraform.DEV.CI # Name of the triggering pipeline
+    trigger:
+      branches:
+        include:
+          - develop 
+
+stages:
+- template: stages/dev.yml
+...

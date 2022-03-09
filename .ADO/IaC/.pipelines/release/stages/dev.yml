@@ -1,0 +1,19 @@
+stages:  
+  - stage: TerraformDEV
+    variables:
+      - name: TF_VAR_TEAM_NAME
+        value: cai 
+      - name: TF_VAR_STAGE_NAME
+        value: dev
+      - name: TF_VAR_STAGE_NUMBER
+        value:  001
+      - name: TF_VAR_LOCATION
+        value: 'West Europe'
+    jobs:
+      - template: jobs/deploy_terraform.yml # Template deploy Terraform
+        parameters:
+          environment: 'DevelopTerraform'
+          serviceconnection: 'caiserviceprinciple'
+          
+
+
