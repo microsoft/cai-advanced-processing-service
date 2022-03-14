@@ -55,7 +55,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         expectedwmi = expectedwmi[:3]
          # Snip off everything after first two characters (e.g. en-us -> en)
         lang = lang[:2]
-        logger.info(f'[INFO] Set params -> expectedwmi: {expectedwmi}, language: {lang}.')
+        logger.info(f'[INFO] - Set params -> expectedwmi: {expectedwmi}, language: {lang}.')
 
     # Retrieve credentials
     credentials = CredentialRetriever(VIN_RESOLVER_ENV, normalize=('{region_code}', lang)).load_credentials()

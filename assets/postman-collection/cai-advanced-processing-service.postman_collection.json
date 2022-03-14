@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "99fb6d71-9b1e-4f65-a023-3f648d522f1e",
+		"_postman_id": "76c955a9-3547-4aa2-86e2-6abd002c8208",
 		"name": "cai-advanced-processing-service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -146,7 +146,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"attributes\":\r\n        {\r\n            \"Firstname\": \"Satya\",\r\n            \"Lastname\": \"Nadella\",\r\n            \"Birthdate\": \"19.08.1967\",\r\n            \"Id\": \"80555500\"\r\n        },\r\n    \"method\": 4,\r\n    \"verbose\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}\r\n",
+							"raw": "{\r\n    \"attributes\":\r\n        {\r\n            \"Firstname\": \"Satya\",\r\n            \"Lastname\": \"Nadella\",\r\n            \"Birthdate\": \"1967-08-19\",\r\n            \"Id\": \"80555510\"\r\n        },\r\n    \"method\": 4,\r\n    \"verbose\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -306,7 +306,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"table\": {\r\n        \"name\": \"ndsjustizdemozeugentermine\"\r\n    },\r\n    \"params\": {\r\n        \"Nachname\": \"Mustermann\"\r\n    }\r\n}",
+							"raw": "{\r\n \"table\": {\r\n \"name\": \"CustomerData\"\r\n },\r\n \"params\": {\r\n \"PartitionKey\": \"CustomerData\"\r\n }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -359,6 +359,46 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Local - HealthCheck",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{APIKey}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "x-functions-key",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7071/api/HealthCheck",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7071",
+							"path": [
+								"api",
+								"HealthCheck"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -373,7 +413,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "{{attributevalidator_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
@@ -416,7 +456,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "{{attributevalidator_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
@@ -459,7 +499,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "{{attributevalidator_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
@@ -502,7 +542,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "{{attributevalidator_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
@@ -555,7 +595,7 @@
 								},
 								{
 									"key": "value",
-									"value": "{{authenticator_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								}
 							]
@@ -564,7 +604,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"attributes\":\r\n        {\r\n            \"Firstname\": \"Satya\",\r\n            \"Lastname\": \"Nadella\",\r\n            \"Birthdate\": \"19.08.1967\",\r\n            \"Id\": \"80555500\"\r\n        },\r\n    \"method\": 4,\r\n    \"verbose\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}\r\n",
+							"raw": "{\r\n    \"attributes\":\r\n        {\r\n            \"Firstname\": \"Satya\",\r\n            \"Lastname\": \"Nadella\",\r\n            \"Birthdate\": \"1967-08-19\",\r\n            \"Id\": \"80555510\"\r\n        },\r\n    \"method\": 4,\r\n    \"verbose\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -598,7 +638,7 @@
 								},
 								{
 									"key": "value",
-									"value": "{{batchtesting_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
@@ -651,7 +691,7 @@
 								},
 								{
 									"key": "value",
-									"value": "{{formrecognizer_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								}
 							]
@@ -706,7 +746,7 @@
 								},
 								{
 									"key": "value",
-									"value": "{{licenseplaterecognizer_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								}
 							]
@@ -754,7 +794,7 @@
 								},
 								{
 									"key": "value",
-									"value": "{{spellingresolver_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								}
 							]
@@ -763,7 +803,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"text\": \"Martha Anton humbug drei 4\",\r\n    \"convertnumbers\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}",
+							"raw": "{\r\n    \"query\": \"Martha Anton humbug drei 4\",\r\n    \"convertnumbers\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -802,7 +842,7 @@
 								},
 								{
 									"key": "value",
-									"value": "{{tablerequestor_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								}
 							]
@@ -811,7 +851,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"storageaccountname\": \"teststorage\",\r\n \"table\": {\r\n \"name\": \"ndsjustizdemozeugentermine\"\r\n },\r\n \"params\": {\r\n \"PartitionKey\": \"UserData\"\r\n }\r\n}",
+							"raw": "{\r\n \"table\": {\r\n \"name\": \"CustomerData\"\r\n },\r\n \"params\": {\r\n \"PartitionKey\": \"CustomerData\"\r\n }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -847,7 +887,7 @@
 							"apikey": [
 								{
 									"key": "value",
-									"value": "{{vinresolver_APIKey}}",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
@@ -882,6 +922,45 @@
 							"path": [
 								"api",
 								"VINResolver"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deployed - HealthCheck",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{APIKey}}",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "x-functions-key",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://{{FunctionURI}}/api/HealthCheck",
+							"protocol": "https",
+							"host": [
+								"{{FunctionURI}}"
+							],
+							"path": [
+								"api",
+								"HealthCheck"
 							]
 						}
 					},

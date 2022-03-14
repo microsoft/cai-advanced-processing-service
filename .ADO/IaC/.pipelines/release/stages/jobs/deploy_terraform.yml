@@ -1,0 +1,25 @@
+parameters:
+- name: environment
+  type: string
+- name: serviceconnection
+  type: string
+
+jobs:
+- deployment: Deploy_${{parameters.environment}}
+  pool:
+    vmImage: 'Ubuntu-latest'
+  # creates an environment if it doesn't exist
+  environment: "${{parameters.environment}}"
+  strategy:
+    # default deployment strategy, more coming...
+    runOnce:
+      deploy:
+        steps:
+        - download: infrastructure_build
+          artifact: drop  
+        - template: steps/steps.get_service_connection_credentials.yml
+          parameters:
+              serviceconnection: "${{parameters.serviceconnection}}"
+        - template: steps/steps.terraform_bootstrap.yml
+          parameters:
+            serviceconnection: "${{parameters.serviceconnection}}"

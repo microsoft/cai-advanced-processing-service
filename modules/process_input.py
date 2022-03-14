@@ -3,6 +3,7 @@ import re
 from edit_distance import SequenceMatcher
 from typing import List, Dict, Tuple, Union, DefaultDict
 from collections import defaultdict
+from assets.constants import (ATTRIBUTE_LOOKUP_ZIP, ATTRIBUTE_LOOKUP_CITY)
 from modules import similarity_score as simscore
 
 # Import custom modules and helpers
@@ -59,8 +60,8 @@ def map_data_from_table(matches):
     city_mapping: DefaultDict[str, List[str]] = defaultdict(lambda: [])
     # Walk through the matches retrieved from the data base
     for task in matches:
-        zip_code = task['PartitionKey']
-        city = task['RowKey']
+        zip_code = task[ATTRIBUTE_LOOKUP_ZIP]
+        city = task[ATTRIBUTE_LOOKUP_CITY]
         # Clean data a bit if there is a dash in the string
         if '-' in city:
             zip_mapping[zip_code].append(city.replace('-', ' '))

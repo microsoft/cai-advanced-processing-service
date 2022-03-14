@@ -66,6 +66,11 @@ WORLD_MANUFACTURER_MAP = {
             'LMNOPQR': 'Vietnam',
             'STUVWXYZ0': 'Saudi Arabia'}},
 
+    'R': {'region': 'asia', 'countries': {
+            'A': 'United Arab Emirates',
+            'F': 'Taiwan',
+            '2': 'Hong Kong'}},
+
     # Europe
 
     'S': {'region': 'europe', 'countries': {

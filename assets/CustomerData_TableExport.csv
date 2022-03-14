@@ -1,0 +1,2 @@
+PartitionKey,RowKey,Timestamp,Birthdate,Birthdate@type,CustomerID,CustomerID@type,Email,Email@type,Firstname,Firstname@type,FirstnameSpeak,FirstnameSpeak@type,Lastname,Lastname@type,LastnameSpeak,LastnameSpeak@type,PIN,PIN@type,Salutation,Salutation@type,Title,Title@type
+CustomerData,80555510,2022-03-02T14:18:30.8513973Z,1967-08-19,String,80555510,String,satya.nadella@microsoft.com,String,Satya,String,Satya,String,Nadella,String,Nadella,String,12345,String,Mr.,String,,

@@ -1,0 +1,29 @@
+parameters:
+- name: serviceconnection
+  type: string
+  
+steps:  
+- task: AzureCLI@2
+  name: Terraform_Init
+  displayName: 'Remote Backend and Terraform init'
+  inputs:
+    azureSubscription: '${{ parameters.serviceconnection }}'
+    scriptType: pscore
+    scriptLocation: scriptPath
+    scriptPath : $(PIPELINE.WORKSPACE)/infrastructure_build/drop/infrastructure/bootstrap/create_tf_state_resource_group.ps1
+    arguments:
+      -resource_group_name $(TF_VAR_TEAM_NAME)_$(TF_VAR_STAGE_NAME)_$(TF_VAR_STAGE_NUMBER)_iac0_rg
+      -storage_account_name stortf$(TF_VAR_TEAM_NAME)$(TF_VAR_STAGE_NAME)$(TF_VAR_STAGE_NUMBER)
+    workingDirectory: $(PIPELINE.WORKSPACE)/infrastructure_build/drop/infrastructure
+- task: AzureCLI@2
+  name: plan_and_apply
+  displayName: 'Terraform plan and apply'
+  inputs:
+    azureSubscription: '${{ parameters.serviceconnection }}'
+    scriptType: bash
+    scriptLocation: inlineScript
+    addSpnToEnvironment: true
+    inlineScript: |
+      terraform plan -out=PLAN 
+      terraform apply PLAN
+    workingDirectory: $(PIPELINE.WORKSPACE)/infrastructure_build/drop/infrastructure

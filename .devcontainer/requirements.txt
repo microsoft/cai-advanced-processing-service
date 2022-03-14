@@ -1,0 +1,27 @@
+# DO NOT include azure-functions-worker in this file
+# The Python Worker is managed by Azure Functions platform
+# Manually managing azure-functions-worker may cause unexpected issues
+
+# Base packages and testing
+azure-functions
+pytest
+ddt
+wheel
+
+# Infrastructure
+azure-storage-blob
+azure-cosmosdb-table
+azure-ai-formrecognizer==3.1.0b3
+
+# Processing
+numpy
+datetime
+edit_distance
+jellyfish
+nose
+spacy
+en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.0.0/en_core_web_sm-3.0.0-py3-none-any.whl
+pandas
+requests
+requests_cache
+

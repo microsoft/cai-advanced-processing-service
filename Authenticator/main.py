@@ -39,7 +39,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     except ValueError:
         pass
     finally:
-        logging.info(f'[INFO] Set params -> method: {str(method)}, language: {lang}, manifest: {manifest}.json.')
+        logging.info(f'[INFO] - Set params -> method: {str(method)}, language: {lang}, manifest: {manifest}.json.')
 
     # Create instance of class
     cleaner = resolve.CleanText(lang)
