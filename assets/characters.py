@@ -1,4 +1,7 @@
 ''' Resolve words to numbers '''
+from lib2to3.pygram import Symbols
+
+
 numbers_dict = {
 	'en': {
 		'oh':		0,
@@ -40,6 +43,7 @@ numbers_dict = {
 		'vier': 	4,
 		'fünfe':	5,
 		'fünf': 	5,
+		"finf":		5,
 		'sechse':	6,
 		'sechs': 	6,
 		'siebene':	7,
@@ -71,11 +75,18 @@ numbers_repeat = {
 		'viermal':		4,
 		'fünfmal':		5,
 		'sechsmal':		6,
-		'siebenmal':	7
+		'siebenmal':	7,
+		"hier mal": 	4
 	}
 }
 
 """List of words used in the reduction stage of text cleaning"""
+# 
+extra_spelling_alphabet={
+    'de':{
+        'daimler':'d'
+        }
+    }
 alphabet = {
 	'de': {
 		"aero":"ro",
@@ -115,7 +126,6 @@ alphabet = {
 		"delta":"d",
 		"dora":"d",
 		"daniel":"d",
-		"daimler":"d",
 		"dänemark":"d",
 		"dieter":"d",
 		"deca":"dk",
@@ -259,11 +269,8 @@ alphabet = {
 		"zetka":"zk",
 		"ß":"sz",
 		"deutschland":"d",
-		"deutsch":"d",
-		"strich":"-",
-		"minus":"-",
-		"bindestrich":"-",
-		"trennung":"-"},
+		"deutsch":"d"
+		},
 	'en': {
 		"alfa":"a",
 		"alphaL":"a",
@@ -324,6 +331,26 @@ alphabet = {
 	}
 }
 
+"""List of symbols used in the reduction stage of text cleaning"""
+symbols= {
+	'de': {
+		"strich":"-",
+		"minus":"-",
+		"bindestrich":"-",
+		"trennung":"-",
+		"unterstrich": "_",
+		"punkt": ".",
+		"dot": "."
+  },
+	"en":{
+		"dash": '-',
+		"underline": "_",
+		"point": ".",
+		"dot": ".",
+		"underscore": "_",
+		'fullstop': "."
+	}
+}
 """ List of ambiguous areas """
 ambiguous = {
     'kreis rostock':'lro',
@@ -1129,13 +1156,13 @@ exclude = {
 		'ähm',
 		'genau',
 		'richtig',
-		'punkt',
-		'leerzeichen'
+		'leerzeichen',
+		'die'
 	],
 	"en": [
 		'is',
 		'and',
-		'fullstop'
+		'the'
 	]
 }
 
@@ -1165,16 +1192,10 @@ landtag = [
 """Special meanings intepreted in reduce stage"""
 specials = {
 	"de": {
-		".":" ",
-		"-":" ",
-		#"*":" mal ",
 		"werden":"verden",
 		"färben":"verden"
 	},
 	"en": {
-		".":" ",
-		"-":" ",
-		"*":" mal ",
 		"werden":"verden",
 		"färben":"verden"
 	}

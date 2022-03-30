@@ -13,7 +13,7 @@ class LicensePlateRecognizer(object):
     def __init__(self, region="de", locale="de", clean=True):
         # Set region for license plate recognition
         if region == "de":
-            self.cleaner = resolve.CleanText(locale)
+            self.cleaner = resolve.CleanText(locale, allowed_symbols=['-', '*'], additional_symbols={})
             self.matcher = self.DE_LP(self.cleaner)
 
         elif region == "nl":
@@ -56,14 +56,25 @@ class LicensePlateRecognizer(object):
         
         def clean(self, phrase):
             """Cleaning steps for extracted phrase, with area detection in between"""
+            
+            # converting spelling symbels to the coresponding signs and keep the allowed symbols
+            phrase = self.cleaner.clean_symbols(phrase)
+            
             # Reduce string
             phrase = self.cleaner.reduce_string(phrase)
             # Detect area (we have to do this before further cleaning due to ngram area)
             phrase, ambig = self.detect_area(phrase)
+            
             # Further clean string
-            phrase = self.cleaner.clean_repeats(
-                        self.cleaner.resolve_spelling_alphabet(
-                            self.cleaner.resolve_numbers_as_words(phrase)))
+            # Resolve spelling alphabet
+            phrase = self.cleaner.resolve_spelling_alphabet(phrase)
+            
+            # Resolve numbers as words
+            phrase = self.cleaner.resolve_numbers_as_words(phrase)
+            
+            # Clean numbers (3*3 = 333)
+            phrase = self.cleaner.clean_repeats(phrase)
+            
             return phrase, ambig
 
         def detect_area(self, phrase):

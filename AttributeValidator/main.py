@@ -5,7 +5,7 @@ import azure.functions as func
 
 # Import custom modules and helpers
 from . import helper
-from assets.constants import ATTRIBUTE_VALIDATOR, CONFIG, MANIFEST, MODULE, MODULES, REGION, VALUES, SETTINGS_LOOKUP
+from assets.constants import ATTRIBUTE_VALIDATOR, CONFIG, MANIFEST, MODULE, MODULES, REGION, VALUES, SETTINGS_LOOKUP,LOCALE
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     # Receive request and collect parameters
@@ -13,6 +13,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         req_body    = req.get_json()
         module      = req_body.get(MODULE)
         region      = req_body.get(REGION)
+        locale      = req_body.get(LOCALE)
         manifest    = req_body.get(MANIFEST)
         values      = req_body.get(VALUES)
         # If no manifest has been passed, we take manifest.json by default
@@ -39,7 +40,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
 
     # Create instance of class with module and (optional) region, as needed
-    validation = helper.Validator(module, manifest, values, region)
+    validation = helper.Validator(module, manifest, values, region, locale)
     
     # Run validation if a respective matcher could be found
     if validation.matcher and validation.ready_to_run:

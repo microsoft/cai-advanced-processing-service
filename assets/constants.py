@@ -1,6 +1,7 @@
 # Global variables for request hanlding
 CONFIG = "config"
 INPUT = "input"
+LOCALE = "locale"
 LOCALES = "locales"
 LOCAL_DATA_PATH = "local_data_path"
 MANIFEST = "manifest"
@@ -28,11 +29,11 @@ VIN_RESOLVER_ENV = "VIN_RESOLVER"
 # Environment Variable Settings Lookup
 SETTINGS_LOOKUP = {
     AUTHENTICATOR_ENV:              ["CONNECTION_STRING"],
-    ATTRIBUTE_VALIDATOR_ENV:        ["CONNECTION_STRING"],
+    ATTRIBUTE_VALIDATOR_ENV:        ["CONNECTION_STRING", "LUIS_ID_{region_code}", "LUIS_KEY_{region_code}", "LUIS_PREDICTION_ENDPOINT_{region_code}", "LUIS_SLOT_{region_code}"],
     FORM_REGOGNIZER_ENV:            ["NAME", "FR_TABLE_NAME", "CONNECTION_STRING", "RETURN_KEYS"],
     LICENSE_PLATE_RECOGNIZER_ENV:   ["LUIS_ID_{region_code}", "LUIS_KEY_{region_code}", "LUIS_PREDICTION_ENDPOINT_{region_code}", "LUIS_SLOT_{region_code}"],
     TABLE_REQUESTOR_ENV:            ["CONNECTION_STRING"],
-    VIN_RESOLVER_ENV:               ["LUIS_ID_{region_code}", "LUIS_KEY_{region_code}", "LUIS_PREDICTION_ENDPOINT_{region_code}", "LUIS_SLOT_{region_code}"],
+    VIN_RESOLVER_ENV:               ["LUIS_ID_{region_code}", "LUIS_KEY_{region_code}", "LUIS_PREDICTION_ENDPOINT_{region_code}", "LUIS_SLOT_{region_code}"]
 }
 
 # Attribute Validator-specific assets
@@ -50,6 +51,7 @@ IBAN = "iban"
 STREET = "street"
 STREET_IN_CITY = "street_in_city"
 ZIP = "zip"
+EMAIL = "email"
 LEV_DISTANCE_INIT = 2
 
 # Table Requestor data

@@ -42,7 +42,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         logging.info(f'[INFO] - Set params -> method: {str(method)}, language: {lang}, manifest: {manifest}.json.')
 
     # Create instance of class
-    cleaner = resolve.CleanText(lang)
+    cleaner = resolve.CleanText(lang, allowed_symbols=['-', '*'], additional_symbols={})
 
     # Read manifest
     try:

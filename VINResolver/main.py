@@ -1,4 +1,5 @@
 '''VIN RESOLVER'''
+from email import message
 import json
 import logging
 import azure.functions as func
@@ -18,17 +19,6 @@ from modules import luis_helper as luis
 from modules import resolve_spelling as resolve
 from modules.retrieve_credentials import CredentialRetriever
 from assets.constants import CONFIG, MANIFEST, VIN_RESOLVER_ENV
-
-def clean(phrase, lang='de'):
-    """Cleaning steps for extracted phrase, with area detection in between"""
-    cleaner = resolve.CleanText(lang)
-    # Reduce string
-    phrase = cleaner.reduce_string(phrase)
-    # Further clean string
-    phrase = cleaner.clean_repeats(
-                cleaner.resolve_spelling_alphabet(
-                    cleaner.resolve_numbers_as_words(phrase)))
-    return phrase
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logger.info('[INFO] VINResolver Post Processing started.')
@@ -59,6 +49,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     # Retrieve credentials
     credentials = CredentialRetriever(VIN_RESOLVER_ENV, normalize=('{region_code}', lang)).load_credentials()
+    
+    # define cleaner
+    cleaner = resolve.CleanText(lang, allowed_symbols=['-', '*'], additional_symbols={})
 
     if credentials is None:
         return func.HttpResponse(
@@ -70,76 +63,59 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     elif query:
         # Get LUIS entity results
         r = luis.score(query, credentials, VIN_RESOLVER_ENV, lang)
-        try:
-            r_ent = r['prediction']['entities']['$instance']['vin'][0]
-        except KeyError:
-            logger.error('[WARNING] - No entity could be extracted')
-            r_ent = None
-        except Exception as e:
-            logger.error(f'[ERROR] - {e}')
-            r_ent = None
-
-        if r_ent is not None:
-
-            if r_ent.get('type') == 'vin' or r_ent.get('type') == 'vin':
-                ## Load entity
-                start = r_ent["startIndex"]
-                end = r_ent["startIndex"] + r_ent["length"]
-                entity = query[start:end + 1].lower()
-                entity = clean(entity, lang=lang).replace(" ", "")
-
-                # Get VIN entity results
-                v = Vin(entity)
-                
-                # if VIN is valid, go ahead
-                if v.wmi and v.vds and v.vis and v.vsn is not None:
-                    ## Pack json response
-                    res = json.dumps(
-                        {
-                            "query": query,
-                            "vinQuery": entity,
-                            "validvin": v.is_valid,
-                            "expectedwmi": v.wmi.upper() in expectedwmi,
-                            "vindetails": {
-                                "region": v.region,
-                                "country": v.country,
-                                "validvin": v.is_valid,
-                                "year": v.year,
-                                "make": v.make,
-                                "manufacturer": v.manufacturer,
-                                "is_pre_2010": v.is_pre_2010,
-                                "wmi": v.wmi,
-                                "vds": v.vds,
-                                "vis": v.vis,
-                                "vsn": v.vsn,
-                                "less_than_500_built_per_year": v.less_than_500_built_per_year
-                            }
-                        })
-                    
-                    
-            else:
-                ## Pack json response
-                res = json.dumps(
-                    {
-                    "query": query,
-                    "validvin": False,
-                    "vindetails": {}
-                    })
-
-            return func.HttpResponse(
-                res, mimetype='application/json'
-            )   
+        if 'vin' in r['prediction']['entities']:
+            ## Load entity
+            entity = r['prediction']['entities']['vin'][0].lower()
+            topScoringIntent = r['prediction']['topIntent']
         else:
-            if r['error']:
-                return func.HttpResponse(
-                f"[ERROR LUIS] {r['error']['message']}",
-                status_code = r['error']['code']
-                )
-            else:
-                return func.HttpResponse(
-                "[ERROR LUIS] unknow",
-                status_code = 200
-                ) 
+            entity = query.lower()
+            topScoringIntent = r['prediction']['topIntent']
+            
+        entity = cleaner.clean(entity, convertsymbols=False, convertnumbers=True).replace(" ", "")
+
+        # Get VIN entity results
+        v = Vin(entity)
+        
+        # if VIN is valid, go ahead
+        if v.wmi and v.vds and v.vis and v.vsn is not None:
+            ## Pack json response
+            res = json.dumps(
+                {
+                    "query": query,
+                    "vinQuery": entity,
+                    "validvin": v.is_valid,
+                    "expectedwmi": v.wmi.upper() in expectedwmi,
+                    "vindetails": {
+                        "region": v.region,
+                        "country": v.country,
+                        "validvin": v.is_valid,
+                        "year": v.year,
+                        "make": v.make,
+                        "manufacturer": v.manufacturer,
+                        "is_pre_2010": v.is_pre_2010,
+                        "wmi": v.wmi,
+                        "vds": v.vds,
+                        "vis": v.vis,
+                        "vsn": v.vsn,
+                        "less_than_500_built_per_year": v.less_than_500_built_per_year
+                    },
+                    "entities": r['prediction']['entities'],
+                    "topScoringIntent": topScoringIntent
+                })
+                    
+        else:
+            ## Pack json response
+            res = json.dumps(
+                {
+                "query": query,
+                "validvin": False,
+                "vindetails": {},
+                "message": message
+                })
+
+        return func.HttpResponse(
+            res, mimetype='application/json'
+        )   
 
     else:
         return func.HttpResponse(

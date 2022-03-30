@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "76c955a9-3547-4aa2-86e2-6abd002c8208",
+		"_postman_id": "afa1fa05-40b3-40b1-86b7-f10fbdc525b3",
 		"name": "cai-advanced-processing-service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -137,6 +137,38 @@
 					"response": []
 				},
 				{
+					"name": "Local - AttributeValidator - Email",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"module\": \"email\",\r\n    \"locale\": \"de\",\r\n    \"region\": \"de\",\r\n    \"values\": {\r\n        \"query\": \"Normen.meyer@daimler.com\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7071/api/AttributeValidator",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7071",
+							"path": [
+								"api",
+								"AttributeValidator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Local - Authentication",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -146,7 +178,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"attributes\":\r\n        {\r\n            \"Firstname\": \"Satya\",\r\n            \"Lastname\": \"Nadella\",\r\n            \"Birthdate\": \"1967-08-19\",\r\n            \"Id\": \"80555510\"\r\n        },\r\n    \"method\": 4,\r\n    \"verbose\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}\r\n",
+							"raw": "{\r\n    \"attributes\":\r\n        {\r\n            \"Firstname\": \"Satya\",\r\n            \"Lastname\": \"Nadella\",\r\n            \"Birthdate\": \"19.08.1967\",\r\n            \"Id\": \"9999\"\r\n        },\r\n    \"method\": 4,\r\n    \"verbose\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -274,7 +306,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"query\": \"Martha Anton humbug drei 4\",\r\n    \"convertnumbers\": true,\r\n    \"locale\": \"de\"\r\n}",
+							"raw": "{\r\n    \"query\": \"Martha Anton unterstrich _ punkt dot . dash - bindestrich e at @ g m a i l punkt c o m\",\r\n    \"convertnumbers\": true,\r\n    \"convertsymbols\": true,\r\n    \"additional_symbols\": {\"at\":\"@\", \r\n                            \"dash\": \"-\"},\r\n    \"allowed_symbols\": [\"_\", \"-\", \"@\", \".\" ],\r\n    \"locale\": \"de\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -306,7 +338,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"table\": {\r\n \"name\": \"CustomerData\"\r\n },\r\n \"params\": {\r\n \"PartitionKey\": \"CustomerData\"\r\n }\r\n}",
+							"raw": "{\r\n    \"table\": {\r\n        \"name\": \"CustomerData\"\r\n    },\r\n    \"params\": {\r\n        \"PartitionKey\": \"CustomerData\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -355,46 +387,6 @@
 							"path": [
 								"api",
 								"VINResolver"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Local - HealthCheck",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "{{APIKey}}",
-									"type": "string"
-								},
-								{
-									"key": "in",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "x-functions-key",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:7071/api/HealthCheck",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "7071",
-							"path": [
-								"api",
-								"HealthCheck"
 							]
 						}
 					},
@@ -535,6 +527,49 @@
 					"response": []
 				},
 				{
+					"name": "Deployed - AttributeValidator - Email",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{APIKey}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "x-functions-key",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"module\": \"email\",\r\n    \"locale\": \"de\",\r\n    \"region\": \"de\",\r\n    \"values\": {\r\n        \"query\": \"Normen.meyer@daimler.com\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{FunctionURI}}/api/AttributeValidator",
+							"protocol": "https",
+							"host": [
+								"{{FunctionURI}}"
+							],
+							"path": [
+								"api",
+								"AttributeValidator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Deployed - AttributeValidator - ZIP",
 					"request": {
 						"auth": {
@@ -584,6 +619,11 @@
 							"type": "apikey",
 							"apikey": [
 								{
+									"key": "value",
+									"value": "{{APIKey}}",
+									"type": "string"
+								},
+								{
 									"key": "in",
 									"value": "header",
 									"type": "string"
@@ -592,11 +632,6 @@
 									"key": "key",
 									"value": "x-functions-key",
 									"type": "string"
-								},
-								{
-									"key": "value",
-									"value": "{{APIKey}}",
-									"type": "string"
 								}
 							]
 						},
@@ -604,7 +639,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"attributes\":\r\n        {\r\n            \"Firstname\": \"Satya\",\r\n            \"Lastname\": \"Nadella\",\r\n            \"Birthdate\": \"1967-08-19\",\r\n            \"Id\": \"80555510\"\r\n        },\r\n    \"method\": 4,\r\n    \"verbose\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}\r\n",
+							"raw": "{\r\n    \"attributes\":\r\n        {\r\n            \"Firstname\": \"Satya\",\r\n            \"Lastname\": \"Nadella\",\r\n            \"Birthdate\": \"19.08.1967\",\r\n            \"Id\": \"9999\"\r\n        },\r\n    \"method\": 4,\r\n    \"verbose\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -632,13 +667,13 @@
 							"type": "apikey",
 							"apikey": [
 								{
-									"key": "in",
-									"value": "header",
+									"key": "value",
+									"value": "{{APIKey}}",
 									"type": "string"
 								},
 								{
-									"key": "value",
-									"value": "{{APIKey}}",
+									"key": "in",
+									"value": "header",
 									"type": "string"
 								},
 								{
@@ -674,67 +709,17 @@
 					"response": []
 				},
 				{
-					"name": "Deployed - FormRecognizer",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "in",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "x-functions-key",
-									"type": "string"
-								},
-								{
-									"key": "value",
-									"value": "{{APIKey}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"model_id\": \"4b173cbf-a153-4c8b-b980-fc9e7399602d\",\r\n    \"doc_url\": \"https://nonstopstore.blob.core.windows.net/forms/form3.pdf?sv=2019-12-12&st=2021-03-07T10%3A19%3A08Z&se=2021-04-08T09%3A19%3A00Z&sr=b&sp=r&sig=hYgtrgzNegieovT47H0bEhpcPS34FgKqJHFtG7VuyHk%3D\",\r\n    \"copy_to_blob\": true\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://{{FunctionURI}}/api/formrecognizer",
-							"protocol": "https",
-							"host": [
-								"{{FunctionURI}}"
-							],
-							"path": [
-								"api",
-								"formrecognizer"
-							],
-							"query": [
-								{
-									"key": "",
-									"value": "",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Deployed - LicensePlateRecognizer",
 					"request": {
 						"auth": {
 							"type": "apikey",
 							"apikey": [
 								{
+									"key": "value",
+									"value": "{{APIKey}}",
+									"type": "string"
+								},
+								{
 									"key": "in",
 									"value": "header",
 									"type": "string"
@@ -742,11 +727,6 @@
 								{
 									"key": "key",
 									"value": "x-functions-key",
-									"type": "string"
-								},
-								{
-									"key": "value",
-									"value": "{{APIKey}}",
 									"type": "string"
 								}
 							]
@@ -783,6 +763,11 @@
 							"type": "apikey",
 							"apikey": [
 								{
+									"key": "value",
+									"value": "{{APIKey}}",
+									"type": "string"
+								},
+								{
 									"key": "in",
 									"value": "header",
 									"type": "string"
@@ -790,11 +775,6 @@
 								{
 									"key": "key",
 									"value": "x-functions-key",
-									"type": "string"
-								},
-								{
-									"key": "value",
-									"value": "{{APIKey}}",
 									"type": "string"
 								}
 							]
@@ -831,6 +811,11 @@
 							"type": "apikey",
 							"apikey": [
 								{
+									"key": "value",
+									"value": "{{APIKey}}",
+									"type": "string"
+								},
+								{
 									"key": "in",
 									"value": "header",
 									"type": "string"
@@ -839,11 +824,6 @@
 									"key": "key",
 									"value": "x-functions-key",
 									"type": "string"
-								},
-								{
-									"key": "value",
-									"value": "{{APIKey}}",
-									"type": "string"
 								}
 							]
 						},
@@ -851,7 +831,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n \"table\": {\r\n \"name\": \"CustomerData\"\r\n },\r\n \"params\": {\r\n \"PartitionKey\": \"CustomerData\"\r\n }\r\n}",
+							"raw": "{\r\n    \"table\": {\r\n        \"name\": \"CustomerData\"\r\n    },\r\n    \"params\": {\r\n        \"PartitionKey\": \"CustomerData\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -922,45 +902,6 @@
 							"path": [
 								"api",
 								"VINResolver"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Deployed - HealthCheck",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "{{APIKey}}",
-									"type": "string"
-								},
-								{
-									"key": "in",
-									"value": "header",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "x-functions-key",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "https://{{FunctionURI}}/api/HealthCheck",
-							"protocol": "https",
-							"host": [
-								"{{FunctionURI}}"
-							],
-							"path": [
-								"api",
-								"HealthCheck"
 							]
 						}
 					},
