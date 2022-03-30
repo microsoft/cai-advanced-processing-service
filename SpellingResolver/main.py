@@ -21,6 +21,12 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         lang = req_body.get("locale")
         if not lang:
             lang = "de"
+        convertnumbers = req_body.get("convertnumbers", True)
+        convertsymbols = req_body.get("convertsymbols", True)
+        additional_symbols = req_body.get("additional_symbols", {})
+        allowed_symbols= req_body.get("allowed_symbols", [])
+        allowed_symbols += ["*"]
+        extra_specials = req_body.get("extra_specials", [])
     # Snip off everything after first two characters (e.g. en-us -> en)
     lang = lang[:2]
                 
@@ -28,15 +34,11 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     if text:
         try:
             # Create instance of class with locale
-            cleaner = resolve.CleanText(lang)
-            # General preprocessing
-            resolved =  cleaner.clean_repeats( # Clean numbers (3*3 = 333)
-                            cleaner.resolve_numbers_as_words( # Resolve numbers as words
-                                cleaner.resolve_spelling_alphabet( # Resolve spelling alphabet
-                                    cleaner.remove_punctuation(text) # Remove Punctuation
-                                )))
+            cleaner = resolve.CleanText(lang, allowed_symbols, additional_symbols, extra_specials)
+            resolved_text = cleaner.clean(text, convertsymbols=convertsymbols, convertnumbers=convertnumbers)
+            
             # Extract first characters
-            resolved_fc = cleaner.extract_first_character(resolved)
+            resolved_fc = cleaner.extract_first_character(resolved_text)
         except AttributeError:
             return func.HttpResponse(
              "[ERROR] Received request with invalid or not supported locale.",
@@ -46,8 +48,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         # Pack response json
         res = json.dumps(dict(
             original                    = text,
-            resolved                    = resolved,
-            resolved_nospace            = resolved.replace(" ", ""),
+            resolved                    = resolved_text,
+            resolved_nospace            = resolved_text.replace(" ", ""),
             first_letters               = resolved_fc,
             first_letters_nospace       = resolved_fc.replace(" ", "")
         ))

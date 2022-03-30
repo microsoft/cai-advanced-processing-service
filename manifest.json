@@ -90,6 +90,17 @@
                     "zip":      true,
                     "city":     true
                 }
+            },
+            "email": {
+                "locales": {
+                    "DE": {}
+                },
+                "region": {
+                    "DE": {}
+                },
+                "value_is_mandatory": {
+                    "query":      true
+                }
             }
         },
         "config": {

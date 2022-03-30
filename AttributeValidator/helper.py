@@ -3,6 +3,9 @@ import logging
 import json
 import string
 import azure.functions as func
+from modules import luis_helper as luis
+from modules import resolve_spelling as resolve
+import re
 
 # Import custom modules and helpers
 from modules import process_input, validate_data
@@ -25,14 +28,15 @@ from assets.constants import (
     ATTRIBUTE_LOOKUP_STREET,
     ATTRIBUTE_LOOKUP_ZIP,
     USE_DB, 
-    ZIP
+    ZIP, 
+    EMAIL
 )
 
 # Define logger
 logger = logging.getLogger(__name__)
 
 class Validator(object):
-    def __init__(self, module, manifest, values, region="de"):
+    def __init__(self, module, manifest, values, region="de", locale="de"):
         # Set values, region and manifest. Also, we gather connection data.
         # In case they cannot be retrieved (e.g. if not needed/available), they will be set to None
         self.module = module
@@ -40,9 +44,10 @@ class Validator(object):
         self.config = manifest[CONFIG]
         self.values = values
         self.region = region.upper()
+        self.locale = locale
 
         # Retrieve credentials and set up data connector
-        self.credentials = CredentialRetriever(ATTRIBUTE_VALIDATOR_ENV).load_credentials()
+        self.credentials = CredentialRetriever(ATTRIBUTE_VALIDATOR_ENV,  normalize=('{region_code}', region)).load_credentials()
         self.connector = DataConnector(ATTRIBUTE_VALIDATOR_ENV, self.config, self.credentials).connector
 
         # Set module for validation
@@ -54,6 +59,8 @@ class Validator(object):
             self.matcher = self.ValidateStreet(self.config, self.manifest, self.values, self.region, self.connector)
         elif module == ZIP:
             self.matcher = self.ValidateZIP(self.config, self.manifest, self.values, self.region, self.connector)
+        elif module == EMAIL:
+            self.matcher = self.ValidateEMAIL(self.config, self.manifest, self.values, self.region, self.locale, self.connector)
         else:
             self.matcher = False
         
@@ -238,3 +245,77 @@ class Validator(object):
                 logging.info(f"[INFO] - No match found for zip and city")
                 res = json.dumps(dict(error = False, is_valid = False, has_options = False)) 
             return res
+
+    class ValidateEMAIL(object):
+        def __init__(self, config, manifest, values, region, locale, connector):
+            # Import from main class
+            self.config = config
+            self.values = values
+            self.region = region
+            self.locale = locale
+            self.manifest = manifest
+            self.connector = connector
+            self.cleaner = resolve.CleanText(locale, allowed_symbols=["_", "-", "@", "." ], 
+                                             additional_symbols={"at":"@", "at.":"@"},
+                                             extra_specials={"dot.com":".com"},
+                                             extra_spelling_alphabet={})
+            
+        
+        def remove_2dot(self, text):
+            if '.' in text[-1]:
+                text = text[:-1]
+            regexlist = [
+                        (r'dot(\.)', '.'),
+                        (r'punkt(\.)', '.'), 
+                        (r'(\.)(\.)', '.')
+                        ]
+            for regex in regexlist:
+                text = re.sub(regex[0], regex[1], text)
+               
+            return text
+        def run(self):
+            r = luis.score(self.values["query"], self.connector.credentials, ATTRIBUTE_VALIDATOR_ENV, self.region)
+            
+            if 'email' in r['prediction']['entities']:
+                email = "".join(self.remove_2dot(r['prediction']['entities']['email'][0]))
+                return json.dumps(
+                    {
+                        "query": self.values["query"],
+                        "e-mail recognized": True,
+                        "e-mail": email,
+                        "entities": r['prediction']['entities'],
+                        "topScoringIntent": r['prediction']['topIntent']
+                    }
+                )
+            elif 'email_spelled' in r['prediction']['entities']:
+                email = self.cleaner.clean(r['prediction']['entities']['email_spelled'][0], convertsymbols=True, convertnumbers=True).replace(" ", "")
+                email = "".join(self.remove_2dot(email))
+                if "@" not in email:
+                    return json.dumps(
+                        {
+                            "query": self.values["query"],
+                            "e-mail recognized": False,
+                            "e-mail": "",
+                            "entities": r['prediction']['entities'],
+                            "topScoringIntent": r['prediction']['topIntent']
+                        }
+                    )
+                return json.dumps(
+                    {
+                        "query": self.values["query"],
+                        "e-mail recognized": True,
+                        "e-mail": email,
+                        "entities": r['prediction']['entities'],
+                        "topScoringIntent": r['prediction']['topIntent']
+                    }
+                )
+            else:
+                return json.dumps(
+                    {
+                        "query": self.values["query"],
+                        "e-mail recognized": False,
+                        "e-mail": "",
+                        "entities": r['prediction']['entities'],
+                        "topScoringIntent": r['prediction']['topIntent']
+                    }
+                )

@@ -12,15 +12,35 @@ logger = logging.getLogger(__name__)
 from assets import characters
 
 class CleanText(object):
-    def __init__(self, locale):
+    def __init__(self, locale, 
+                 allowed_symbols, 
+                 additional_symbols, 
+                 extra_specials=dict(), 
+                 extra_spelling_alphabet=None
+                 ):
+        
+        self.allowed_symbols = allowed_symbols
+        self.additional_symbols = additional_symbols
         # Create lookup table for accellerated cleaning
-        self.table = str.maketrans({key: None for key in string.punctuation if key not in ['-', '*']})        
+        self.table = str.maketrans({key: None for key in string.punctuation if key not in allowed_symbols})        
 
         # TODO: return a False if the locale is not supported at all
 
         # Import dictionaires
+        if extra_spelling_alphabet is None:
+            extra_spelling_alphabet = characters.extra_spelling_alphabet.get(locale)
         self.dict_char = characters.alphabet.get(locale)
+        ## adding additional spelling alphabet to default dict
+        self.dict_char.update(extra_spelling_alphabet)
+        
+        self.dict_symbols = characters.symbols.get(locale)
+        ## adding additional symbols to default dict
+        self.dict_symbols.update(additional_symbols)
+        
         self.dict_spec = characters.specials.get(locale)
+        ## adding additional special replacement to default dict
+        self.dict_spec.update(extra_specials)
+        
         self.list_excl = characters.exclude.get(locale)
 
         # Collect characters from assets
@@ -29,11 +49,42 @@ class CleanText(object):
 
         # Replacement mapping table
         self.replacements = str.maketrans(dict.fromkeys(''.join(['.', ',', '-', '!', '?', ' ']), ''))
+        
+    def clean(self, text, convertsymbols=False, convertnumbers=True):
+        if convertsymbols:
+        # converting spelling symbels to the coresponding signs and keep the allowed symbols
+            text = self.clean_symbols(text)
+            
+        # Reduce string (replacing specials)
+        text = self.reduce_string(text)
+            
+            # Resolve spelling alphabet
+        text = self.resolve_spelling_alphabet(text)
+        
+        # Resolve numbers as words
+        text = self.resolve_numbers_as_words(text) 
+        
+        # Clean numbers (3*3 = 333)
+        if convertnumbers:
+            text = self.clean_repeats(text)
+            
+        return text
+        
+    def clean_symbols(self, text):
+        ''' 
+        this function do the following:
+        1) convert symbols spelling words to corresponding sign
+        2) removed all symbols (including punctuation) except those in the allowed_symbols list
+        '''
+        text = ' '.join([str(self.dict_symbols.get(i, i)) for i in text.lower().translate(self.table).split() if i not in self.list_excl])
+        logger.warning(f'[SPELLING - SYMBOLS] - {text}')
+        return text
     
     def resolve_spelling_alphabet(self, text):
         '''Reduce License Plate'''
         # Reduce spelling alphabet
         text = ' '.join([str(self.dict_char.get(i, i)) for i in text.translate(self.table).split() if i not in self.list_excl])
+        logger.warning(f'[SPELLING - ALPHABET] - {text}')
         return text
     
     def reduce_string(self, text):
@@ -46,14 +97,7 @@ class CleanText(object):
     def resolve_numbers_as_words(self, text):
         # Resolve numbers as words to numbers
         text = ' '.join([str(self.numbers_dict.get(i, i)) for i in text.translate(self.table).split() if i not in self.list_excl])
-        logger.warning(f'[NUMERS AS WORDS] - {text}')
-        return text
-
-    def remove_punctuation(self, text):
-        '''Remove punctuation'''
-        replacements = str.maketrans(dict.fromkeys(''.join(['.', ',', '-', '!', '?']), ' '))
-        text = text.lower().translate(replacements)
-        text = ' '.join(text.split())
+        logger.warning(f'[NUMBERS AS WORDS] - {text}')
         return text
 
     def extract_first_character(self, text, sep=" "):

@@ -1,10 +1,23 @@
+import json
+import logging
+import time
 import sys
-sys.path.append('..')
-from LicensePlateRecognizer import test_licenseplaterecognizer
+import os
+sys.path.append('./')
+import LicensePlateRecognizer.main as lp
+import azure.functions as func
 
+# set environmental variables
+with open('./local.settings.json', 'r') as f:
+  setting = json.load(f)
+
+evns = setting['Values']
+for key, value in evns.items():
+    os.environ[key] = value # visible in this process + all children
+    
 test_query = [
     "n wie marta mm 123",
-    "rotenburg wuemme n 2 mal 2",
+    "row wie rotenburg wümme n 2 mal 2",
     "frankfurt oder dora berta 3 und 2 Mal die 7.",
     'Nürnberg doppel nordpol zwo 4 5',
     'Ist B Strich SP Strich 7 7 9	',
@@ -48,8 +61,8 @@ test_query = [
     'Hamburg AH 7 1 8 H',
     'Hamburg AH 7 1 8 E',
     'doch klar hkl 123',
+    'doppel h ks 542',
     'doppel hks 542',
-    'HRO wie Rostock tw 202',
     'HHHL 1 Doppel 03',
     'Aha am 6440',
     'hh wie hamburg tr 234',
@@ -136,7 +149,7 @@ test_lp = [
     "HH-AH718E",
     "H-KL123",
     "HH-KS542",
-    "HRO-TW202",
+    "",
     "HH-HL1003",
     "HH-AM6440",
     "HH-TR234",
@@ -176,6 +189,37 @@ test_lp = [
     "DI-E1234"
 ]
 
-def test():
-    for lp, resolved in zip(test_query, test_lp):
-        assert test_licenseplaterecognizer(lp) == resolved
+start =  time.time()
+errors = []
+for query, lps in zip(test_query, test_lp):
+    try:
+        body = {'query':query,
+                 "language": "de-de",
+                 "locale": "de"
+                 }
+        
+        # Build HTTP request
+        req = func.HttpRequest(
+            method  = 'GET',
+            body    = json.dumps(body).encode('utf8'),
+            url     = '/api/LicensePlateRecognizer',
+            params  = {}
+        )
+        # Call the function.
+        res = json.loads(lp.main(req).get_body())
+        try: 
+            res_entity = res['cplEntities'][0]['entity']
+        except:
+            res_entity = ''
+        if res_entity != lps:
+            print(print('\033[91m' + query + '\033[0m'))
+            print(print('\033[100m' + lps + '\033[0m'))
+            logging.warning(f'[ERROR] LP Recognition mismatch for {query} -> {lps} != {res}')
+            errors.append(query)
+    except Exception as e:
+        logging.warning(query, e, res)
+        errors.append(query)
+
+end = time.time() - start
+
+print(f'[INFO] DONE -> {1 - (len(errors)/len(test_query)):.2%}. \n\tTotal duration \t\t{end:.3}s \n\tDuration per loop \t{end/len(test_query):.3}s')

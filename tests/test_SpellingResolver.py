@@ -5,28 +5,56 @@ from SpellingResolver.main import main
 
 @ddt
 class TestSpellingResolver(unittest.TestCase):
-    @data( (dict(query='anton marta 123', locale='de'), {
+    @data( ({"query":"anton marta 123",
+             "convertnumbers": True,
+            "convertsymbols": True,
+            "additional_symbols": {},
+            "allowed_symbols": ["-" ],
+             "locale":"de"
+             },
+            {
             "original": "anton marta 123",
             "resolved": "a m 123",
             "resolved_nospace": "am123",
             "first_letters": "a m 123",
             "first_letters_nospace": "am123"
         }),
-            (dict(query='siegfried dora 2 * 7', locale='de'), {
+            ({'query':'siegfried dora 2 * 7',
+             "convertnumbers": True,
+            "convertsymbols": True,
+            "additional_symbols": {},
+            "allowed_symbols": ["-" ],
+             'locale':'de'
+             }, 
+             {
             "original": "siegfried dora 2 * 7",
             "resolved": "s d 77",
             "resolved_nospace": "sd77",
             "first_letters": "s d 77",
             "first_letters_nospace": "sd77"
         }),
-            (dict(query='toni berta 22', locale='de'), {
+            ({'query':'toni berta 22',
+             "convertnumbers": True,
+            "convertsymbols": True,
+            "additional_symbols": {},
+            "allowed_symbols": ["-" ],
+             'locale':'de'
+             }, 
+             {
             "original": "toni berta 22",
             "resolved": "toni b 22",
             "resolved_nospace": "tonib22",
             "first_letters": "t b 22",
             "first_letters_nospace": "tb22"
         }),
-            (dict(query='d e 3 times 7 2 times 3', locale='de'), {
+            ({'query':'d e 3 times 7 2 times 3',
+             "convertnumbers": True,
+            "convertsymbols": True,
+            "additional_symbols": {},
+            "allowed_symbols": ["-" ],
+             'locale':'de'
+             }, 
+             {
             "original": "d e 3 times 7 2 times 3",
             "resolved": "d e 777 33",
             "resolved_nospace": "de77733",
