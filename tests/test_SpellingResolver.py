@@ -5,13 +5,13 @@ from SpellingResolver.main import main
 
 @ddt
 class TestSpellingResolver(unittest.TestCase):
-    @data( ({'query':'anton,marta 123',
+    @data( ({"query":"anton marta 123",
              "convertnumbers": True,
             "convertsymbols": True,
             "additional_symbols": {},
             "allowed_symbols": ["-" ],
-             'locale':'de',
-             }, 
+             "locale":"de"
+             },
             {
             "original": "anton marta 123",
             "resolved": "a m 123",
@@ -24,7 +24,7 @@ class TestSpellingResolver(unittest.TestCase):
             "convertsymbols": True,
             "additional_symbols": {},
             "allowed_symbols": ["-" ],
-             'locale':'de',
+             'locale':'de'
              }, 
              {
             "original": "siegfried dora 2 * 7",
@@ -38,7 +38,7 @@ class TestSpellingResolver(unittest.TestCase):
             "convertsymbols": True,
             "additional_symbols": {},
             "allowed_symbols": ["-" ],
-             'locale':'de',
+             'locale':'de'
              }, 
              {
             "original": "toni berta 22",
@@ -52,7 +52,7 @@ class TestSpellingResolver(unittest.TestCase):
             "convertsymbols": True,
             "additional_symbols": {},
             "allowed_symbols": ["-" ],
-             'locale':'de',
+             'locale':'de'
              }, 
              {
             "original": "d e 3 times 7 2 times 3",
