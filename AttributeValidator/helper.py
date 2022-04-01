@@ -1,5 +1,4 @@
 '''HELPER FUNCTIONS AND BUSINESS LOGIC FOR ATTRIBUTE VALIDATOR'''
-import imp
 import logging
 import json
 import string
@@ -12,7 +11,7 @@ import re
 from modules import process_input, validate_data
 from modules.retrieve_credentials import CredentialRetriever
 from modules.data_connector import DataConnector
-from assets.characters import email_domains
+from assets import characters
 from assets.constants import (
     ADDRESS, 
     ATTRIBUTE_VALIDATOR_ENV,
@@ -262,7 +261,7 @@ class Validator(object):
                                              extra_specials={"dot.com":".com"},
                                              extra_spelling_alphabet={}
                                              )
-            self.domain = email_domains
+            self.domain = characters.email_domains
             
         
         def remove_2dot(self, text):
