@@ -22,6 +22,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         if not lang:
             lang = "de"
         convertnumbers = req_body.get("convertnumbers", True)
+        convertmultiplications = req_body.get("convertmultiplications", True)
         convertsymbols = req_body.get("convertsymbols", True)
         additional_symbols = req_body.get("additional_symbols", {})
         allowed_symbols= req_body.get("allowed_symbols", [])
@@ -35,7 +36,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         try:
             # Create instance of class with locale
             cleaner = resolve.CleanText(lang, allowed_symbols, additional_symbols, extra_specials)
-            resolved_text = cleaner.clean(text, convertsymbols=convertsymbols, convertnumbers=convertnumbers)
+            resolved_text = cleaner.clean(text, convertsymbols=convertsymbols,
+                                          convertnumbers=convertnumbers, 
+                                          convertmultiplications=convertmultiplications
+                                          )
             
             # Extract first characters
             resolved_fc = cleaner.extract_first_character(resolved_text)

@@ -55,7 +55,30 @@ numbers_dict = {
 		'zehne':	10,
 		'zehn':		10,
 		'elfe':		11,
-		'zwölfe':	12
+		'zwölfe':	12,
+		"elf": 		11,
+		"zwölf": 	12,
+		"dreizehn": 13,
+		"vierzehn": 14,
+		"fünfzehn": 15,
+		"sechszehn": 16,
+		"siebzehn": 17,
+		"achtzehn": 18,
+		"neunzehn": 19,
+		"zwanzig": 	20,
+		"einundzwanzig": 21,
+		"zweiundzwanzig": 22,
+		"dreiundzwanzig": 23,
+		"dreißig": 	30,
+		"vierzig": 	40,
+		"fünfzig": 	50,
+		"sechzig": 	60,
+		"siebzig": 	70,
+		"achtzig": 	80,
+		"neunzig": 	90,
+		"hundert": 	100,
+		"tausend": 	1000,
+		"million": 	1000000,
 		}
 }
 
@@ -1200,3 +1223,17 @@ specials = {
 		"färben":"verden"
 	}
 }
+
+""" list of the most common email domains """
+
+email_domains = {
+                'mercedesde': 'mercedes.de',
+                'gmailde': 'gmail.de',
+                'gmxde': 'gmx.de',
+                'tonlinede': 't-online.de',
+                'testde': 'test.de',
+                'blade': 'bla.de',
+                'hotmailde': 'hotmail.de',
+                'mailde': 'mail.de',
+                'tonline.de': 't-online.de',
+                            }
