@@ -91,7 +91,8 @@ __Functionality:__
 - Resolves spelling alphabets in a string as well as letter/number multiplications
 
 __Dependencies:__
-- None
+- External services or libraries:
+    - for Email validator service it needs [Language Understanding Service (LUIS)](https://luis.ai) for extracting license plates from a string
 
 ### `similarity_score.py`
 
@@ -192,7 +193,7 @@ API key may be passed via header
             "text": "stuttgart a wie anton dora 22",
             "startIndex": 8,
             "length": 29,
-            "score": 0.9936155,
+            "score": 0.99148196,
             "modelTypeId": 1,
             "modelType": "Entity Extractor",
             "recognitionSources": [
@@ -200,7 +201,10 @@ API key may be passed via header
             ]
         }
     ],
-    "topScoringIntent": "LicensePlate"
+    "topScoringIntent": "LicensePlate",
+    "logs": [
+        "[INFO] - Set params -> region: de, language: de."
+    ]
 }
 ```
 
@@ -212,7 +216,11 @@ API key may be passed via header
     "cplQuery": "puh das hab ich gerade nicht zur hand",
     "cplEntities": [],
     "entities": {},
-    "topScoringIntent": "None"
+    "topScoringIntent": "None",
+    "logs": [
+        "[INFO] - Set params -> region: de, language: de.",
+        "[WARNING] - No entity could be extracted"
+    ]
 }
 ```
 
@@ -255,7 +263,15 @@ API key may be passed via header
 ```json
 {
     "query": "[0-500 chars]",
-    "locale": "[2-character language code, e.g. de, en, es (cut off after two characters)]"
+    "locale": "[2-character language code, e.g. de, en, es (cut off after two characters)]",
+    "convertnumbers": "[true/false, default is true]",
+    "convertsymbols": "[true/false, default is true]",
+    "convertmultiplications": "[true/false, default is true]",
+    "additional_symbols": "[a dictionary, example: {"at":"@", "dash": "-"}, default: {}]",
+    "allowed_symbols": "[a list, example: ["_", "-", "@", "." ], default: []]",
+    "extra_specials": "[a list, example: {'werden':'verden'}, default: {}",
+    "extra_spelling_alphabet": "[a dictionary, example: {'daimler':'d'}, default: null]",
+    "locale": "de"
 }
 ```
 
@@ -361,14 +377,43 @@ API key may be passed via header
         "vis": "CES5C8T2",
         "vsn": "S5C8T2",
         "less_than_500_built_per_year": false
-    }
+    },
+    "entities": {
+        "vin": [
+            "2WMCGH3B2CES5C8T2"
+        ],
+        "$instance": {
+            "vin": [
+                {
+                    "type": "vin",
+                    "text": "2WMCGH3B2CES5C8T2",
+                    "startIndex": 8,
+                    "length": 17,
+                    "score": 0.99916714,
+                    "modelTypeId": 1,
+                    "modelType": "Entity Extractor",
+                    "recognitionSources": [
+                        "model"
+                    ]
+                }
+            ]
+        }
+    },
+    "topScoringIntent": "VINResolver"
 }
 ```
+"entities" returns LUIS response.
 
 ```json
 # If no entity could be extracted 
 {
-    "info": "No entity could be extracted."
+    "query": "das ist ",
+    "validvin": false,
+    "vindetails": {},
+    "entities": {},
+    "message": [
+        "[WARNING] - No entity could be extracted"
+    ]
 }
 ```
 

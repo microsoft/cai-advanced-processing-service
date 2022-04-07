@@ -28,6 +28,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         allowed_symbols= req_body.get("allowed_symbols", [])
         allowed_symbols += ["*"]
         extra_specials = req_body.get("extra_specials", [])
+        extra_spelling_alphabet =  req_body.get("extra_spelling_alphabet", None)
     # Snip off everything after first two characters (e.g. en-us -> en)
     lang = lang[:2]
                 
@@ -35,7 +36,12 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     if text:
         try:
             # Create instance of class with locale
-            cleaner = resolve.CleanText(lang, allowed_symbols, additional_symbols, extra_specials)
+            cleaner = resolve.CleanText(locale=lang, 
+                                        allowed_symbols=allowed_symbols, 
+                                        additional_symbols=additional_symbols, 
+                                        extra_specials=extra_specials, 
+                                        extra_spelling_alphabet=extra_spelling_alphabet
+                                        )
             resolved_text = cleaner.clean(text, convertsymbols=convertsymbols,
                                           convertnumbers=convertnumbers, 
                                           convertmultiplications=convertmultiplications
