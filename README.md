@@ -605,9 +605,10 @@ First, you have to install/set up following components:
     - [Azure Functions Core Tools](https://docs.microsoft.com/de-de/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#v2), download for your local runtime environment, e.g. as `.exe` -> _v3.x: Windows 64-Bit_
     - A restart is highly recommended or even required after installing these components, otherwise you might face some hiccups.
 2. Python >= 3.7
-    - We recommend you to use the official version from the [Python website](https://www.python.org/downloads/release/python-379/), make sure you install `pip` and set Python as `path` variable during the installation
+    - We recommend you to use the official version from the [Python website](https://www.python.org/downloads/release/python-379/), make sure you install `pip` and set Python as `path` variable during the installation process.
+    
 3. Postman
-    - Framework for API testing, download it [here](https://www.postman.com/downloads/)
+    - Framework for API testing, download it [here](https://www.postman.com/downloads/) and install it.
 
 ### Testing and Debugging
 1. Get your code from GitHub: `git clone https://github.com/microsoft/looky` and `cd` into the environment
