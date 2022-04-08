@@ -441,6 +441,267 @@ API key may be passed via header
 
 <br>
 
+### **AtributeValidator API**
+**URL** : `/AttributeValidator/`
+
+**Method** : `GET` / `POST`
+
+**Auth required** : Only deployed version, if authentication is activated (strongly recommended) 
+
+**Permissions required** : for email validator, LUIS app information and keys, see [Get Your Keys](GET_YOUR_KEYS.md) for instructions
+
+**Data constraints** 
+AtributeValidator API suppurt the following attributes:
+- `address`
+- `street_in_city`
+- `zip`
+- `iban`
+- `email`
+the request body for AtributeValidator is different depending on the attribute.
+
+- For address attribute, the request body is:
+```json
+{
+    "region": "[2-character language code, e.g. de, en, es (cut off after two characters)]",
+    "module": "address",
+    "values": {
+        "zip": "99999",
+        "city": "berlin",
+        "street": "jordanstrasse",
+        "number": 10
+    }
+}
+```
+-  For street_in_city attribute, the request body is (Prüft Straße in ZIP):
+```json
+{
+    "region": "[2-character language code, e.g. de, en, es (cut off after two characters)]",
+    "module": "street_in_city",
+    "values": {
+        "zip": "99999",
+        "city": "berlin",
+        "street": "jordanstrasse",
+        "number": 10
+    }
+}
+```
+- For zip attribute, the request body is:
+```json
+{
+    "region": "[2-character language code, e.g. de, en, es (cut off after two characters)]",
+    "module": "zip",
+    "values": {
+        "zip": "99999",
+        "city": "duesseldorf "
+    }
+}
+```
+
+- For iban attribute, the request body is (Prüft IBAN):
+```json
+{
+    "region": "[2-character language code, e.g. de, en, es (cut off after two characters)]",
+    "module": "iban",
+    "values": {
+        "iban": "DE12345678901234567890"
+    }
+}
+```
+- For email attribute, the request body is (Prüft E-Mail):
+```json
+{
+    "region": "[2-character language code, e.g. de, en, es (cut off after two characters)]",
+    "locale": "[2-character language code, e.g. de, en, es (cut off after two characters)]",
+    "module": "email",
+    "values": {
+        "email": "max.mustermann@example.com"
+    }
+}
+```
+
+Note that `locale` stands for language. Optional values - if not passed, `de` is set respectively by default.
+
+**Header constraints**
+API key may be passed via header
+
+#### **Success Responses**
+
+**Condition** : Data provided, correct app information set and LUIS information is valid.
+
+**Code** : `200 OK`
+
+**Content example** : 
+
+- For address validation, the response will be:
+```json
+{
+    "error": false,
+    "city_is_valid": true,
+    "zip": "10115",
+    "city": "Berlin",
+    "street_is_valid": true,
+    "street_has_options": false,
+    "street": "Bergstr.",
+    "number": 10
+}
+```
+
+- For street_in_city validation, the response will be:
+```json
+{
+    "error": false,
+    "is_valid": true,
+    "has_options": false,
+    "street": "Bergstr.",
+    "number": "10"
+}
+```
+
+- For zip validation, the response will be:
+```json
+{
+    "error": false,
+    "is_valid": true,
+    "zip": "10115",
+    "city": "Berlin"
+}
+```
+
+- For iban validation, the response will be:
+```json
+{
+    "error": false,
+    "is_valid": true,
+    "iban": "DE02120300000000202051"
+}
+```
+
+- For email validation, the response will be:
+```json
+{
+    "query": "Normen.meyer@daimler.com",
+    "e-mail recognized": true,
+    "e-mail": "normen.meyer@daimler.com",
+    "entities": {
+        "company_name": [
+            "Normen.meyer@daimler.com"
+        ],
+        "email_spelled": [
+            "Normen.meyer@daimler.com"
+        ],
+        "email": [
+            "normen.meyer@daimler.com"
+        ],
+        "domain": [
+            "daimler.com"
+        ],
+        "$instance": {
+            "company_name": [
+                {
+                    "type": "company_name",
+                    "text": "Normen.meyer@daimler.com",
+                    "startIndex": 0,
+                    "length": 24,
+                    "score": 0.46415412,
+                    "modelTypeId": 1,
+                    "modelType": "Entity Extractor",
+                    "recognitionSources": [
+                        "model"
+                    ]
+                }
+            ],
+            "email_spelled": [
+                {
+                    "type": "email_spelled",
+                    "text": "Normen.meyer@daimler.com",
+                    "startIndex": 0,
+                    "length": 24,
+                    "score": 0.76997584,
+                    "modelTypeId": 1,
+                    "modelType": "Entity Extractor",
+                    "recognitionSources": [
+                        "model"
+                    ]
+                }
+            ],
+            "email": [
+                {
+                    "type": "builtin.email",
+                    "text": "Normen.meyer@daimler.com",
+                    "startIndex": 0,
+                    "length": 24,
+                    "modelTypeId": 2,
+                    "modelType": "Prebuilt Entity Extractor",
+                    "recognitionSources": [
+                        "model"
+                    ]
+                }
+            ],
+            "domain": [
+                {
+                    "type": "domain",
+                    "text": "daimler.com",
+                    "startIndex": 13,
+                    "length": 11,
+                    "score": 0.9899364,
+                    "modelTypeId": 1,
+                    "modelType": "Entity Extractor",
+                    "recognitionSources": [
+                        "model"
+                    ]
+                }
+            ]
+        }
+    },
+    "topScoringIntent": "GetEntities"
+}
+
+"entities" returns LUIS response.
+
+```json
+# If no entity could be extracted 
+{
+    "query": "mein email",
+    "e-mail recognized": false,
+    "e-mail": "",
+    "entities": {},
+    "topScoringIntent": "GetEntities"
+}
+```
+
+#### **Error Responses**
+
+**Condition** : If provided data is invalid, e.g. region not supported.
+
+**Code** : `200 OK`
+
+**Content example** :
+
+```
+[ERROR] Locale not supported
+{
+    "error": true,
+    "is_valid": false,
+    "error_message": "Locale US not supported."
+}
+```
+
+**Condition** : If no query string (utterance from conversation, which may include a license plate) has been passed.
+
+**Code** : `200 BAD REQUEST`
+
+**Content example** :
+
+```
+{
+    "error": false,
+    "error_message": "Submitted IBAN is not a valid IBAN for DE with length of 22",
+    "is_valid": false
+}
+```
+
+<br>
+
 ### Table Requestor API
 **URL** : `/TableRequestor/`
 
