@@ -6,6 +6,11 @@ on:
     types:
       - completed
 
+# Set environment variables
+env:
+  functionapikey: ${{ secrets.POSTMAN_API_KEY }}
+  functionuri: ${{ secrets.POSTMAN_FUNCTION_URI }}
+  
 # Run tests
 jobs:
   test-api:
@@ -29,4 +34,4 @@ jobs:
     # Run the Postman collection with required variables
     - name: Run POSTMAN collection
       run: |
-        newman run "assets/postman-collection/cai-advanced-processing-service.postman_collection.json" --folder Deployed --env-var ${{ secrets.POSTMAN_API_KEY }} --env-var ${{ secrets.POSTMAN_FUNCTION_URI }}
+        newman run "assets/postman-collection/cai-advanced-processing-service.postman_collection.json" --folder Deployed --env-var ${{ functionapikey }} --env-var ${{ functionuri }}
