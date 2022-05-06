@@ -11,6 +11,7 @@ import re
 from modules import process_input, validate_data
 from modules.retrieve_credentials import CredentialRetriever
 from modules.data_connector import DataConnector
+from assets import characters
 from assets.constants import (
     ADDRESS, 
     ATTRIBUTE_VALIDATOR_ENV,
@@ -258,7 +259,9 @@ class Validator(object):
             self.cleaner = resolve.CleanText(locale, allowed_symbols=["_", "-", "@", "." ], 
                                              additional_symbols={"at":"@", "at.":"@"},
                                              extra_specials={"dot.com":".com"},
-                                             extra_spelling_alphabet={})
+                                             extra_spelling_alphabet={}
+                                             )
+            self.domain = characters.email_domains
             
         
         def remove_2dot(self, text):
@@ -288,7 +291,12 @@ class Validator(object):
                     }
                 )
             elif 'email_spelled' in r['prediction']['entities']:
-                email = self.cleaner.clean(r['prediction']['entities']['email_spelled'][0], convertsymbols=True, convertnumbers=True).replace(" ", "")
+                email = self.cleaner.clean(r['prediction']['entities']['email_spelled'][0],
+                                           convertsymbols=True, 
+                                           convertnumbers=True,
+                                           ignorealphabet=False,
+                                           convertmultiplications=True
+                                           ).replace(" ", "")
                 email = "".join(self.remove_2dot(email))
                 if "@" not in email:
                     return json.dumps(
@@ -300,6 +308,10 @@ class Validator(object):
                             "topScoringIntent": r['prediction']['topIntent']
                         }
                     )
+                # final cleaning of email: clean domain name
+                if email.split("@")[1] in self.domain:
+                    email = email.split("@")[0] + "@" + self.domain[email.split("@")[1]]
+                
                 return json.dumps(
                     {
                         "query": self.values["query"],

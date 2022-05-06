@@ -50,7 +50,7 @@ class CleanText(object):
         # Replacement mapping table
         self.replacements = str.maketrans(dict.fromkeys(''.join(['.', ',', '-', '!', '?', ' ']), ''))
         
-    def clean(self, text, convertsymbols=False, convertnumbers=True):
+    def clean(self, text, convertsymbols=False, convertnumbers=True, ignorealphabet=True, convertmultiplications=True):
         if convertsymbols:
         # converting spelling symbels to the coresponding signs and keep the allowed symbols
             text = self.clean_symbols(text)
@@ -58,14 +58,16 @@ class CleanText(object):
         # Reduce string (replacing specials)
         text = self.reduce_string(text)
             
-            # Resolve spelling alphabet
-        text = self.resolve_spelling_alphabet(text)
+        # Resolve spelling alphabet
+        if ignorealphabet:
+            text = self.resolve_spelling_alphabet(text)
         
         # Resolve numbers as words
-        text = self.resolve_numbers_as_words(text) 
+        if convertnumbers:
+            text = self.resolve_numbers_as_words(text) 
         
         # Clean numbers (3*3 = 333)
-        if convertnumbers:
+        if convertmultiplications:
             text = self.clean_repeats(text)
             
         return text
