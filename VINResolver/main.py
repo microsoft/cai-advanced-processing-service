@@ -1,5 +1,4 @@
 '''VIN RESOLVER'''
-from email import message
 import json
 import logging
 import azure.functions as func
@@ -47,6 +46,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         lang = lang[:2]
         logger.info(f'[INFO] - Set params -> expectedwmi: {expectedwmi}, language: {lang}.')
 
+    msg = []
     # Retrieve credentials
     credentials = CredentialRetriever(VIN_RESOLVER_ENV, normalize=('{region_code}', lang)).load_credentials()
     
@@ -63,13 +63,19 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     elif query:
         # Get LUIS entity results
         r = luis.score(query, credentials, VIN_RESOLVER_ENV, lang)
-        if 'vin' in r['prediction']['entities']:
+        # if 'vin' in r['prediction']['entities']:
+        try:
             ## Load entity
             entity = r['prediction']['entities']['vin'][0].lower()
             topScoringIntent = r['prediction']['topIntent']
-        else:
+        except KeyError:
             entity = query.lower()
             topScoringIntent = r['prediction']['topIntent']
+            msg.append('[WARNING] - No entity could be extracted')
+        except Exception as e:
+            logger.error(f'[ERROR] - {e}')
+            msg.append(f'[ERROR] - {e}')
+            entity = query.lower()
             
         entity = cleaner.clean(entity, convertsymbols=False, convertnumbers=True).replace(" ", "")
 
@@ -110,8 +116,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                 "query": query,
                 "validvin": False,
                 "vindetails": {},
-                "message": message
-                })
+                "entities": r.get('prediction', None).get('entities', None),
+                "message": msg
+                }
+                )
 
         return func.HttpResponse(
             res, mimetype='application/json'
