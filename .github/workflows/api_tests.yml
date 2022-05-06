@@ -34,4 +34,4 @@ jobs:
     # Run the Postman collection with required variables
     - name: Run POSTMAN collection
       run: |
-        newman run "assets/postman-collection/cai-advanced-processing-service.postman_collection.json" --folder Deployed --env-var ${{ env.functionapikey }} --env-var ${{ env.functionuri }}
+        newman run "assets/postman-collection/cai-advanced-processing-service.postman_collection.json" --folder Deployed --env-var "APIKey=${{ env.functionapikey }}" --env-var "FunctionURI=${{ env.functionuri }}"
