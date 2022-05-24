@@ -1,0 +1,410 @@
+
+> LUIS application information
+> !# @app.name = License Plate Recognition DE
+> !# @app.desc = LUIS App for iBDC VoiceBot Project. Prod.
+> !# @app.versionId = 0.5
+> !# @app.culture = de-de
+> !# @app.luis_schema_version = 7.0.0
+> !# @app.tokenizerVersion = 1.0.0
+
+
+> # Intent definitions
+
+# LicensePlate
+- {@platenumber=a-b44}
+- {@platenumber=ab44}
+- äh das is {@platenumber=hhmr 1036}.
+- ah {@platenumber=hamburg berta cerca 2 4 3}
+- äh {@platenumber=l w r richtig 9 6 9}
+- äh<variation> {@platenumber=hamburg emil anton 2 0 9}.
+- {@platenumber=ah8}
+- ähm {@platenumber=h g r t 4 32}
+- ähm natürlich {@platenumber=hamburg anton paula 6 6 7 1}
+- ähm oh das ist {@platenumber=münchen anton dora 239} und ja
+- ähm wie war das nochmal mein nummernschild {@platenumber=frankfurt gustav zacharias 736}
+- also {@platenumber=friedrich paula und dann 8 8 00}
+- also {@platenumber=hamburg karl friedrich 2 3 6}
+- also ich fange jetzt an {@platenumber=s tx 6543}
+- {@platenumber=b-e12}
+- {@platenumber=bad en 412} ist mein nummernschild
+- {@platenumber=bb a345}
+- {@platenumber=bb b345}.
+- {@platenumber=bbb 3 mal die 9}.
+- {@platenumber=be12}
+- {@platenumber=be2}
+- {@platenumber=behörden kennzeichen 3 zwo 63}.
+- {@platenumber=berlin anton dora 101} ist mein kennzeichen
+- {@platenumber=berta heinrich dora eins zwei vier}
+- {@platenumber=berta südpol 12 0 6}
+- {@platenumber=bremen eh cerca anton 999}
+- {@platenumber=calw berta 55 e}
+- {@platenumber=d we 5432}
+- {@platenumber=da3}
+- das dreht sich um das fahrzeug {@platenumber=hamburg s h 346}
+- das ist {@platenumber=0 140 22}
+- das ist {@platenumber=a-b44}
+- das ist {@platenumber=ab44}
+- das ist {@platenumber=b-av12}
+- das ist {@platenumber=ba-v12}
+- das ist {@platenumber=bav12}
+- das ist {@platenumber=bremen d 333}
+- das ist {@platenumber=d-ue4561}
+- das ist das kennzeichen {@platenumber=hamburg s h 3 4 6}
+- das ist die {@platenumber=fds f 337}
+- das ist {@platenumber=du-e4561}
+- das ist {@platenumber=due4561}
+- das ist {@platenumber=freudenstadt mk 100 historisch}
+- das ist {@platenumber=ha n 5.100}.
+- das ist {@platenumber=hamburg ab1}
+- das ist {@platenumber=kaiserslautern berta dora 220 elektro}
+- das ist {@platenumber=ma-b123}
+- das ist {@platenumber=mab123}
+- das ist {@platenumber=mat 12 mal die 87}
+- das ist {@platenumber=r z. b. 6.000}
+- das ist {@platenumber=s tk777}
+- das ist {@platenumber=s tx 235} und mein termin sollte in frankfurt sein
+- das ist {@platenumber=stuttgart anton dora 22 e}
+- das ist {@platenumber=stuttgart mk 92} glaub
+- das ist {@platenumber=stx 222 e}
+- das ist {@platenumber=z-h44}
+- das ist {@platenumber=zh44}
+- das kennzeichen lautet {@platenumber=h strich dt 19}
+- das kennzeichen lautet {@platenumber=stuttgart mx 330}
+- das kennzeichen meines autos is {@platenumber=a wie anton b, wie berta d wie dora 125}
+- das kennzeichen von meinem auto ist {@platenumber=die ose 0231}.
+- das kennzeichen von meinem auto ist {@platenumber=heinrich dora m 195}
+- das kennzeichen von meinem auto ist {@platenumber=rakl 8.136}
+- das kennzeichen von meinem auto ist {@platenumber=rakl 8.136}.
+- das kennzeichen von meinem autos {@platenumber=heinrich dora m 195}.
+- das wäre {@platenumber=hh al 856}.
+- dat is {@platenumber=balingen siegfried friedrich drei mal die 3}
+- {@platenumber=db44}
+- die {@platenumber=b ln 555}
+- doch klar {@platenumber=hfh 324}
+- doch klar {@platenumber=hht 123 e}
+- {@platenumber=doppel h ka 3423}
+- {@platenumber=doppel htf 123 h}
+- {@platenumber=doppel nrd 325}
+- {@platenumber=dreimal b dreimal die 9}.
+- durchsicht bei dem wagen r u also {@platenumber=h h r u 25 22}
+- {@platenumber=düsseldorf gustav heinrich 214} ist mein nummernschild
+- eder {@platenumber=hamburg ida berta 4 5 0}.
+- {@platenumber=eg1288}
+- {@platenumber=eg2}
+- {@platenumber=eg43}
+- {@platenumber=eg56}
+- {@platenumber=eg762}
+- {@platenumber=eh3}
+- es ist die {@platenumber=bb ba 2323}
+- es ist die {@platenumber=köln xb 1337}
+- {@platenumber=esslingen s wie samuel 222}
+- {@platenumber=f d e 1234}
+- {@platenumber=fds f777}
+- {@platenumber=frankfurt am main op dreimal die 3}
+- {@platenumber=freudenstadt doppel berta 333 h}
+- {@platenumber=frjg 417}.
+- für {@platenumber=stade ida paula 3 4}
+- {@platenumber=g ö wm 21}.
+- götz ist nochmal nachgucken sie hatte mir den äh das {@platenumber=shh ps 1510} für friedrich ebert damm.
+- {@platenumber=h b g m 2 4}
+- {@platenumber=h g 9 9 7}, {@platenumber=heinrich gustav 9 9 7}
+- {@platenumber=h h - o m 1 2 3}
+- {@platenumber=h h j h 4.800}
+- {@platenumber=h h l v 40 43}
+- {@platenumber=h h t k 15 96}
+- {@platenumber=hac 2048}
+- {@platenumber=haha ed 77970} genau.
+- {@platenumber=haha ih l 3024}.
+- {@platenumber=haha ml 435}.
+- {@platenumber=hamburg anton martha 2 86}
+- {@platenumber=hamburg berta cerca 2 4 3}
+- {@platenumber=hamburg e a 18 85}
+- {@platenumber=hamburg e a hm 18 85}
+- {@platenumber=hamburg emil anton 2 0 9}
+- {@platenumber=hamburg p d 8 2 4}
+- {@platenumber=hamburg paula marta 5 0 5}
+- {@platenumber=hamburger kennzeichen ida 7114, 114}.
+- {@platenumber=han 5.100}
+- {@platenumber=hannover berta theodor 90 90}
+- {@platenumber=hanover friedrich ebert 2 4 1}
+- hansestadt {@platenumber=hamburg ad 12 4}
+- {@platenumber=hb bremen sw 446 h}
+- {@platenumber=hb gustav marius 69}
+- {@platenumber=hb martha gustav 6 9}
+- {@platenumber=hb mg 3 5}
+- {@platenumber=hb mg 6 9}
+- {@platenumber=hb mg 69}
+- {@platenumber=hed 770} genau
+- {@platenumber=heinrich gustav 9 9 7}
+- hey, mein kennzeichen {@platenumber=hannover dora dora 1.100}.
+- {@platenumber=hh - er 1231}
+- {@platenumber=hh a123}.
+- {@platenumber=hh ah568 h}
+- {@platenumber=hh b125}.
+- {@platenumber=hh dora 32 2 ein}
+- {@platenumber=hh dr 87}
+- {@platenumber=hh für hamburg ml 3 zwo}
+- {@platenumber=hh hansestadt hamburg xp 123 e}
+- {@platenumber=hh m 631 zwo}
+- {@platenumber=hh m g 1 3 4 zwo}.
+- {@platenumber=hh r 432}
+- {@platenumber=hh r4 32}
+- {@platenumber=hh-ah718 e}
+- {@platenumber=hh-m323}
+- {@platenumber=hh-om888}
+- {@platenumber=hhjh 4.800}.
+- {@platenumber=hhmg 134 zwo}.
+- hi das kennzeichen vom auto ist {@platenumber=m, wie martin t, wie teufel 1.950}.
+- hi mein kennzeichen ist {@platenumber=heinrich heinrich dora dora 125}.
+- hi mein kennzeichen ist {@platenumber=ra kl 8.136}
+- {@platenumber=hm 61 zwo}
+- {@platenumber=hu1234}
+- {@platenumber=hu22}
+- {@platenumber=hu456}
+- {@platenumber=hu7}
+- ich fahr nachher nach frankfurt und mein kennzeichen ist die {@platenumber=s tx 6543}
+- ich frage jetzt ab kennzeichen {@platenumber=b l n 7 7 22}
+- ich hätte gerne einen termin in stuttgart und mein nummernschild ist {@platenumber=frankfurt anna stefan 44}
+- ich lebe in hamburg und mein nummern schild ist {@platenumber=mm 231}
+- ich stehe irgendwo bei frankfurt und das ist {@platenumber=münchen gustav dora 20}
+- ich wohne in stuttgart und es ist {@platenumber=s tx 524}
+- {@platenumber=ida zacharias werner daniel 18 ein}.
+- is {@platenumber=hhmr 1036}
+- ist {@platenumber=y 22 33 2}
+- ja das is gut {@platenumber=m von münchen viktor x 70 23}
+- ja das ist {@platenumber=rzb 6.000}.
+- ja das war {@platenumber=vc faktor cäsar 8 8 2}.
+- ja {@platenumber=g l s z 30 6} gucken sie mal ich hoffe d
+- ja {@platenumber=g l s z 30 6} gucken sie mal ich hoffe das
+- ja {@platenumber=r z b wie berta 6000}
+- ja, {@platenumber=hamburg z a 501}
+- ja, {@platenumber=hamburg z a 501}.
+- ja, {@platenumber=sägewerk sejm 252}.
+- {@platenumber=jh 4.800}
+- kennzeichen {@platenumber=berlin 22 10 0}
+- klar, {@platenumber=s tr 711}
+- {@platenumber=km 4 mal die 2}
+- lautet {@platenumber=b ln 999 h}
+- lautet {@platenumber=m ms123}
+- {@platenumber=m bd 12 33}
+- {@platenumber=m berta dora 34 ein 3}
+- {@platenumber=m cb 1123}
+- {@platenumber=m fd 5623}
+- {@platenumber=m gt 4532 h}
+- {@platenumber=m-ab456}
+- {@platenumber=m-ab946}
+- {@platenumber=ma-b123}
+- {@platenumber=ma718 e}
+- {@platenumber=mab123}
+- {@platenumber=marta marta 21 70}
+- {@platenumber=mat 12 mal die 87}
+- {@platenumber=mbd 1234}
+- {@platenumber=mec 332}.
+- mein altes kennzeichen ist {@platenumber=ha a 123}, das neue ist {@platenumber=mgh 34}
+- mein kennzeichen ähm das ist das ähm {@platenumber=hamburg gustav wilhelm 22}
+- mein kennzeichen ist {@platenumber=ab44}
+- mein kennzeichen ist {@platenumber=b ln 123} aber ich hätte gerne einen termin bei stuttgart irgendwo
+- mein kennzeichen ist {@platenumber=b ln1337}
+- mein kennzeichen ist {@platenumber=bl sf 42}
+- mein kennzeichen ist {@platenumber=dora dora münchen zwei vier}
+- mein kennzeichen ist {@platenumber=hamburg tx 6543}
+- mein kennzeichen ist {@platenumber=heinrich heinrich berta dora 49}
+- mein kennzeichen ist {@platenumber=heinrich heinrich berta dora vier neun}
+- mein kennzeichen ist {@platenumber=münchen ad 330}
+- mein kennzeichen ist {@platenumber=zh44}
+- mein kennzeichen lautet {@platenumber=ab44}
+- mein kennzeichen lautet {@platenumber=berta dora 1 7, 9 3}.
+- mein kennzeichen lautet {@platenumber=d-ue4561}
+- mein kennzeichen lautet {@platenumber=du-e4561}
+- mein kennzeichen lautet {@platenumber=due4561}
+- mein kennzeichen lautet {@platenumber=klm 30}.
+- mein kennzeichen lautet {@platenumber=m-tx 6543}
+- mein kennzeichen lautet {@platenumber=ma-b123}
+- mein kennzeichen lautet {@platenumber=mab123}
+- mein kennzeichen lautet {@platenumber=ml tx 33}.
+- mein kennzeichen lautet {@platenumber=stuttgart anton dora 77}
+- mein kennzeichen lautet {@platenumber=stuttgart gustav wilhelm 30}.
+- mein kennzeichen vom auto ist {@platenumber=125 ab 10}
+- mein nummern schild ist {@platenumber=b ha 123}
+- mein nummernschild ist {@platenumber=dora dora m 132}.
+- mein nummernschild ist {@platenumber=hannover dora m 132 e}.
+- mein nummernschild lautet {@platenumber=fr i 729}
+- {@platenumber=münchen a b 1234}
+- {@platenumber=münchen berta dora 2 mal 3 2 e}
+- {@platenumber=nienburg ce 232}.
+- {@platenumber=nina ina ec zwo 3 zwo}.
+- {@platenumber=nn tgf 543 e}
+- {@platenumber=nordpol ida clement illena 23 2}.
+- {@platenumber=nürnberg doppel nordpol zwo 4 5}
+- {@platenumber=nürnberg doppel nordpol zwo 4 5 e}
+- {@platenumber=o d s h 30 55}
+- oh man das ist glaub ich die {@platenumber=ra av 192}
+- okay {@platenumber=hamburg kf 236}
+- {@platenumber=p e h m 6 1 2}
+- {@platenumber=r z s d 1 9 7 0}
+- {@platenumber=richard zeppelin konrad theodor 1 1 1}
+- {@platenumber=rov 123 e}
+- {@platenumber=row wie rotenburg wümme n 2 mal 2 e}
+- {@platenumber=row-om 8 88}
+- {@platenumber=row-om423}
+- {@platenumber=rowom 888}
+- {@platenumber=s ga 637} ist mein kennzeichen
+- {@platenumber=s kevin armin 33} ist das
+- {@platenumber=se für sägewerk jm 252}
+- {@platenumber=siegfried ida 77}
+- {@platenumber=sok 22 mal die 71}
+- sonst lass uns nochmal eben die anderen autos abtasten, dann kann ich das wenigstens schonmal klären das nächste auto ist auch wieder {@platenumber=h h martha viktor 6 9, 9 9}.
+- {@platenumber=t - d e 1512}
+- {@platenumber=t b 1 2 0 1}
+- {@platenumber=theodor theodor 5 3 1}
+- {@platenumber=udin helmut zorro eg zwo zwo}.
+- und zwar es das {@platenumber=hbrt 801}
+- {@platenumber=w - ab 123}
+- {@platenumber=w l d r 4 3}
+- {@platenumber=w l r 2 4 2}
+- {@platenumber=winnenden engel ferat 3 mal 3 und 2}.
+- {@platenumber=wl dr 43} ja
+- {@platenumber=wldr 43}
+- {@platenumber=z-h44}
+- {@platenumber=zh44}
+
+
+# None
+- , wann ich den wieder wieder kriege gestern sollte ich ihn
+- <unknown> wo ich gesagt hab um himmels willen <unknown> aber ja, also ich fahr den extrem wenig und aber der ist <unknown> scheckheft gepflegt und das wollte ich auch weiter also <unknown> die
+- 3 5 6 5
+- äähm genau.
+- achso thelen, theodor heinrich emil ludwig emil nordpol?
+- ah alles klar, ne ich sollt mich halt nochmal melden weil
+- äh in kollaustraße.
+- äh wie war das nochmal
+- ähm<variation> gute gute frage, also ähm<variation> ich kann sonst schonmal das kennzeichen geben.
+- alles jut<variable> ne ich würd nur sagen
+- also das scheint sich zu häufigen <unknown>
+- also der termin war am elften dritten
+- also ich hab da kasko select und die sagen normalerweise ja fahr zu carglass oder fahr zu was weiß ich und mach das irgendwie da
+- also zwei stunden würde ich dann warten wenn ich ihn dann
+- alternativ ginge auch der tag auf.
+- bei ihm ähm.
+- boah keine ahnung
+- da bin ich überfragt
+- da hab ich mich dann auch mal hier bei mir ein kranker beschwert.
+- da muss ich nochmal schauen
+- da war ich 200 meter im funkschatten, aber ich hab deine sms bekommen.
+- danke tschüss
+- danke.
+- dann mach ich siebenuhrdreißig oder so
+- das ist nett.
+- der seit wann is das.
+- die ist wirklich gut
+- die winterreifen liegen noch bei ihn und jetzt kommt das nächste problem der wird am dienstagmorgen für uns alle ich benötigt, weil wir danach mit nach süddeutschland worden.
+- diese woche am frauühen nachmittag wäre gut, wenn diese woche nicht mehr frei ist, dann bitte die woche darauf. aber vormittag.
+- diese woche am frauühen nachmittag wäre gut, wenn diese woche nicht mehr frei ist, dann bitte die woche drauf. aber vor.
+- dir auch schon einige jahre alt ist.
+- einen kleinen smart.
+- er musste die terminierung bisschen anders machen
+- fenster machen wir nicht und so der also das war nicht nett, deswegen wollte ich einmal mit beidke<variation> darüber reden.
+- genau bis 15 uhr wieder
+- genau so und da ist äh mir leider am samstag jemand hinten drauf gefahren.
+- gut schönen tag
+- hab ich dann aus berlin auch <unknown> zwei zahlungserinnerungen gekriegt
+- hatte ja hat er mir eh<variable>schonmal ausgedruckt das war die eh<variable> in an das war der goodyear 205 55 ja r 16
+- hey, ich hatte gestern doch ähm der standort stuttgart gefragt.
+- hi wäre es möglich ein termin am standort stuttgart zu kommen.
+- hundertzwölf
+- ich bin jetzt südlich der elbe gewesen, mit au<variable> zumindest was das navigationssystem anzeigt
+- ich gehe immer in die niederlassung hannover wäre gut wenn ich dort einen termin bekommen kann
+- ich hab eine kleine frage und zwar äh als, das auto von meinem chef hier abgeholt und wieder hergebracht worden ist vor einem service termin
+- ich hab jetzt <unknown> fünf und vierzig tausend einhundert fünf und vierzig
+- ich hab kein auto
+- ich hab mein kennzeichen jetzt nicht
+- ich hätte gerne einen termin in bahrenfeld
+- ich hätte gerne einen termin in bremen
+- ich hätte gerne einen termin in bremen nord
+- ich hätte gerne einen termin in bückeburg
+- ich hätte gerne einen termin in city süd
+- ich hätte gerne einen termin in döhren
+- ich hätte gerne einen termin in hannover
+- ich hätte gerne einen termin in hildesheim
+- ich hätte gerne einen termin in lehrte
+- ich hätte gerne einen termin in niendorf
+- ich hätte gerne einen termin in wandsbek
+- ich warte seit letzte woche auf einen rückruf zum wiederholten male.
+- ich würde gerne am dreizehnten elften morgens vorbeikommen am besten um zehn uhr alternativ ginge auch der tag darauf
+- ich würde gerne in die filiale nach bremen
+- ich würde gerne meine winterräder montieren lassen und hätte hierzu gerne einen termin.
+- ist in ordnung.
+- ist klar acht uhr fünfzehn natürlich
+- j o e also j wie joachim also j o otto genau emil dann berta, otto, emil, cesar, katastrophe - joeboeck ne so und jetzt @online.de nicht t online, sondern einfach nur online.de
+- ja aber immer so
+- ja genau gut scheibe <variabel> ist mein name erika scheibe <variabel> ja und ich wollte mich gerne anmelden und zwar zu einem service d wie dora
+- ja ich denk immer weil das vielleicht auf und so ganz schnell irgendwie daran gearbeitet wurde, dass da nich ach je
+- ja ich meine hier ich hab so nen bisschen bei diesen bei diesen softwareupdate da ne da hab ich nen bisschne muffe, naja aber
+- ja meine name ist <unknown> äh<variable> bin ich mit der elektrik verbunden.
+- ja, genau, jetzt beim letzten mal aufspielen hier war ich zehnmal in der werkstatt, da ging allerhand nicht mehr
+- ja, gerne vormittags und dann so bald wie möglich irgendwann februar ja genau.
+- ja, guten tag mein name ist <unknown>
+- jo genau ja ja, der zug genau genau.
+- joa, 35 44 56.
+- kann ich nächste woche nachmittags vorbeikommen aber nicht vor fünfzehn uhr morgens habe ich meistens keine zeit
+- kein problem.
+- kenn mein kennzeichen nicht auswendig
+- können sie da mal reingucken in meine unterlagen bei ihnen?
+- matthias<variation> rühle<variation> fuhrpark werk acht und sechzig guten tag
+- mh<variable> das hört sich metallisch an
+- mhm mhm.
+- mit koch<variation> mit c war das ne?
+- morgen <unknown> hier nochmal.
+- morgen frau <unknown> klima
+- muss sich der kollege der das fahrzeug da abgibt, bei einer bestimmten ansprechpartnerin äh<variation> vorstellen oder?
+- na gut, okay kurz noch eine frage jetzt irgendwie müssen sie nicht beantworten meinen sie , dass man das ganze was was jetzt hier entsteht das ist äh<variable>
+- na ja, heute wann bringen, was <unknown> serviceberater.
+- na, wie wird anderes ich hab zwo 99 für die wartung 110 fällen räderwechsel.
+- ne das das
+- ne ne dann lass uns lieber am am
+- ne, genau der steht in moment in der garage einfach
+- ne, ich äh<variation> durchwahl ist besser.
+- nein nein nein nein 5 8 kilo
+- nein, auto muss zum werkstatt.
+- nein, nein nein das fahrzeug hab ich schon zu hause aber ich hab noch so ein zwei fragen zu der rechnung.
+- notfalls schaden beheben auch, dass die versicherung weitgehend dich bei den aktivitäten wie sich das gehört.
+- oder interessiert sie das nich<variation>
+- oh äh<variation>.
+- prima genau passt nicht ganz, aber ja, also ich hab ja zwischen 8 und 9 meinen sie ne<variable>.
+- puh keine ahnung
+- sieben drei acht sieben
+- so ist es
+- software steuergerät audio 20 aktualisieren.
+- und da hab ich gedacht na<variable>
+- und hat das ähmäh<variable> zu kollaustraße gebracht zu mercedes.
+- und wenn sie sich nicht meldet, dann habe ich folgenden wunsch, wenn sie ihr das bitte mitteilen.
+- und zwar wegen dem termin großen termin den ich am 12.3. haben sollte
+- und zwar, erstmal ne ganz allgemeine frage ähm<variation>.
+- wäre es möglich morgen einen termin in bückeburg zu bekommen
+- was geht dich was an
+- was ich hier sonst noch für zahlen habe
+- was willst du denn jetzt von mir
+- weiß ich nicht auswendig
+- wie gerne eine filiale nach bremen?
+- wie komm ich denn irgendwie ein kollege pritzel ran.
+- wieso interessiert dich das
+- wo finde ich den standort lübeck genau?
+- zum standort lübeck will ich bitte
+
+
+> # Entity definitions
+
+@ ml platenumber
+
+
+> # PREBUILT Entity definitions
+
+
+> # Phrase list definitions
+
+
+> # List entities
+
+> # RegEx entities
+
+

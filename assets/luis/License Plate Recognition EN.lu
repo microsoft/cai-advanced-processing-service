@@ -1,0 +1,75 @@
+
+> LUIS application information
+> !# @app.name = License Plate Recognition EN
+> !# @app.versionId = 0.1
+> !# @app.culture = en-us
+> !# @app.luis_schema_version = 7.0.0
+> !# @app.tokenizerVersion = 1.0.0
+
+
+> # Intent definitions
+
+# LicensePlateRecognition
+- {@platenumber=cologne bertha ida 1234}.
+- {@platenumber=d-e4321}
+- {@platenumber=d-ue4321}
+- {@platenumber=de4321}
+- {@platenumber=du-e4321}
+- {@platenumber=dub 123}
+- {@platenumber=due4321}
+- {@platenumber=düsseldorf bertha ida 1234}.
+- {@platenumber=mab123}
+- {@platenumber=mad 777}
+- {@platenumber=mad777}
+- {@platenumber=munich anton bertha 777}.
+- my licencse plate is {@platenumber=d-e4321}
+- my licencse plate is {@platenumber=d-ue4321}
+- my licencse plate is {@platenumber=de4321}
+- my licencse plate is {@platenumber=du-e4321}
+- my licencse plate is {@platenumber=due4321}
+- my licencse plate is {@platenumber=m-ab123}
+- my licencse plate is {@platenumber=ma-b123}
+- my licencse plate is {@platenumber=mab123}
+- my license plate is {@platenumber=dub 123}
+- my license plate is {@platenumber=mad 777}
+- my license plate is {@platenumber=mad777}
+- this is {@platenumber=cologne bertha ida 1234}
+- this is {@platenumber=cologne bertha ida 1234}.
+- this is {@platenumber=düsseldorf bertha ida 1234}
+- this is {@platenumber=düsseldorf bertha ida 1234}.
+- this is {@platenumber=munich anton bertha 777}
+- this is {@platenumber=munich anton bertha 777}.
+
+
+# None
+- help me
+- i need help
+- why do you ask for my license number?
+- why do you ask for my license plate?
+- why do you ask for my registration number?
+- why do you ask for my registration?
+- why do you ask?
+- why do you need my license number?
+- why do you need my license plate?
+- why do you need my registration number?
+- why do you need my registration?
+- why do you want to know?
+- why?
+
+
+> # Entity definitions
+
+@ ml platenumber
+
+
+> # PREBUILT Entity definitions
+
+
+> # Phrase list definitions
+
+
+> # List entities
+
+> # RegEx entities
+
+
