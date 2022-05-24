@@ -3,7 +3,7 @@
 FROM mcr.microsoft.com/azure-functions/python:3.0-python3.8-core-tools
 
 RUN apt update
-RUN apt install npm
+RUN apt install -y npm
 RUN npm install -g newman
 
 COPY requirements.txt .

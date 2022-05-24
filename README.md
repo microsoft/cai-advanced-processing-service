@@ -91,7 +91,8 @@ __Functionality:__
 - Resolves spelling alphabets in a string as well as letter/number multiplications
 
 __Dependencies:__
-- None
+- External services or libraries:
+    - for Email validator service it needs [Language Understanding Service (LUIS)](https://luis.ai) for extracting license plates from a string
 
 ### `similarity_score.py`
 
@@ -192,7 +193,7 @@ API key may be passed via header
             "text": "stuttgart a wie anton dora 22",
             "startIndex": 8,
             "length": 29,
-            "score": 0.9936155,
+            "score": 0.99148196,
             "modelTypeId": 1,
             "modelType": "Entity Extractor",
             "recognitionSources": [
@@ -200,7 +201,10 @@ API key may be passed via header
             ]
         }
     ],
-    "topScoringIntent": "LicensePlate"
+    "topScoringIntent": "LicensePlate",
+    "logs": [
+        "[INFO] - Set params -> region: de, language: de."
+    ]
 }
 ```
 
@@ -212,7 +216,11 @@ API key may be passed via header
     "cplQuery": "puh das hab ich gerade nicht zur hand",
     "cplEntities": [],
     "entities": {},
-    "topScoringIntent": "None"
+    "topScoringIntent": "None",
+    "logs": [
+        "[INFO] - Set params -> region: de, language: de.",
+        "[WARNING] - No entity could be extracted"
+    ]
 }
 ```
 
@@ -255,7 +263,15 @@ API key may be passed via header
 ```json
 {
     "query": "[0-500 chars]",
-    "locale": "[2-character language code, e.g. de, en, es (cut off after two characters)]"
+    "locale": "[2-character language code, e.g. de, en, es (cut off after two characters)]",
+    "convertnumbers": "[true/false, default is true]",
+    "convertsymbols": "[true/false, default is true]",
+    "convertmultiplications": "[true/false, default is true]",
+    "additional_symbols": "[a dictionary, example: {"at":"@", "dash": "-"}, default: {}]",
+    "allowed_symbols": "[a list, example: ["_", "-", "@", "." ], default: []]",
+    "extra_specials": "[a list, example: {'werden':'verden'}, default: {}",
+    "extra_spelling_alphabet": "[a dictionary, example: {'daimler':'d'}, default: null]",
+    "locale": "de"
 }
 ```
 
@@ -361,14 +377,43 @@ API key may be passed via header
         "vis": "CES5C8T2",
         "vsn": "S5C8T2",
         "less_than_500_built_per_year": false
-    }
+    },
+    "entities": {
+        "vin": [
+            "2WMCGH3B2CES5C8T2"
+        ],
+        "$instance": {
+            "vin": [
+                {
+                    "type": "vin",
+                    "text": "2WMCGH3B2CES5C8T2",
+                    "startIndex": 8,
+                    "length": 17,
+                    "score": 0.99916714,
+                    "modelTypeId": 1,
+                    "modelType": "Entity Extractor",
+                    "recognitionSources": [
+                        "model"
+                    ]
+                }
+            ]
+        }
+    },
+    "topScoringIntent": "VINResolver"
 }
 ```
+"entities" returns LUIS response.
 
 ```json
 # If no entity could be extracted 
 {
-    "info": "No entity could be extracted."
+    "query": "das ist ",
+    "validvin": false,
+    "vindetails": {},
+    "entities": {},
+    "message": [
+        "[WARNING] - No entity could be extracted"
+    ]
 }
 ```
 
@@ -392,6 +437,267 @@ API key may be passed via header
 
 ```
 [ERROR] Received a blank request. Please pass a value using the defined format. Example: {'query':'das ist 2A4GM684X6R632476', 'expectedwmi': ['WDC'],'locale': 'de'}
+```
+
+<br>
+
+### **AtributeValidator API**
+**URL** : `/AttributeValidator/`
+
+**Method** : `GET` / `POST`
+
+**Auth required** : Only deployed version, if authentication is activated (strongly recommended) 
+
+**Permissions required** : for email validator, LUIS app information and keys, see [Get Your Keys](GET_YOUR_KEYS.md) for instructions
+
+**Data constraints** 
+AtributeValidator API suppurt the following attributes:
+- `address`
+- `street_in_city`
+- `zip`
+- `iban`
+- `email`
+the request body for AtributeValidator is different depending on the attribute.
+
+- For address attribute, the request body is:
+```json
+{
+    "region": "[2-character language code, e.g. de, en, es (cut off after two characters)]",
+    "module": "address",
+    "values": {
+        "zip": "99999",
+        "city": "berlin",
+        "street": "jordanstrasse",
+        "number": 10
+    }
+}
+```
+-  For street_in_city attribute, the request body is (Prüft Straße in ZIP):
+```json
+{
+    "region": "[2-character language code, e.g. de, en, es (cut off after two characters)]",
+    "module": "street_in_city",
+    "values": {
+        "zip": "99999",
+        "city": "berlin",
+        "street": "jordanstrasse",
+        "number": 10
+    }
+}
+```
+- For zip attribute, the request body is:
+```json
+{
+    "region": "[2-character language code, e.g. de, en, es (cut off after two characters)]",
+    "module": "zip",
+    "values": {
+        "zip": "99999",
+        "city": "duesseldorf "
+    }
+}
+```
+
+- For iban attribute, the request body is (Prüft IBAN):
+```json
+{
+    "region": "[2-character language code, e.g. de, en, es (cut off after two characters)]",
+    "module": "iban",
+    "values": {
+        "iban": "DE12345678901234567890"
+    }
+}
+```
+- For email attribute, the request body is (Prüft E-Mail):
+```json
+{
+    "region": "[2-character language code, e.g. de, en, es (cut off after two characters)]",
+    "locale": "[2-character language code, e.g. de, en, es (cut off after two characters)]",
+    "module": "email",
+    "values": {
+        "email": "max.mustermann@example.com"
+    }
+}
+```
+
+Note that `locale` stands for language. Optional values - if not passed, `de` is set respectively by default.
+
+**Header constraints**
+API key may be passed via header
+
+#### **Success Responses**
+
+**Condition** : Data provided, correct app information set and LUIS information is valid.
+
+**Code** : `200 OK`
+
+**Content example** : 
+
+- For address validation, the response will be:
+```json
+{
+    "error": false,
+    "city_is_valid": true,
+    "zip": "10115",
+    "city": "Berlin",
+    "street_is_valid": true,
+    "street_has_options": false,
+    "street": "Bergstr.",
+    "number": 10
+}
+```
+
+- For street_in_city validation, the response will be:
+```json
+{
+    "error": false,
+    "is_valid": true,
+    "has_options": false,
+    "street": "Bergstr.",
+    "number": "10"
+}
+```
+
+- For zip validation, the response will be:
+```json
+{
+    "error": false,
+    "is_valid": true,
+    "zip": "10115",
+    "city": "Berlin"
+}
+```
+
+- For iban validation, the response will be:
+```json
+{
+    "error": false,
+    "is_valid": true,
+    "iban": "DE02120300000000202051"
+}
+```
+
+- For email validation, the response will be:
+```json
+{
+    "query": "Normen.meyer@daimler.com",
+    "e-mail recognized": true,
+    "e-mail": "normen.meyer@daimler.com",
+    "entities": {
+        "company_name": [
+            "Normen.meyer@daimler.com"
+        ],
+        "email_spelled": [
+            "Normen.meyer@daimler.com"
+        ],
+        "email": [
+            "normen.meyer@daimler.com"
+        ],
+        "domain": [
+            "daimler.com"
+        ],
+        "$instance": {
+            "company_name": [
+                {
+                    "type": "company_name",
+                    "text": "Normen.meyer@daimler.com",
+                    "startIndex": 0,
+                    "length": 24,
+                    "score": 0.46415412,
+                    "modelTypeId": 1,
+                    "modelType": "Entity Extractor",
+                    "recognitionSources": [
+                        "model"
+                    ]
+                }
+            ],
+            "email_spelled": [
+                {
+                    "type": "email_spelled",
+                    "text": "Normen.meyer@daimler.com",
+                    "startIndex": 0,
+                    "length": 24,
+                    "score": 0.76997584,
+                    "modelTypeId": 1,
+                    "modelType": "Entity Extractor",
+                    "recognitionSources": [
+                        "model"
+                    ]
+                }
+            ],
+            "email": [
+                {
+                    "type": "builtin.email",
+                    "text": "Normen.meyer@daimler.com",
+                    "startIndex": 0,
+                    "length": 24,
+                    "modelTypeId": 2,
+                    "modelType": "Prebuilt Entity Extractor",
+                    "recognitionSources": [
+                        "model"
+                    ]
+                }
+            ],
+            "domain": [
+                {
+                    "type": "domain",
+                    "text": "daimler.com",
+                    "startIndex": 13,
+                    "length": 11,
+                    "score": 0.9899364,
+                    "modelTypeId": 1,
+                    "modelType": "Entity Extractor",
+                    "recognitionSources": [
+                        "model"
+                    ]
+                }
+            ]
+        }
+    },
+    "topScoringIntent": "GetEntities"
+}
+
+"entities" returns LUIS response.
+
+```json
+# If no entity could be extracted 
+{
+    "query": "mein email",
+    "e-mail recognized": false,
+    "e-mail": "",
+    "entities": {},
+    "topScoringIntent": "GetEntities"
+}
+```
+
+#### **Error Responses**
+
+**Condition** : If provided data is invalid, e.g. region not supported.
+
+**Code** : `200 OK`
+
+**Content example** :
+
+```
+[ERROR] Locale not supported
+{
+    "error": true,
+    "is_valid": false,
+    "error_message": "Locale US not supported."
+}
+```
+
+**Condition** : If no query string (utterance from conversation, which may include a license plate) has been passed.
+
+**Code** : `200 BAD REQUEST`
+
+**Content example** :
+
+```
+{
+    "error": false,
+    "error_message": "Submitted IBAN is not a valid IBAN for DE with length of 22",
+    "is_valid": false
+}
 ```
 
 <br>
@@ -560,9 +866,10 @@ First, you have to install/set up following components:
     - [Azure Functions Core Tools](https://docs.microsoft.com/de-de/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#v2), download for your local runtime environment, e.g. as `.exe` -> _v3.x: Windows 64-Bit_
     - A restart is highly recommended or even required after installing these components, otherwise you might face some hiccups.
 2. Python >= 3.7
-    - We recommend you to use the official version from the [Python website](https://www.python.org/downloads/release/python-379/), make sure you install `pip` and set Python as `path` variable during the installation
+    - We recommend you to use the official version from the [Python website](https://www.python.org/downloads/release/python-379/), make sure you install `pip` and set Python as `path` variable during the installation process.
+    
 3. Postman
-    - Framework for API testing, download it [here](https://www.postman.com/downloads/)
+    - Framework for API testing, download it [here](https://www.postman.com/downloads/) and install it.
 
 ### Testing and Debugging
 1. Get your code from GitHub: `git clone https://github.com/microsoft/looky` and `cd` into the environment

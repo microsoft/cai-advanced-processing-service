@@ -274,7 +274,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"query\":\"mab 123\",\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}",
+							"raw": "{\r\n    \"query\":\"das ist stuttgart a wie anton dora 22\",\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -306,7 +306,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"query\": \"Martha Anton unterstrich _ punkt dot . dash - bindestrich e at @ g m a i l punkt c o m\",\r\n    \"convertnumbers\": true,\r\n    \"convertsymbols\": true,\r\n    \"additional_symbols\": {\"at\":\"@\", \r\n                            \"dash\": \"-\"},\r\n    \"allowed_symbols\": [\"_\", \"-\", \"@\", \".\" ],\r\n    \"locale\": \"de\"\r\n}",
+							"raw": "{\r\n    \"query\": \"Martha Anton unterstrich _ punkt dot . karl heinrich 33 22 dash - bindestrich e at @ g m a i l punkt c o m\",\r\n    \"convertnumbers\": true,\r\n    \"convertsymbols\": true,\r\n    \"convertmultiplications\": true,\r\n\r\n    \"additional_symbols\": {\"at\":\"@\", \r\n                            \"dash\": \"-\"},\r\n    \"allowed_symbols\": [\"_\", \"-\", \"@\", \".\" ],\r\n    \"extra_specials\": [],\r\n    \"extra_spelling_alphabet\": null,\r\n    \"locale\": \"de\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -527,49 +527,6 @@
 					"response": []
 				},
 				{
-					"name": "Deployed - AttributeValidator - Email",
-					"request": {
-						"auth": {
-							"type": "apikey",
-							"apikey": [
-								{
-									"key": "value",
-									"value": "{{APIKey}}",
-									"type": "string"
-								},
-								{
-									"key": "key",
-									"value": "x-functions-key",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"module\": \"email\",\r\n    \"locale\": \"de\",\r\n    \"region\": \"de\",\r\n    \"values\": {\r\n        \"query\": \"Normen.meyer@daimler.com\"\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://{{FunctionURI}}/api/AttributeValidator",
-							"protocol": "https",
-							"host": [
-								"{{FunctionURI}}"
-							],
-							"path": [
-								"api",
-								"AttributeValidator"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Deployed - AttributeValidator - ZIP",
 					"request": {
 						"auth": {
@@ -592,6 +549,49 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"region\": \"de\",\r\n    \"module\": \"zip\",\r\n    \"values\": {\r\n        \"zip\": \"10115\",\r\n        \"city\": \"berlin\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{FunctionURI}}/api/AttributeValidator",
+							"protocol": "https",
+							"host": [
+								"{{FunctionURI}}"
+							],
+							"path": [
+								"api",
+								"AttributeValidator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deployed - AttributeValidator - Email",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{APIKey}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "x-functions-key",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"module\": \"email\",\r\n    \"locale\": \"de\",\r\n    \"region\": \"de\",\r\n    \"values\": {\r\n        \"query\": \"Normen.meyer@daimler.com\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -783,7 +783,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"query\": \"Martha Anton humbug drei 4\",\r\n    \"convertnumbers\": true,\r\n    \"language\": \"de-de\",\r\n    \"locale\": \"de\"\r\n}",
+							"raw": "{\r\n    \"query\": \"Martha Anton unterstrich _ punkt dot . dash - bindestrich e at @ g m a i l punkt c o m\",\r\n    \"convertnumbers\": true,\r\n    \"convertsymbols\": true,\r\n    \"convertmultiplications\": true,\r\n\r\n    \"additional_symbols\": {\"at\":\"@\", \r\n                            \"dash\": \"-\"},\r\n    \"allowed_symbols\": [\"_\", \"-\", \"@\", \".\" ],\r\n    \"extra_specials\": [],\r\n    \"extra_spelling_alphabet\": null,\r\n    \"locale\": \"de\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

@@ -21,6 +21,7 @@ from modules import luis_helper as luis
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logger.info('[INFO] LicensePlate Post Processing started.')
 
+    msg = []
     # Get query and request parameters
     try:
         req_body    = req.get_json()
@@ -50,6 +51,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         # Snip off everything after first two characters (e.g. en-us -> en)
         region = region[:2]
         lang = lang[:2]
+        msg.append(f'[INFO] - Set params -> region: {region}, language: {lang}.')
         logger.info(f'[INFO] - Set params -> region: {region}, language: {lang}.')
     
     # Read manifest and extract module information
@@ -74,9 +76,11 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             r_ent = r['prediction']['entities']['$instance']['platenumber'][0]
         except KeyError:
             logger.error('[WARNING] - No entity could be extracted')
+            msg.append('[WARNING] - No entity could be extracted')
             r_ent = None
         except Exception as e:
             logger.error(f'[ERROR] - {e}')
+            msg.append(f'[ERROR] - {e}')
             r_ent = None
 
         # Process LP 
@@ -101,7 +105,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                         cplQuery        =   cpl_query,
                         cplEntities     =   cpl_entities,
                         entities        =   [r_ent],
-                        topScoringIntent=   r.get('prediction').get('topIntent')
+                        topScoringIntent=   r.get('prediction').get('topIntent'),
+                        logs            =   msg
                         )
                     )
         else:
@@ -112,7 +117,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                     cplQuery        =   query,
                     cplEntities     =   [],
                     entities        =   r.get('prediction').get('entities'),
-                    topScoringIntent=   r.get('prediction').get('topIntent')
+                    topScoringIntent=   r.get('prediction').get('topIntent'),
+                    logs            =   msg
                     )
                 )
         return func.HttpResponse(
