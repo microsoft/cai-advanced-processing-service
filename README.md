@@ -1,6 +1,6 @@
 ![Data Science Toolkit](assets/img/data-science-toolkit-banner.JPG)
 
-# Conversational AI (CAI) Advanced Processing Service - a smart authentication assistent
+# Conversational AI (CAI) Advanced Processing Service
 CAI Advanced Processing Service is a collection of modules, wrapped in multiple APIs that help you to enrich your conversational AI applications in these three fields:
 - Validation
 - Identification
