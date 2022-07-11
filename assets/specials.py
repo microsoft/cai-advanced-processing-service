@@ -8,7 +8,17 @@ obj: Dict[str, str] = {
 	" bindestrich ": " ",
 	" binde strich ": " ",
 	"-": " ",
-	" komma ": " "
+	" komma ": " ",
+	"einmal":"1 mal",
+	"zweimal":"2 mal",
+	"dreimal":"3 mal",
+	"viermal":"4 mal",
+	"fünfmal":"5 mal",
+	"sechsmal":"6 mal",
+	"siebenmal":"7 mal",
+	"achtmal":"8 mal",
+	"neunmal":"9 mal",
+	"zehnmal":"10 mal"
 }
 
 # date specials
