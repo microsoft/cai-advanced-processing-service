@@ -9,7 +9,7 @@ azure-nspkg==3.0.2
 azure-storage-blob==12.9.0
 blis==0.7.5
 catalogue==2.0.6
-certifi==2021.10.8
+certifi==2023.7.22
 cffi==1.15.0
 charset-normalizer==2.0.10
 click==7.1.2
