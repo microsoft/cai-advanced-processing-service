@@ -13,7 +13,7 @@ certifi==2021.10.8
 cffi==1.15.0
 charset-normalizer==2.0.10
 click==7.1.2
-cryptography==36.0.1
+cryptography==42.0.2
 cymem==2.0.6
 DateTime==4.3
 ddt==1.4.4
